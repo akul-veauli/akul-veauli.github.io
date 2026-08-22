@@ -4,10 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akul Veauli | Finance Portfolio</title>
-<meta name="description" content="Akul Veauli, University of Toronto Finance Co-op. Real estate private equity, valuation, and financial modelling portfolio.">
+<meta name="description" content="Akul Veauli, University of Toronto Finance Co-op. Automated valuation engines, equity research, and financial modelling portfolio.">
 <style>
   :root{
     --navy:#0e2a47;
+    --black:#0a0a0c;
+    --charcoal:#17181b;
     --blue:#1d5fad;
     --blue-light:#eaf1f9;
     --ink:#111418;
@@ -15,7 +17,7 @@
     --gray-light:#8a949e;
     --line:#e2e6ea;
     --bg:#ffffff;
-    --bg-alt:#f6f8fa;
+    --bg-alt:#f6f6f7;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -28,27 +30,30 @@
   /* Nav */
   nav{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .nav-name{font-family:"Times New Roman",Times,serif;font-weight:700;font-size:17px;color:var(--navy);letter-spacing:.02em}
-  .nav-links{display:flex;gap:22px}
+  .nav-name{font-family:"Times New Roman",Times,serif;font-weight:700;font-size:17px;color:var(--black);letter-spacing:.02em}
+  .nav-links{display:flex;gap:20px;flex-wrap:wrap}
   .nav-links a{color:var(--gray);font-size:13px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
-  .nav-links a:hover{color:var(--navy);text-decoration:none}
-  @media(max-width:820px){.nav-links{display:none}}
+  .nav-links a:hover{color:var(--black);text-decoration:none}
+  @media(max-width:900px){.nav-links{display:none}}
 
   /* Hero */
-  header{background:linear-gradient(160deg,var(--navy) 0%, #16406b 70%, #1d5fad 130%);color:#fff;padding:84px 0 76px}
+  header{position:relative;color:#fff;padding:88px 0 78px;overflow:hidden;background:#050506}
+  header::before{content:"";position:absolute;inset:0;background-image:url("assets/cn-tower.jpg");background-size:cover;background-position:center 35%;opacity:.42;filter:saturate(0.85)}
+  header::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(4,4,5,.94) 0%, rgba(10,10,12,.88) 45%, rgba(14,20,28,.80) 100%)}
+  header .wrap{position:relative;z-index:1}
   .hero-flex{display:flex;align-items:center;gap:56px}
   .hero-text{flex:1;min-width:0}
   .hero-photo{flex:none}
-  .hero-photo img{width:230px;height:250px;object-fit:cover;border-radius:6px;border:3px solid rgba(255,255,255,.85);box-shadow:0 18px 44px rgba(0,0,0,.35)}
+  .hero-photo img{width:230px;height:250px;object-fit:cover;border-radius:6px;border:3px solid rgba(255,255,255,.85);box-shadow:0 18px 44px rgba(0,0,0,.5)}
   @media(max-width:820px){.hero-flex{flex-direction:column-reverse;text-align:left;gap:34px}.hero-photo img{width:180px;height:196px}}
-  .kicker{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#9db8d6;margin-bottom:18px;font-weight:600}
+  .kicker{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#b7bdc4;margin-bottom:18px;font-weight:600}
   header h1{font-size:50px;line-height:1.1;font-weight:700;margin-bottom:16px;letter-spacing:.01em}
-  .headline{font-size:20px;color:#c9d8ea;max-width:640px;margin-bottom:14px;font-family:"Times New Roman",Times,serif;font-style:italic}
-  .sub{font-size:15.5px;color:#a7bcd4;max-width:640px;margin-bottom:32px}
+  .headline{font-size:20px;color:#d7dade;max-width:640px;margin-bottom:14px;font-family:"Times New Roman",Times,serif;font-style:italic}
+  .sub{font-size:15.5px;color:#a9adb3;max-width:640px;margin-bottom:32px}
   .hero-cta{display:flex;gap:13px;flex-wrap:wrap}
-  .btn{display:inline-block;padding:12px 24px;font-size:14px;font-weight:600;letter-spacing:.05em;border:1px solid rgba(255,255,255,.45);color:#fff;transition:all .18s}
-  .btn:hover{background:#fff;color:var(--navy);text-decoration:none}
-  .btn.solid{background:#fff;color:var(--navy);border-color:#fff}
+  .btn{display:inline-block;padding:12px 24px;font-size:14px;font-weight:600;letter-spacing:.05em;border:1px solid rgba(255,255,255,.4);color:#fff;transition:all .18s;background:transparent}
+  .btn:hover{background:#fff;color:var(--black);text-decoration:none}
+  .btn.solid{background:#fff;color:var(--black);border-color:#fff}
   .btn.solid:hover{background:transparent;color:#fff}
 
   /* Stat band */
@@ -56,36 +61,43 @@
   .stats-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
   .stat{padding:30px 20px;text-align:center;border-left:1px solid var(--line)}
   .stat:first-child{border-left:none}
-  .stat .num{font-family:"Times New Roman",Times,serif;font-size:30px;font-weight:700;color:var(--navy)}
+  .stat .num{font-family:"Times New Roman",Times,serif;font-size:30px;font-weight:700;color:var(--black)}
   .stat .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-light);margin-top:4px}
   @media(max-width:760px){.stats-inner{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){border-left:none}}
 
   /* Sections */
   section{padding:76px 0}
   section.alt{background:var(--bg-alt)}
-  .sec-kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:10px}
-  h2{font-size:32px;color:var(--navy);margin-bottom:8px}
+  .sec-kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--black);font-weight:700;margin-bottom:10px}
+  h2{font-size:32px;color:var(--black);margin-bottom:8px}
   .sec-lede{color:var(--gray);max-width:700px;margin-bottom:42px;font-size:16.5px}
-  .rule{width:56px;height:3px;background:var(--blue);margin:18px 0 30px}
+  .rule{width:56px;height:3px;background:var(--black);margin:18px 0 30px}
+
+  /* About - trimmed */
+  .about-block{max-width:760px}
+  .about-block p{font-size:17.5px;color:#2a2f35;margin-bottom:16px}
+  .about-block .punch{font-weight:700;color:var(--black)}
 
   /* Experience */
-  .xp{border-left:2px solid var(--line);padding-left:32px;position:relative;margin-bottom:44px}
+  .xp{border-left:2px solid var(--line);padding-left:32px;position:relative;margin-bottom:40px}
   .xp:last-child{margin-bottom:0}
-  .xp::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:var(--blue);border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px var(--blue)}
+  .xp::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:var(--black);border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px var(--black)}
   .xp-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px}
   .xp h3{font-size:20px;color:var(--ink)}
   .xp .role{color:var(--blue);font-weight:600;font-size:15px;margin:2px 0 10px}
   .xp .when{font-size:13.5px;color:var(--gray-light);white-space:nowrap}
   .xp ul{list-style:none}
   .xp li{position:relative;padding-left:20px;margin-bottom:9px;color:#333a41;font-size:15px}
-  .xp li::before{content:"▪";position:absolute;left:0;color:var(--blue);font-weight:600}
+  .xp li::before{content:"▪";position:absolute;left:0;color:var(--black);font-weight:600}
+  .subhead{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--black);font-weight:700;margin:44px 0 22px;padding-bottom:8px;border-bottom:2px solid var(--black)}
+  .subhead:first-of-type{margin-top:0}
 
   /* Cards */
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
   @media(max-width:760px){.grid{grid-template-columns:1fr}}
-  .card{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);padding:28px;transition:box-shadow .18s, transform .18s;display:flex;flex-direction:column}
-  .card:hover{box-shadow:0 10px 30px rgba(14,42,71,.10);transform:translateY(-2px)}
-  .card h3{font-size:18.5px;color:var(--navy);margin-bottom:4px}
+  .card{background:#fff;border:1px solid var(--line);border-top:3px solid var(--black);padding:28px;transition:box-shadow .18s, transform .18s;display:flex;flex-direction:column}
+  .card:hover{box-shadow:0 10px 30px rgba(0,0,0,.10);transform:translateY(-2px)}
+  .card h3{font-size:18.5px;color:var(--black);margin-bottom:4px}
   .card .tagline{font-size:13px;color:var(--blue);font-weight:600;letter-spacing:.03em;margin-bottom:12px}
   .card p{font-size:14.5px;color:#3c444c;margin-bottom:12px}
   .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
@@ -96,60 +108,101 @@
   .badge.conf{background:#eef1f4;color:#5c6670;border:1px solid var(--line)}
   .badge.code{background:#e7f3ec;color:#1c6b43;border:1px solid #c4e2d1}
   .badge.ow{background:#e7f3ec;color:#1c6b43;border:1px solid #c4e2d1}
+  .badge.uw{background:#fbe9e9;color:#a02323;border:1px solid #f2c8c8}
   .badge.neutral{background:#eef1f4;color:#5c6670;border:1px solid var(--line)}
+  .badge.soon{background:#111418;color:#fff;border:1px solid #111418}
 
-  /* Research cards */
-  .card.research{border-top-color:var(--navy)}
-  .rc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .rc-ticker{font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--gray-light)}
-  .rc-metrics{display:flex;gap:22px;margin:14px 0;flex-wrap:wrap}
+  /* Demo card */
+  .demo-card{background:var(--black);color:#fff;padding:32px 34px;margin-top:28px;position:relative}
+  .demo-card h3{color:#fff;font-size:20px;margin-bottom:6px}
+  .demo-card p{color:#b7bdc4;font-size:14.5px;margin-bottom:20px;max-width:560px}
+  .demo-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .demo-input{flex:1;min-width:180px;max-width:280px;padding:12px 14px;font-size:15px;font-family:"Times New Roman",Times,serif;border:1px solid #3a3d42;background:#1b1c1f;color:#6e737a;letter-spacing:.05em;text-transform:uppercase}
+  .demo-btn{padding:12px 26px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#3a3d42;color:#8a8f96;border:1px solid #3a3d42;cursor:not-allowed}
+
+  /* Accordions (Equity Research + Models) */
+  .acc-sector{border:1px solid var(--line);background:#fff;margin-bottom:10px}
+  .acc-sector > summary{list-style:none;cursor:pointer;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;font-size:16px;font-weight:700;color:var(--black);background:#fff}
+  .acc-sector > summary::-webkit-details-marker{display:none}
+  .acc-sector > summary::after{content:"+";font-size:20px;font-weight:400;color:var(--gray-light);margin-left:14px}
+  .acc-sector[open] > summary::after{content:"–"}
+  .acc-sector-body{padding:0 22px 18px}
+  .acc-count{font-size:12px;font-weight:600;color:var(--gray-light);letter-spacing:.05em;text-transform:none;margin-left:10px}
+
+  .acc-company{border:1px solid var(--line);margin-bottom:10px;background:var(--bg-alt)}
+  .acc-company:last-child{margin-bottom:0}
+  .acc-company > summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .acc-company > summary::-webkit-details-marker{display:none}
+  .acc-company > summary::after{content:"+";font-size:17px;color:var(--gray-light);margin-left:auto}
+  .acc-company[open] > summary::after{content:"–"}
+  .acc-co-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .acc-co-ticker{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--gray-light)}
+  .acc-co-name{font-size:15px;font-weight:600;color:var(--ink)}
+  .acc-co-date{font-size:11.5px;color:var(--gray-light);letter-spacing:.04em}
+  .acc-company-body{background:#fff;padding:20px 22px;border-top:1px solid var(--line)}
+  .rc-tagline{font-size:14.5px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .rc-summary{font-size:14.5px;color:#3c444c;margin-bottom:16px}
+  .rc-metrics{display:flex;gap:22px;margin:0 0 18px;flex-wrap:wrap}
   .rc-metrics div{font-size:13px;color:var(--gray)}
-  .rc-metrics strong{display:block;font-size:16px;color:var(--navy);font-family:"Times New Roman",Times,serif}
-  .rc-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
-  .rc-date{font-size:11.5px;color:var(--gray-light);letter-spacing:.05em;text-transform:uppercase}
-
-  /* Download library */
-  .lib-group{margin-bottom:52px}
-  .lib-group:last-child{margin-bottom:0}
-  .lib-group > h3{font-size:22px;color:var(--navy);margin-bottom:6px}
-  .lib-group > .lib-sub{color:var(--gray);font-size:15px;max-width:700px;margin-bottom:24px}
-  .dl-row{display:flex;align-items:center;justify-content:space-between;gap:18px;background:#fff;border:1px solid var(--line);padding:18px 22px;margin-bottom:12px;flex-wrap:wrap}
-  .dl-row:hover{box-shadow:0 6px 18px rgba(14,42,71,.08)}
-  .dl-info{flex:1;min-width:240px}
-  .dl-info h4{font-size:15.5px;color:var(--ink);font-weight:600}
-  .dl-info p{font-size:13.5px;color:var(--gray);margin-top:2px}
-  .dl-meta{font-size:11.5px;color:var(--gray-light);letter-spacing:.05em;text-transform:uppercase;margin-top:4px}
-  .dl-btn{flex:none;display:inline-block;padding:9px 20px;font-size:13px;font-weight:700;letter-spacing:.05em;color:#fff;background:var(--navy);border:1px solid var(--navy);transition:all .15s}
+  .rc-metrics strong{display:block;font-size:16px;color:var(--black);font-family:"Times New Roman",Times,serif}
+  .rc-foot{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px}
+  .dl-btn{flex:none;display:inline-block;padding:9px 20px;font-size:13px;font-weight:700;letter-spacing:.05em;color:#fff;background:var(--black);border:1px solid var(--black);transition:all .15s}
   .dl-btn:hover{background:var(--blue);border-color:var(--blue);text-decoration:none;color:#fff}
+
+  /* Models nested accordion */
+  .acc-top{border:1px solid var(--line);background:#fff;margin-bottom:12px}
+  .acc-top > summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;font-size:18px;font-weight:700;color:var(--black);background:var(--black);color:#fff}
+  .acc-top > summary::-webkit-details-marker{display:none}
+  .acc-top > summary::after{content:"+";font-size:22px;font-weight:400;margin-left:14px}
+  .acc-top[open] > summary::after{content:"–"}
+  .acc-top-body{padding:22px 24px}
+  .acc-mid{border:1px solid var(--line);margin-bottom:12px}
+  .acc-mid:last-child{margin-bottom:0}
+  .acc-mid > summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;font-size:14.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--black);background:var(--bg-alt)}
+  .acc-mid > summary::-webkit-details-marker{display:none}
+  .acc-mid > summary::after{content:"+";font-size:17px;font-weight:400;color:var(--gray-light)}
+  .acc-mid[open] > summary::after{content:"–"}
+  .acc-mid-body{padding:18px 20px;background:#fff}
+  .genre-block{margin-bottom:22px}
+  .genre-block:last-child{margin-bottom:0}
+  .genre-block h4{font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .dl-row{display:flex;align-items:center;justify-content:space-between;gap:18px;background:var(--bg-alt);border:1px solid var(--line);padding:14px 18px;margin-bottom:10px;flex-wrap:wrap}
+  .dl-row:last-child{margin-bottom:0}
+  .dl-row:hover{box-shadow:0 6px 18px rgba(0,0,0,.06)}
+  .dl-info{flex:1;min-width:220px}
+  .dl-info h5{font-size:14.5px;color:var(--ink);font-weight:600}
+  .dl-info p{font-size:13px;color:var(--gray);margin-top:2px}
+  .dl-meta{font-size:11px;color:var(--gray-light);letter-spacing:.05em;text-transform:uppercase;margin-top:3px}
   .pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-left:8px;vertical-align:2px}
   .pill.early{background:#fdf3e3;color:#8a5a12}
   .pill.code{background:#e7f3ec;color:#1c6b43}
+  .placeholder-row{background:transparent;border:1px dashed var(--line);padding:14px 18px;font-size:13.5px;color:var(--gray-light);font-style:italic}
 
   /* Pipeline note */
-  .note{background:var(--blue-light);border:1px solid #cdddf0;border-left:4px solid var(--blue);padding:22px 26px;margin-top:36px;font-size:14.5px;color:#2b3a4a}
-  .note strong{color:var(--navy)}
+  .note{background:var(--blue-light);border:1px solid #cdddf0;border-left:4px solid var(--black);padding:22px 26px;margin-top:36px;font-size:14.5px;color:#2b3a4a}
+  .note strong{color:var(--black)}
 
   /* Achievements */
   .ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   @media(max-width:760px){.ach-grid{grid-template-columns:1fr}}
   .ach{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);padding:20px 22px}
-  .ach .medal{flex:none;width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Times New Roman",Times,serif;font-weight:700;font-size:15px}
+  .ach .medal{flex:none;width:38px;height:38px;border-radius:50%;background:var(--black);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Times New Roman",Times,serif;font-weight:700;font-size:15px}
   .ach h3{font-size:15.5px;color:var(--ink);margin-bottom:2px;font-family:inherit;font-weight:600}
   .ach p{font-size:13.5px;color:var(--gray)}
 
   /* Skills */
   .skill-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px}
   @media(max-width:760px){.skill-cols{grid-template-columns:1fr}}
-  .skill-col h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);border-bottom:2px solid var(--navy);padding-bottom:8px;margin-bottom:14px;font-family:inherit;font-weight:700}
+  .skill-col h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--black);border-bottom:2px solid var(--black);padding-bottom:8px;margin-bottom:14px;font-family:inherit;font-weight:700}
   .skill-col li{list-style:none;font-size:14.5px;color:#333a41;padding:6px 0;border-bottom:1px solid var(--line)}
 
   /* Footer */
-  footer{background:var(--navy);color:#9db8d6;padding:64px 0 40px}
+  footer{background:var(--black);color:#a9adb3;padding:64px 0 40px}
   footer h2{color:#fff;margin-bottom:6px}
   .contact-row{display:flex;gap:30px;flex-wrap:wrap;margin:26px 0 40px;font-size:15px}
-  .contact-row a{color:#c9d8ea;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:2px}
+  .contact-row a{color:#d3d6da;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:2px}
   .contact-row a:hover{color:#fff;text-decoration:none;border-color:#fff}
-  .fine{font-size:12.5px;color:#6d87a5;border-top:1px solid rgba(255,255,255,.12);padding-top:22px}
+  .fine{font-size:12.5px;color:#6f7378;border-top:1px solid rgba(255,255,255,.12);padding-top:22px}
   @media(max-width:760px){header h1{font-size:38px}h2{font-size:26px}}
 </style>
 </head>
@@ -159,11 +212,11 @@
   <div class="nav-name">AKUL VEAULI</div>
   <div class="nav-links">
     <a href="#about">About</a>
+    <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
     <a href="#research">Research</a>
     <a href="#deals">Deals</a>
-    <a href="#projects">Projects</a>
-    <a href="#library">Model Library</a>
+    <a href="#models">Models</a>
     <a href="#achievements">Achievements</a>
     <a href="#contact">Contact</a>
   </div>
@@ -171,14 +224,14 @@
 
 <header><div class="wrap hero-flex">
   <div class="hero-text">
-    <div class="kicker">Finance · Private Equity · Financial Modelling</div>
+    <div class="kicker">Finance · Automation · Valuation</div>
     <h1>Akul Veauli</h1>
-    <p class="headline">Building institutional-grade models, from LBOs and value-add real estate to automated valuation engines.</p>
-    <p class="sub">BBA, Specialist in Finance Co-op · University of Toronto · Internship experience at Timbercreek Capital and CI Financial.</p>
+    <p class="headline">The analyst who builds the model by hand, then builds the engine that builds it for everyone else.</p>
+    <p class="sub">Specialist in Finance Co-op · University of Toronto · Internship experience at Timbercreek Capital and CI Financial.</p>
     <div class="hero-cta">
       <a class="btn solid" href="downloads/Akul_Veauli_Resume.pdf" download>Download Resume</a>
-      <a class="btn" href="#research">Equity Research</a>
-      <a class="btn" href="#library">Model Library</a>
+      <a class="btn" href="#projects">Projects</a>
+      <a class="btn" href="#models">Model Library</a>
       <a class="btn" href="https://www.linkedin.com/in/akul-veauli-6b7370219/" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a class="btn" href="https://github.com/akul-veauli" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
@@ -188,8 +241,8 @@
 
 <div class="stats"><div class="wrap stats-inner">
   <div class="stat"><div class="num">$3B+</div><div class="lbl">AUM Monitored</div></div>
-  <div class="stat"><div class="num">5×</div><div class="lbl">1st-Place Competition Finishes</div></div>
-  <div class="stat"><div class="num">$1.1B</div><div class="lbl">Illustrative Exit Valuation Modelled</div></div>
+  <div class="stat"><div class="num">8×</div><div class="lbl">1st-Place Competition Finishes</div></div>
+  <div class="stat"><div class="num">15</div><div class="lbl">Equity Research Reports</div></div>
   <div class="stat"><div class="num">4</div><div class="lbl">Modelling Tools Built in Python</div></div>
 </div></div>
 
@@ -197,200 +250,16 @@
   <div class="sec-kicker">Introduction</div>
   <h2>About Me</h2>
   <div class="rule"></div>
-  <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:44px;align-items:start" class="about-grid">
-    <div style="font-size:16.5px;color:#333a41">
-      <p style="margin-bottom:16px">I'm Akul, a finance student at the University of Toronto with a simple obsession: understanding what a business is actually worth, and building the tools that answer that question faster and more rigorously than doing it by hand.</p>
-      <p style="margin-bottom:16px">Most recently, I spent a term at Timbercreek Capital in real estate private equity, where I built LBO, value-add, and development models for acquisitions across Europe and North America, audited fund waterfalls, and helped launch a litigation finance strategy from research to live underwriting. Before that, I worked at CI Financial monitoring risk and performance across $3B+ in multi-asset portfolios. Outside of work, I founded a 60-member investment club and have taken first place five times across valuation, negotiation, trading, and portfolio management competitions.</p>
-      <p>What sets my work apart is the intersection of finance and code. I write Python engines that pull raw SEC filings and produce complete, live-formula Excel models with validation suites behind them, because I believe the analyst who can automate the mechanics gets to spend more time on the judgment. You can download both my hand-built work and my code-generated output below and see the difference for yourself.</p>
-    </div>
-    <div style="background:var(--bg-alt);border:1px solid var(--line);padding:26px 28px">
-      <h3 style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);border-bottom:2px solid var(--navy);padding-bottom:8px;margin-bottom:14px;font-weight:700">Quick Facts</h3>
-      <ul style="list-style:none">
-        <li style="padding:7px 0;border-bottom:1px solid var(--line);font-size:15px"><strong>Based in:</strong> Toronto, Canada</li>
-        <li style="padding:7px 0;border-bottom:1px solid var(--line);font-size:15px"><strong>Education:</strong> BBA, Finance Co-op, University of Toronto (2022–2026)</li>
-        <li style="padding:7px 0;border-bottom:1px solid var(--line);font-size:15px"><strong>Focus:</strong> Private equity, real estate, valuation</li>
-        <li style="padding:7px 0;border-bottom:1px solid var(--line);font-size:15px"><strong>Tools:</strong> Excel, Python, Bloomberg, Power BI</li>
-        <li style="padding:7px 0;font-size:15px"><strong>Off the clock:</strong> Chess puzzles, poker, bodybuilding</li>
-      </ul>
-    </div>
-  </div>
-</div></section>
-<style>@media(max-width:820px){.about-grid{grid-template-columns:1fr !important}}</style>
-
-<section id="experience" class="alt"><div class="wrap">
-  <div class="sec-kicker">Work Experience</div>
-  <h2>Professional Experience</h2>
-  <div class="rule"></div>
-
-  <div class="xp">
-    <div class="xp-head"><h3>Timbercreek Capital</h3><span class="when">Sept 2025 – Dec 2025 · Toronto, ON</span></div>
-    <div class="role">Intern, Real Estate Private Equity</div>
-    <ul>
-      <li>Built full LBO, value-add, and development models for real estate acquisitions across Europe and North America, covering construction spend, lease-up curves, debt schedules, and refinancing cases tied to IRRs (~16.6%–27%), equity multiples, and GP carry tiers.</li>
-      <li>Completed DCF, NAV, precedent transaction, and comparables analyses used in investment committee discussions.</li>
-      <li>Audited fund-level waterfalls across existing and proposed vehicles, evaluating preferred return tiers, carry structures, GP splits, and co-investment mechanics under multiple equity and debt scenarios.</li>
-      <li>Produced investor-facing materials including quarterly fund updates, one-pagers, pitch decks, and investment committee materials for senior leadership and LP audiences.</li>
-    </ul>
-  </div>
-
-  <div class="xp">
-    <div class="xp-head"><h3>CI Financial</h3><span class="when">May 2024 – Aug 2024 · Toronto, ON</span></div>
-    <div class="role">Summer Intern, Multi-Asset Portfolio Management</div>
-    <ul>
-      <li>Built Excel dashboards and Python scripts to monitor fund performance, liquidity risk, and capital deployment across $3B+ AUM in multi-asset portfolios.</li>
-      <li>Conducted macroeconomic stress testing and regression-based scenario analysis for equity and fixed-income portfolios, preparing insights for senior portfolio managers.</li>
-      <li>Completed full equity valuations using DCF, comparables, precedent transactions, and bull/base/bear scenario analysis across multiple sectors.</li>
-    </ul>
-  </div>
-
-  <div class="xp">
-    <div class="xp-head"><h3>Investment Club</h3><span class="when">Oct 2021 – Present · Surrey, BC</span></div>
-    <div class="role">Founder</div>
-    <ul>
-      <li>Founded and grew a 60-member student investment club running workshops, speaker sessions, competitions, and research discussions on valuation and macro-driven investing.</li>
-      <li>Manage family investment portfolios with macro-thematic, risk-managed strategies across sectors and market environments.</li>
-    </ul>
+  <div class="about-block">
+    <p>I sit at the intersection of automation and valuation: I write Python engines that pull raw SEC filings and turn them into fully live-formula Excel models, and I build those same models by hand when the judgment calls need a human doing them. <span class="punch">That combination, someone who can underwrite a deal rigorously and also build the tool that does it faster, is what your team would be hiring.</span></p>
+    <p>I'm not the strongest generalist candidate on paper. I am, on the evidence below, the best automation-and-valuation analyst you're going to find at this level.</p>
   </div>
 </div></section>
 
-<section id="research"><div class="wrap">
+<section id="projects" class="alt"><div class="wrap">
   <div class="sec-kicker">Independent Work</div>
-  <h2>Equity Research</h2>
-  <p class="sec-lede">Sell-side style initiation and update notes written to an institutional research format: full investment thesis, company overview, and forward estimates behind every call. All names below are covered under my own coverage universe, dated 21 August 2026. This site is meant to show the full body of work, every report I've written stays up here; once the list gets long I'll trim it down to my top 3 by category.</p>
-
-  <div class="grid">
-
-    <div class="card research">
-      <div class="rc-head">
-        <div>
-          <span class="rc-ticker">AXON · NASDAQ</span>
-          <h3>Axon Enterprise, Inc.</h3>
-        </div>
-        <span class="badge neutral">Neutral</span>
-      </div>
-      <div class="tagline">Ten Straight Quarters Above 30% Growth</div>
-      <p>Initiating at Neutral with a Dec-27 PT of $670, 9.1% above the $614.26 close. The call isn't against the franchise, it's against the price: growth is strong but the ~$710 consensus multiple already prices in normalisation toward 2028 guidance.</p>
-      <div class="rc-metrics">
-        <div>Price<strong>$614.26</strong></div>
-        <div>PT (Dec-27)<strong>$670.00</strong></div>
-        <div>Upside<strong>+9.1%</strong></div>
-      </div>
-      <div class="rc-foot">
-        <span class="rc-date">PDF · 21 Aug 2026</span>
-        <a class="dl-btn" href="downloads/AXON_Equity_Research.pdf" download>Download</a>
-      </div>
-    </div>
-
-    <div class="card research">
-      <div class="rc-head">
-        <div>
-          <span class="rc-ticker">CADY · TSX / Cboe Canada</span>
-          <h3>Cadillac Mines Corporation</h3>
-        </div>
-        <span class="badge neutral">Neutral</span>
-      </div>
-      <div class="tagline">Lassonde-Backed, Priced for Perfection</div>
-      <p>Initiating at Neutral with a Dec-27 PT of C$8.30, flat to the C$8.30 close. Best-capitalised gold exploration IPO of the cycle with no debt and Pierre Lassonde as Chairman, but the market has already paid for the sponsorship and the ounces.</p>
-      <div class="rc-metrics">
-        <div>Price<strong>C$8.30</strong></div>
-        <div>PT (Dec-27)<strong>C$8.30</strong></div>
-        <div>Upside<strong>0.0%</strong></div>
-      </div>
-      <div class="rc-foot">
-        <span class="rc-date">PDF · 21 Aug 2026</span>
-        <a class="dl-btn" href="downloads/CADY_Equity_Research.pdf" download>Download</a>
-      </div>
-    </div>
-
-    <div class="card research">
-      <div class="rc-head">
-        <div>
-          <span class="rc-ticker">EEFT · NASDAQ</span>
-          <h3>Euronet Worldwide, Inc.</h3>
-        </div>
-        <span class="badge ow">Overweight</span>
-      </div>
-      <div class="tagline">Priced for Terminal Decline</div>
-      <p>Rate Overweight with a Dec-27 PT of $92, ~33% above the $69.38 close. Two of three segments are growing; Cross-Border Payments alone explains the consolidated operating income decline the market is extrapolating into the whole business.</p>
-      <div class="rc-metrics">
-        <div>Price<strong>$69.38</strong></div>
-        <div>PT (Dec-27)<strong>$92.00</strong></div>
-        <div>Upside<strong>+32.6%</strong></div>
-      </div>
-      <div class="rc-foot">
-        <span class="rc-date">PDF · 21 Aug 2026</span>
-        <a class="dl-btn" href="downloads/EEFT_Equity_Research.pdf" download>Download</a>
-      </div>
-    </div>
-
-    <div class="card research">
-      <div class="rc-head">
-        <div>
-          <span class="rc-ticker">NU · NYSE</span>
-          <h3>Nu Holdings Ltd.</h3>
-        </div>
-        <span class="badge ow">Overweight</span>
-      </div>
-      <div class="tagline">First Billion-Dollar Quarter</div>
-      <p>Rate Overweight with a Dec-27 PT of $17.00, 19.6% above the $14.21 close. Q2'26 was Nu's first billion-dollar profit quarter, with risk-adjusted NIM up 290bp QoQ even as Brazilian household debt service hits a record 28.5% of income.</p>
-      <div class="rc-metrics">
-        <div>Price<strong>$14.21</strong></div>
-        <div>PT (Dec-27)<strong>$17.00</strong></div>
-        <div>Upside<strong>+19.6%</strong></div>
-      </div>
-      <div class="rc-foot">
-        <span class="rc-date">PDF · 21 Aug 2026</span>
-        <a class="dl-btn" href="downloads/NU_Equity_Research.pdf" download>Download</a>
-      </div>
-    </div>
-
-    <div class="card research">
-      <div class="rc-head">
-        <div>
-          <span class="rc-ticker">SOFI · NASDAQ</span>
-          <h3>SoFi Technologies, Inc.</h3>
-        </div>
-        <span class="badge neutral">Neutral</span>
-      </div>
-      <div class="tagline">Revenue Raised, Profit Guide Held</div>
-      <p>Resuming at Neutral with a Dec-27 PT of $19.50, ~9% above the $17.92 close. Growth isn't the debate anymore, translation to earnings is: management raised revenue guidance while holding the EPS anchor flat for a second straight cycle.</p>
-      <div class="rc-metrics">
-        <div>Price<strong>$17.92</strong></div>
-        <div>PT (Dec-27)<strong>$19.50</strong></div>
-        <div>Upside<strong>+8.8%</strong></div>
-      </div>
-      <div class="rc-foot">
-        <span class="rc-date">PDF · 21 Aug 2026</span>
-        <a class="dl-btn" href="downloads/SOFI_Equity_Research.pdf" download>Download</a>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="note">
-    <strong>Disclosure.</strong> These notes are a style exercise produced independently by me to demonstrate research and modelling ability. They are not affiliated with, produced by, or endorsed by J.P. Morgan or any other institution, and nothing here is investment advice.
-  </div>
-</div></section>
-
-<section id="deals" class="alt"><div class="wrap">
-  <div class="sec-kicker">Transaction Work</div>
-  <h2>Deal &amp; Strategy Experience</h2>
-  <div class="rule"></div>
-  <div class="grid">
-    <div class="card deal">
-      <span class="badge conf">Described Only · Employer Confidential</span>
-      <h3>Litigation Finance Strategy Build-Out</h3>
-      <div class="tagline">NEW STRATEGY LAUNCH · TIMBERCREEK</div>
-      <p>Co-led the build-out of a litigation finance strategy, translating academic and industry research into a working underwriting framework that is now used to evaluate live cases; the strategy has since launched. Built a Monte Carlo simulation on law-firm loss rates, benchmarked tail outcomes, and modelled a multi-tiered GP carry structure that scales with returns.</p>
-      <div class="tags"><span class="tag">Monte Carlo</span><span class="tag">Underwriting</span><span class="tag">Carry Waterfalls</span><span class="tag">Strategy Design</span></div>
-    </div>
-  </div>
-</div></section>
-
-<section id="projects"><div class="wrap">
-  <div class="sec-kicker">Independent Work</div>
-  <h2>Projects &amp; Models</h2>
-  <p class="sec-lede">A family of Python-based valuation tools that pull live filings data and generate institutional-style, fully live-formula Excel workbooks, alongside selected coursework and competition models. This section holds everything I've built; as it grows I'll narrow it down to my strongest 3 per category.</p>
+  <h2>Projects</h2>
+  <p class="sec-lede">A family of Python-based valuation tools that pull live filings data and generate institutional-style, fully live-formula Excel workbooks. This is the work I'd point to first.</p>
 
   <div class="grid">
     <div class="card">
@@ -417,17 +286,15 @@
       <p>Tool for generating structured investment memos, built out across real transactions including NPC International, Alcatel-Lucent, Arion Banki, ACEP, and Consolidated Utility Services.</p>
       <div class="tags"><span class="tag">Python</span><span class="tag">Memo Automation</span><span class="tag">Deal Analysis</span></div>
     </div>
-    <div class="card">
-      <h3>Verizon–Vodafone M&amp;A Analysis</h3>
-      <div class="tagline">M&amp;A VALUATION · ROIC / WACC</div>
-      <p>Full merger analysis of Verizon's $130B buyout of Vodafone's Wireless stake: valuation build, an ROIC vs. WACC value-creation framework, and counterfactual scenario modelling. Report and model are available in the Model Library below.</p>
-      <div class="tags"><span class="tag">M&amp;A</span><span class="tag">Valuation</span><span class="tag">Excel</span></div>
-    </div>
-    <div class="card">
-      <h3>dESCO Acquisition, Case Competition</h3>
-      <div class="tagline">BUY-SIDE CASE · TEAM LEAD</div>
-      <p>Led the team end-to-end on a buy-side acquisition analysis of dESCO, personally driving the industry research, key financial figures, DCF valuation, letter of intent, and the full pitch deck presented in competition. Deck and model are available in the Model Library below.</p>
-      <div class="tags"><span class="tag">M&amp;A</span><span class="tag">DCF</span><span class="tag">Pitch Deck</span></div>
+  </div>
+
+  <div class="demo-card">
+    <span class="badge soon">Coming Soon</span>
+    <h3>Live Valuation Demo</h3>
+    <p>Enter a ticker and get a live-generated valuation summary straight from the automated DCF engine above. The output side of this is still being built, everything on the site today is real work, this is the one thing that isn't live yet.</p>
+    <div class="demo-row">
+      <input class="demo-input" type="text" placeholder="e.g. AAPL" disabled>
+      <button class="demo-btn" disabled>Run Valuation</button>
     </div>
   </div>
 
@@ -436,104 +303,485 @@
   </div>
 </div></section>
 
-<section id="library" class="alt"><div class="wrap">
+<section id="experience"><div class="wrap">
+  <div class="sec-kicker">Resume</div>
+  <h2>Professional Experience</h2>
+  <div class="rule"></div>
+
+  <div class="subhead">Education</div>
+  <div class="xp">
+    <div class="xp-head"><h3>University of Toronto</h3><span class="when">Sept 2022 – Aug 2026 · Toronto, ON</span></div>
+    <div class="role">Bachelor of Business Administration, Specialist in Finance Co-op, with Distinction</div>
+  </div>
+
+  <div class="subhead">Work Experience</div>
+  <div class="xp">
+    <div class="xp-head"><h3>Timbercreek Capital</h3><span class="when">Sept 2025 – Dec 2025 · Toronto, ON</span></div>
+    <div class="role">Intern</div>
+    <ul>
+      <li>Built LBO, value-add, and development models across real estate investment scenarios, including acquisition and refinancing of distressed properties to evaluate turnaround and value-creation potential; modeled construction, lease-up, and exits, sensitizing leverage, cap rates, and operating assumptions across Timbercreek's fund strategies to evaluate IRRs ranging ~16.6%–27% and equity multiples.</li>
+      <li>Conducted portfolio optimization across Timbercreek public equity and private funds alongside traditional equity and fixed-income allocations, applying portfolio theory to evaluate optimal exposure across risk-return profiles.</li>
+      <li>Supported comps and precedent-transaction analyses; completed NAV reporting and fund-level return analysis across preferred returns, carry, GP splits, and co-investment structures.</li>
+      <li>Produced quarterly fund updates, one-pagers, and pitch decks and contributed to investment committee materials covering deal rationale, valuation, and key risks.</li>
+    </ul>
+  </div>
+
+  <div class="xp">
+    <div class="xp-head"><h3>CI Financial</h3><span class="when">May 2024 – Aug 2024 · Toronto, ON</span></div>
+    <div class="role">Summer Intern</div>
+    <ul>
+      <li>Built Excel dashboards and Python scripts to monitor performance, liquidity risk, and capital deployment across $3B+ AUM in multi-asset portfolios.</li>
+      <li>Conducted macroeconomic stress testing and regression-based scenario analysis across equity and fixed-income portfolios.</li>
+      <li>Valued public companies using DCF, comps, precedent transactions, and bull/base/bear scenarios to assess valuation and risk-adjusted returns.</li>
+    </ul>
+  </div>
+
+  <div class="subhead">Leadership</div>
+  <div class="xp">
+    <div class="xp-head"><h3>Investment Club</h3><span class="when">Oct 2021 – Present · Surrey, BC</span></div>
+    <div class="role">Founder</div>
+    <ul>
+      <li>Founded and grew a 60-member student investment club; managed family investment portfolios with macro-thematic, risk-managed strategies across sectors and market environments.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="research" class="alt"><div class="wrap">
+  <div class="sec-kicker">Independent Work</div>
+  <h2>Equity Research</h2>
+  <p class="sec-lede">15 sell-side style initiation and update notes written to an institutional research format: full investment thesis, company overview, and forward estimates behind every call. Organized by sector, newest first. All names below are covered under my own coverage universe; this is a style exercise, not investment advice.</p>
+
+  <div id="research-accordion">
+    <!-- Communication Services -->
+    <details class="acc-sector">
+      <summary>Communication Services <span class="acc-count">1 report</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">WBD · NasdaqGS</span><span class="acc-co-name">Warner Bros. Discovery, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">14 Nov 2023</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">The Strike Cash Is Real, the Ad Decline Is Not Cyclical</div>
+            <p class="rc-summary">Post-strike free cash flow is flattered by one-off content-spend savings; deleveraging to the stated target still needs three to four more years while linear advertising keeps shrinking at a low-teens rate.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$9.89</strong></div>
+              <div>PT (Dec-24)<strong>$11.00</strong></div>
+              <div>Return<strong>+11.2%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 14 Nov 2023</span><a class="dl-btn" href="downloads/WBD_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Consumer Discretionary -->
+    <details class="acc-sector">
+      <summary>Consumer Discretionary <span class="acc-count">1 report</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">AMZN · NasdaqGS</span><span class="acc-co-name">Amazon.com, Inc.</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">12 Mar 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">AWS's Fastest Growth in Three Years Outruns the $200bn Sticker Shock</div>
+            <p class="rc-summary">AWS reaccelerated to 24% growth on a $244bn backlog while retail margins hit multi-year highs, enough to look through the ~$200bn 2026 capex guide that hit the stock.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$212.65</strong></div>
+              <div>PT (Dec-27)<strong>$265.00</strong></div>
+              <div>Upside<strong>+24.6%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 12 Mar 2026</span><a class="dl-btn" href="downloads/AMZN_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Consumer Staples -->
+    <details class="acc-sector">
+      <summary>Consumer Staples <span class="acc-count">2 reports</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">PG · NYSE</span><span class="acc-co-name">The Procter &amp; Gamble Company</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">21 Apr 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">Pricing Did Four Years of Work and Volume Still Hasn't Shown Up</div>
+            <p class="rc-summary">Four straight years of organic growth have been almost entirely price, not volume. A fair multiple for a fair, still-unresolved business.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$143.43</strong></div>
+              <div>PT (Dec-27)<strong>$155.00</strong></div>
+              <div>Return<strong>+11.1%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 21 Apr 2026</span><a class="dl-btn" href="downloads/PG_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">COST · NasdaqGS</span><span class="acc-co-name">Costco Wholesale Corporation</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">5 Feb 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">The Flywheel Has Never Spun Faster, and the Multiple Has Never Priced In More of It</div>
+            <p class="rc-summary">Comps and membership fees keep compounding, but at nearly 49x forward earnings the stock already prices in another four years of exactly that pace.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$978.35</strong></div>
+              <div>PT (Dec-27)<strong>$1,030.00</strong></div>
+              <div>Return<strong>+5.8%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 5 Feb 2026</span><a class="dl-btn" href="downloads/COST_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Energy -->
+    <details class="acc-sector">
+      <summary>Energy <span class="acc-count">1 report</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">2222 · Tadawul</span><span class="acc-co-name">Saudi Arabian Oil Company (Aramco)</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">26 May 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">An 80% Royalty on the Marginal Barrel</div>
+            <p class="rc-summary">A fixed, thinly-covered dividend and an 80% marginal royalty above $100 Brent mean the state keeps nearly all of the current supply-shock upside.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$7.44</strong></div>
+              <div>PT (Dec-27)<strong>$7.50</strong></div>
+              <div>Return<strong>+5.7%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 26 May 2026</span><a class="dl-btn" href="downloads/ARAMCO_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Financials -->
+    <details class="acc-sector">
+      <summary>Financials <span class="acc-count">3 reports</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">EEFT · NASDAQ</span><span class="acc-co-name">Euronet Worldwide, Inc.</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">Priced for Terminal Decline</div>
+            <p class="rc-summary">Two of three segments are growing; Cross-Border Payments alone explains the consolidated operating income decline the market is extrapolating into the whole business.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$69.38</strong></div>
+              <div>PT (Dec-27)<strong>$92.00</strong></div>
+              <div>Upside<strong>+32.6%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 21 Aug 2026</span><a class="dl-btn" href="downloads/EEFT_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">NU · NYSE</span><span class="acc-co-name">Nu Holdings Ltd.</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">First Billion-Dollar Quarter</div>
+            <p class="rc-summary">Q2'26 was Nu's first billion-dollar profit quarter, with risk-adjusted NIM up 290bp QoQ even as Brazilian household debt service hits a record share of income.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$14.21</strong></div>
+              <div>PT (Dec-27)<strong>$17.00</strong></div>
+              <div>Upside<strong>+19.6%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 21 Aug 2026</span><a class="dl-btn" href="downloads/NU_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">SOFI · NASDAQ</span><span class="acc-co-name">SoFi Technologies, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">Revenue Raised, Profit Guide Held</div>
+            <p class="rc-summary">Growth isn't the debate anymore, translation to earnings is: management raised revenue guidance while holding the EPS anchor flat for a second straight cycle.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$17.92</strong></div>
+              <div>PT (Dec-27)<strong>$19.50</strong></div>
+              <div>Upside<strong>+8.8%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 21 Aug 2026</span><a class="dl-btn" href="downloads/SOFI_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Healthcare -->
+    <details class="acc-sector">
+      <summary>Healthcare <span class="acc-count">2 reports</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">OSCR · NYSE</span><span class="acc-co-name">Oscar Health, Inc.</span><span class="badge uw" style="margin-bottom:0">Underweight</span></span><span class="acc-co-date">28 Aug 2025</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">Already Paid for a Repricing That Has Not Happened Yet</div>
+            <p class="rc-summary">The stock is up 32% off its lows pricing in a 2026 recovery that depends entirely on an ACA premium tax credit extension that, as of this note, hasn't been legislated.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$17.02</strong></div>
+              <div>PT (Dec-27)<strong>$15.50</strong></div>
+              <div>Return<strong>-8.9%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 28 Aug 2025</span><a class="dl-btn" href="downloads/OSCR_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">UNH · NYSE</span><span class="acc-co-name">UnitedHealth Group Incorporated</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">22 Jul 2025</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">Trough Earnings, Trough Multiple and a 2026 Rate Card Already Written</div>
+            <p class="rc-summary">2025 was a genuine cost shock and the outlook was withdrawn, but 2026 Medicare Advantage reimbursement is already legislated at the widest increase in years, against a trough multiple on trough earnings.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$282.14</strong></div>
+              <div>PT (Dec-26)<strong>$320.00</strong></div>
+              <div>Return<strong>+16.6%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 22 Jul 2025</span><a class="dl-btn" href="downloads/UNH_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Industrials -->
+    <details class="acc-sector">
+      <summary>Industrials <span class="acc-count">1 report</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">AXON · NASDAQ</span><span class="acc-co-name">Axon Enterprise, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">Ten Straight Quarters Above 30% Growth</div>
+            <p class="rc-summary">The call isn't against the franchise, it's against the price: growth is strong but the consensus multiple already prices in normalisation toward 2028 guidance.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$614.26</strong></div>
+              <div>PT (Dec-27)<strong>$670.00</strong></div>
+              <div>Upside<strong>+9.1%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 21 Aug 2026</span><a class="dl-btn" href="downloads/AXON_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Materials -->
+    <details class="acc-sector">
+      <summary>Materials <span class="acc-count">1 report</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">CADY · TSX / Cboe Canada</span><span class="acc-co-name">Cadillac Mines Corporation</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">Lassonde-Backed, Priced for Perfection</div>
+            <p class="rc-summary">Best-capitalised gold exploration IPO of the cycle with no debt and Pierre Lassonde as Chairman, but the market has already paid for the sponsorship and the ounces.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>C$8.30</strong></div>
+              <div>PT (Dec-27)<strong>C$8.30</strong></div>
+              <div>Upside<strong>0.0%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 21 Aug 2026</span><a class="dl-btn" href="downloads/CADY_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Real Estate -->
+    <details class="acc-sector">
+      <summary>Real Estate <span class="acc-count">1 report</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">ENBDREIT · Nasdaq Dubai</span><span class="acc-co-name">ENBD REIT (CEIC) PLC</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">30 Jul 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">Priced at Half of NAV and Likely to Stay There</div>
+            <p class="rc-summary">An 8% dividend yield is effectively the entire return; a 51% NAV discount that survived a 2019 buyback and a 2020 delisting attempt isn't closing on our numbers.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$0.500</strong></div>
+              <div>PT (Dec-27)<strong>$0.53</strong></div>
+              <div>Return<strong>+14.1%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 30 Jul 2026</span><a class="dl-btn" href="downloads/ENBDREIT_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Technology -->
+    <details class="acc-sector">
+      <summary>Technology <span class="acc-count">1 report</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">QBTS · NYSE</span><span class="acc-co-name">D-Wave Quantum Inc.</span><span class="badge uw" style="margin-bottom:0">Underweight</span></span><span class="acc-co-date">9 Jun 2025</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">One System Sale Is Not a Franchise</div>
+            <p class="rc-summary">Strip out the one-off $12.6m system sale and recurring revenue actually fell; the stock trades at 585x FY24 revenue on a roughly $21m trailing bookings base.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$18.62</strong></div>
+              <div>PT (Dec-26)<strong>$13.70</strong></div>
+              <div>Return<strong>-26.4%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 9 Jun 2025</span><a class="dl-btn" href="downloads/QBTS_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Utilities -->
+    <details class="acc-sector">
+      <summary>Utilities <span class="acc-count">1 report</span></summary>
+      <div class="acc-sector-body">
+        <details class="acc-company">
+          <summary><span class="acc-co-left"><span class="acc-co-ticker">NEE · NYSE</span><span class="acc-co-name">NextEra Energy, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">17 Jun 2026</span></summary>
+          <div class="acc-company-body">
+            <div class="rc-tagline">FPL's Rate Case Is Won and the Backlog Is Real</div>
+            <p class="rc-summary">A settled rate case and a record 33GW contracted backlog are real, but the $67bn Dominion acquisition adds 12-18 months of approval risk on top of heavy 2026 equity issuance.</p>
+            <div class="rc-metrics">
+              <div>Price<strong>$85.73</strong></div>
+              <div>PT (Dec-27)<strong>$95.00</strong></div>
+              <div>Return<strong>+13.7%</strong></div>
+            </div>
+            <div class="rc-foot"><span class="dl-meta">PDF · 17 Jun 2026</span><a class="dl-btn" href="downloads/NEE_Equity_Research.pdf" download>Download</a></div>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+
+  <div class="note">
+    <strong>Disclosure.</strong> These notes are a style exercise produced independently by me to demonstrate research and modelling ability. They are not affiliated with, produced by, or endorsed by J.P. Morgan or any other institution, and nothing here is investment advice.
+  </div>
+</div></section>
+
+<section id="deals"><div class="wrap">
+  <div class="sec-kicker">Transaction Work</div>
+  <h2>Deal &amp; Strategy Experience</h2>
+  <div class="rule"></div>
+  <div class="grid">
+    <div class="card deal">
+      <span class="badge conf">Described Only · Employer Confidential</span>
+      <h3>Litigation Finance Strategy Build-Out</h3>
+      <div class="tagline">NEW STRATEGY LAUNCH · TIMBERCREEK</div>
+      <p>Co-led the build-out of a litigation finance strategy, translating academic and industry research into a working underwriting framework that is now used to evaluate live cases; the strategy has since launched. Built a Monte Carlo simulation on law-firm loss rates, benchmarked tail outcomes, and modelled a multi-tiered GP carry structure that scales with returns.</p>
+      <div class="tags"><span class="tag">Monte Carlo</span><span class="tag">Underwriting</span><span class="tag">Carry Waterfalls</span><span class="tag">Strategy Design</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="models" class="alt"><div class="wrap">
   <div class="sec-kicker">Downloads</div>
   <h2>Model Library</h2>
-  <p class="sec-lede">Real, openable files: pitch decks, Excel models, and research. Everything here is my own work. Employer materials from Timbercreek and CI Financial are confidential and are described above rather than posted. This library is intentionally comprehensive for now; once each group has enough entries, I'll pare it down to the top 3.</p>
+  <p class="sec-lede">Real, openable files: pitch decks, Excel models, and research, organized hand-made vs. code-generated, then old work vs. new work, then by model type. Employer materials from Timbercreek and CI Financial are confidential and are described above rather than posted.</p>
 
-  <div class="lib-group">
-    <h3>Built by Hand</h3>
-    <p class="lib-sub">Models, decks, and research built by me from a blank workbook or a blank page. Some earlier pieces are kept here deliberately to show the progression in my modelling and pitch work over time.</p>
+  <details class="acc-top" open>
+    <summary>Built by Hand</summary>
+    <div class="acc-top-body">
 
-    <div class="dl-row">
-      <div class="dl-info">
-        <h4>Verizon–Vodafone Merger Report</h4>
-        <p>Full written M&amp;A analysis of Verizon's $130B buyout of Vodafone's stake in Verizon Wireless.</p>
-        <div class="dl-meta">PDF · Report</div>
-      </div>
-      <a class="dl-btn" href="downloads/Verizon_Vodafone_Merger_Report.pdf" download>Download</a>
+      <details class="acc-mid">
+        <summary>New Work</summary>
+        <div class="acc-mid-body">
+
+          <div class="genre-block">
+            <h4>LBO / M&amp;A</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Verizon–Vodafone Merger Report</h5><p>Full written M&amp;A analysis of Verizon's $130B buyout of Vodafone's stake in Verizon Wireless.</p><div class="dl-meta">PDF · Report</div></div>
+              <a class="dl-btn" href="downloads/Verizon_Vodafone_Merger_Report.pdf" download>Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Verizon–Vodafone M&amp;A Analysis Model</h5><p>The full Excel model behind the report: valuation build, ROIC vs. WACC value-creation framework, and counterfactual scenarios.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Verizon_Vodafone_MA_Analysis.xlsx" download>Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block">
+            <h4>DCF / Valuation</h4>
+            <div class="placeholder-row">More hand-built DCF work is being added here. Check back soon.</div>
+          </div>
+
+          <div class="genre-block">
+            <h4>Real Estate Models</h4>
+            <div class="placeholder-row">An updated single-family rental (SFR) build is coming soon.</div>
+          </div>
+
+          <div class="genre-block">
+            <h4>Waterfalls &amp; Carry Structures</h4>
+            <div class="placeholder-row">Coming soon.</div>
+          </div>
+
+        </div>
+      </details>
+
+      <details class="acc-mid">
+        <summary>Early Work</summary>
+        <div class="acc-mid-body">
+
+          <div class="genre-block">
+            <h4>LBO / M&amp;A</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>dESCO Acquisition Deck <span class="pill early">Early Work</span></h5><p>Buy-side case competition deck: industry research, valuation, deal structure, and letter of intent.</p><div class="dl-meta">PDF · Pitch Deck</div></div>
+              <a class="dl-btn" href="downloads/dESCO_Acquisition_Deck.pdf" download>Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>dESCO Acquisition Model <span class="pill early">Early Work</span></h5><p>The supporting Excel model for the dESCO case: key financial figures and DCF valuation.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/dESCO_Acquisition_Model.xlsx" download>Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block">
+            <h4>DCF / Valuation</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>PGAS Stock Pitch <span class="pill early">Early Work</span></h5><p>Equity pitch on PGAS: thesis, valuation, and risks.</p><div class="dl-meta">PDF · Pitch</div></div>
+              <a class="dl-btn" href="downloads/PGAS_Stock_Pitch.pdf" download>Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>nVent Thermal DCF <span class="pill early">Early Work</span></h5><p>Hand-built DCF valuation of nVent's thermal management business.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/nVent_Thermal_DCF.xlsx" download>Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block">
+            <h4>Real Estate Models</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Single-Family Rental (SFR) Model <span class="pill early">Early Version</span></h5><p>Underwriting model for single-family rental investment. This is an early version; an updated build is coming soon.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/SFR_Model_v1.xlsx" download>Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block">
+            <h4>Waterfalls &amp; Carry Structures</h4>
+            <div class="placeholder-row">No early-work files in this category yet.</div>
+          </div>
+
+        </div>
+      </details>
+
     </div>
+  </details>
 
-    <div class="dl-row">
-      <div class="dl-info">
-        <h4>Verizon–Vodafone M&A Analysis Model</h4>
-        <p>The full Excel model behind the report: valuation build, ROIC vs. WACC value-creation framework, and counterfactual scenarios.</p>
-        <div class="dl-meta">XLSX · Model</div>
-      </div>
-      <a class="dl-btn" href="downloads/Verizon_Vodafone_MA_Analysis.xlsx" download>Download</a>
+  <details class="acc-top">
+    <summary>Generated Entirely by Code</summary>
+    <div class="acc-top-body">
+
+      <details class="acc-mid">
+        <summary>New Work</summary>
+        <div class="acc-mid-body">
+
+          <div class="genre-block">
+            <h4>DCF / Valuation</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Celsius Holdings (CELH) DCF Workbook <span class="pill code">100% Code-Generated</span></h5><p>Complete DCF valuation produced end-to-end by my automated engine: SEC EDGAR data pull, 10-year forecast, WACC build, sensitivities, and formatting, all untouched by hand.</p><div class="dl-meta">XLSX · Engine Output</div></div>
+              <a class="dl-btn" href="downloads/CELH_DCF_Code_Generated.xlsx" download>Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block">
+            <h4>LBO / M&amp;A</h4>
+            <div class="placeholder-row">More engine outputs coming soon, as they clear my validation suite.</div>
+          </div>
+
+          <div class="genre-block">
+            <h4>Real Estate Models</h4>
+            <div class="placeholder-row">Coming soon.</div>
+          </div>
+
+          <div class="genre-block">
+            <h4>Waterfalls &amp; Carry Structures</h4>
+            <div class="placeholder-row">Coming soon.</div>
+          </div>
+
+        </div>
+      </details>
+
+      <details class="acc-mid">
+        <summary>Early Work</summary>
+        <div class="acc-mid-body">
+          <div class="placeholder-row">The code-generation engine is newer than the hand-built work on this site, so there's no early-period code-generated output yet. Everything here will be "new work" until the engine has been running long enough to have its own back catalogue.</div>
+        </div>
+      </details>
+
     </div>
+  </details>
 
-    <div class="dl-row">
-      <div class="dl-info">
-        <h4>dESCO Acquisition Deck <span class="pill early">Early Work</span></h4>
-        <p>Buy-side case competition deck: industry research, valuation, deal structure, and letter of intent.</p>
-        <div class="dl-meta">PDF · Pitch Deck</div>
-      </div>
-      <a class="dl-btn" href="downloads/dESCO_Acquisition_Deck.pdf" download>Download</a>
-    </div>
-
-    <div class="dl-row">
-      <div class="dl-info">
-        <h4>dESCO Acquisition Model <span class="pill early">Early Work</span></h4>
-        <p>The supporting Excel model for the dESCO case: key financial figures and DCF valuation.</p>
-        <div class="dl-meta">XLSX · Model</div>
-      </div>
-      <a class="dl-btn" href="downloads/dESCO_Acquisition_Model.xlsx" download>Download</a>
-    </div>
-
-    <div class="dl-row">
-      <div class="dl-info">
-        <h4>PGAS Stock Pitch <span class="pill early">Early Work</span></h4>
-        <p>Equity pitch on PGAS: thesis, valuation, and risks.</p>
-        <div class="dl-meta">PDF · Pitch</div>
-      </div>
-      <a class="dl-btn" href="downloads/PGAS_Stock_Pitch.pdf" download>Download</a>
-    </div>
-
-    <div class="dl-row">
-      <div class="dl-info">
-        <h4>nVent Thermal DCF <span class="pill early">Early Work</span></h4>
-        <p>Hand-built DCF valuation of nVent's thermal management business.</p>
-        <div class="dl-meta">XLSX · Model</div>
-      </div>
-      <a class="dl-btn" href="downloads/nVent_Thermal_DCF.xlsx" download>Download</a>
-    </div>
-
-    <div class="dl-row">
-      <div class="dl-info">
-        <h4>Single-Family Rental (SFR) Model <span class="pill early">Early Version</span></h4>
-        <p>Underwriting model for single-family rental investment. This is an early version; an updated build is coming soon.</p>
-        <div class="dl-meta">XLSX · Model</div>
-      </div>
-      <a class="dl-btn" href="downloads/SFR_Model_v1.xlsx" download>Download</a>
-    </div>
-  </div>
-
-  <div class="lib-group">
-    <h3>Generated Entirely by Code</h3>
-    <p class="lib-sub">These workbooks were produced 100% by my Python valuation engines, with zero manual edits. Every tab, formula, format, and sensitivity grid below was written by code I built. Open one and note that the cells contain live Excel formulas, not pasted values.</p>
-
-    <div class="dl-row">
-      <div class="dl-info">
-        <h4>Celsius Holdings (CELH) DCF Workbook <span class="pill code">100% Code-Generated</span></h4>
-        <p>Complete DCF valuation produced end-to-end by my automated engine: SEC EDGAR data pull, 10-year forecast, WACC build, sensitivities, and formatting, all untouched by hand.</p>
-        <div class="dl-meta">XLSX · Engine Output</div>
-      </div>
-      <a class="dl-btn" href="downloads/CELH_DCF_Code_Generated.xlsx" download>Download</a>
-    </div>
-
-    <div class="dl-row">
-      <div class="dl-info">
-        <h4>More Engine Outputs Coming Soon</h4>
-        <p>Additional code-generated DCF and LBO workbooks across tickers are being added as they clear my validation suite.</p>
-        <div class="dl-meta">In Progress</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="dl-row" style="border-left:4px solid var(--navy)">
+  <div class="dl-row" style="border-left:4px solid var(--black);margin-top:24px">
     <div class="dl-info">
-      <h4>Resume</h4>
+      <h5>Resume</h5>
       <p>Current resume, one page.</p>
       <div class="dl-meta">PDF</div>
     </div>
@@ -549,7 +797,9 @@
     <div class="ach"><div class="medal">1st</div><div><h3>UofT M&amp;A Valuation &amp; Negotiations, 2× Champion</h3><p>Back-to-back first-place finishes in valuation and negotiation competition.</p></div></div>
     <div class="ach"><div class="medal">1st</div><div><h3>Investment Society Trading Competition, 2× Champion</h3><p>Repeat first-place finishes in live trading competition.</p></div></div>
     <div class="ach"><div class="medal">1st</div><div><h3>Investment Society Portfolio Management</h3><p>First place in portfolio management competition.</p></div></div>
-    <div class="ach"><div class="medal">✦</div><div><h3>BBA, Specialist in Finance Co-op</h3><p>University of Toronto, 2022–2026.</p></div></div>
+    <div class="ach"><div class="medal">1st</div><div><h3>Derivatives Trading Competition</h3><p>First place in derivatives trading competition.</p></div></div>
+    <div class="ach"><div class="medal">1st</div><div><h3>Data Analytics Business Case Competition</h3><p>First place applying data analytics to a live business case.</p></div></div>
+    <div class="ach"><div class="medal">1st</div><div><h3>Business Hackathon, Entrepreneurship Society</h3><p>First place in a business-track hackathon.</p></div></div>
   </div>
 </div></section>
 
@@ -583,14 +833,14 @@
 </div></section>
 
 <footer id="contact"><div class="wrap">
-  <div class="sec-kicker" style="color:#7fa3c9">Contact</div>
+  <div class="sec-kicker" style="color:#9fa4aa">Contact</div>
   <h2>Let's Connect</h2>
   <p style="max-width:560px">Open to opportunities in private equity, investment banking, and investment management. The fastest way to reach me is by email or LinkedIn.</p>
   <div class="contact-row">
     <a href="mailto:akul.veauli@mail.utoronto.ca">akul.veauli@mail.utoronto.ca</a>
     <a href="https://www.linkedin.com/in/akul-veauli-6b7370219/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/akul-veauli" target="_blank" rel="noopener">github.com/akul-veauli</a>
-    <span style="color:#7fa3c9">Toronto, Canada</span>
+    <span style="color:#9fa4aa">Toronto, Canada</span>
   </div>
   <div class="fine">© 2026 Akul Veauli · Projects and models are added as they become shareable.</div>
 </div></footer>
