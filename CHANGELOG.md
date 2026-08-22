@@ -1,5 +1,25 @@
 # Changelog
 
+## v4 — Aug 22, 2026
+
+**Status:** complete (redesign + 10 new equity research entries)
+
+- Full visual redesign: dark/black theme (`--black`, `--charcoal` tokens) replacing the navy palette; hero header now uses a Toronto (CN Tower) skyline photo (`assets/cn-tower.jpg`) with a dark gradient overlay instead of a solid navy gradient
+- Meta description updated to lead with "Real estate private equity, valuation, and financial modelling portfolio"
+- Equity Research section restructured from static `.card.research` cards into an expandable accordion (`.acc-co-*` classes), grouped by ticker/exchange with an inline Neutral/Overweight badge and report date in the summary row
+- 10 new equity research one-pagers added, bringing the section to 15 total:
+  - AMZN (Amazon.com) — 12 Mar 2026
+  - PG (Procter & Gamble) — 21 Apr 2026
+  - COST (Costco Wholesale) — 5 Feb 2026
+  - 2222 / ARAMCO (Saudi Arabian Oil Co., Tadawul) — 26 May 2026
+  - OSCR (Oscar Health) — 28 Aug 2025
+  - UNH (UnitedHealth Group) — 22 Jul 2025
+  - ENBDREIT (ENBD REIT, Nasdaq Dubai) — 30 Jul 2026
+  - QBTS (D-Wave Quantum) — 9 Jun 2025
+  - NEE (NextEra Energy) — 17 Jun 2026
+  - WBD (Warner Bros. Discovery) — 14 Nov 2023
+- Files stored as `downloads/AMZN_Equity_Research.pdf`, `PG_Equity_Research.pdf`, `COST_Equity_Research.pdf`, `ARAMCO_Equity_Research.pdf`, `OSCR_Equity_Research.pdf`, `UNH_Equity_Research.pdf`, `ENBDREIT_Equity_Research.pdf`, `QBTS_Equity_Research.pdf`, `NEE_Equity_Research.pdf`, `WBD_Equity_Research.pdf`
+
 ## v3 — Aug 21, 2026
 
 **Status:** complete (Equity Research section added)
