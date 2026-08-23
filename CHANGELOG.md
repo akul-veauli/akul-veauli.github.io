@@ -1,5 +1,16 @@
 # Changelog
 
+## v5 — Aug 23, 2026
+
+**Status:** complete (Live Valuation Demo wired up to the real DCF API)
+
+- The "Live Valuation Demo" card in the Projects section is no longer a disabled "Coming Soon" placeholder — it now calls the live DCF engine API (`web_api/` in the `dcf-live-api` repo, deployed on Render at `https://akul-dcf-api.onrender.com`)
+- Enter a supported ticker and get back current price, DCF-implied price, upside/downside, WACC, terminal growth, and a BUY/HOLD/SELL rating, styled to match the card's dark theme
+- Loading state shows a spinner immediately and, if the free-tier server is asleep, switches to a "waking up" message after ~4 seconds so a 30-50s cold start doesn't look broken
+- Errors from the API (unsupported ticker, rate limit, daily cap, engine failure) are shown inline instead of failing silently
+- No new dependencies: vanilla JS `fetch()` in an inline `<script>`, no build step
+- Known issue carried over, not introduced here: some tickers (e.g. `JPM`) currently error out on the API side (`MetricNotFiledError`) — example tickers shown in the UI were chosen to avoid this until it's fixed
+
 ## v4 — Aug 22, 2026
 
 **Status:** complete (redesign + 10 new equity research entries)

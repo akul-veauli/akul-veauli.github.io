@@ -117,8 +117,33 @@
   .demo-card h3{color:#fff;font-size:20px;margin-bottom:6px}
   .demo-card p{color:#b7bdc4;font-size:14.5px;margin-bottom:20px;max-width:560px}
   .demo-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .demo-input{flex:1;min-width:180px;max-width:280px;padding:12px 14px;font-size:15px;font-family:"Times New Roman",Times,serif;border:1px solid #3a3d42;background:#1b1c1f;color:#6e737a;letter-spacing:.05em;text-transform:uppercase}
-  .demo-btn{padding:12px 26px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#3a3d42;color:#8a8f96;border:1px solid #3a3d42;cursor:not-allowed}
+  .demo-input{flex:1;min-width:180px;max-width:280px;padding:12px 14px;font-size:15px;font-family:"Times New Roman",Times,serif;border:1px solid #3a3d42;background:#1b1c1f;color:#fff;letter-spacing:.05em;text-transform:uppercase}
+  .demo-input::placeholder{color:#6e737a;text-transform:none;letter-spacing:normal}
+  .demo-input:focus{outline:none;border-color:var(--blue)}
+  .demo-btn{padding:12px 26px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#fff;color:var(--black);border:1px solid #fff;cursor:pointer;transition:all .15s}
+  .demo-btn:hover:not(:disabled){background:var(--blue);border-color:var(--blue);color:#fff}
+  .demo-btn:disabled{background:#3a3d42;color:#8a8f96;border-color:#3a3d42;cursor:not-allowed}
+  .demo-hint{font-size:12px;color:#6e737a;margin-top:10px}
+  .demo-result{margin-top:24px}
+  .demo-status{font-size:13.5px;color:#b7bdc4;display:flex;align-items:center;gap:10px}
+  .demo-spinner{width:14px;height:14px;border-radius:50%;border:2px solid #3a3d42;border-top-color:#fff;animation:demo-spin .8s linear infinite;flex:none}
+  @keyframes demo-spin{to{transform:rotate(360deg)}}
+  .demo-error{font-size:13.5px;color:#f2a8a8}
+  .demo-out{border-top:1px solid #2a2c30;padding-top:20px}
+  .demo-out-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .demo-out-ticker{font-family:"Times New Roman",Times,serif;font-size:22px;font-weight:700;color:#fff}
+  .demo-out-sector{font-size:12.5px;color:#8a8f96}
+  .demo-rating{display:inline-block;padding:4px 12px;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .demo-rating.buy{background:#1c6b43;color:#d3f0e0}
+  .demo-rating.sell{background:#7a2323;color:#f8d7d7}
+  .demo-rating.hold{background:#3a3d42;color:#e4e6e9}
+  .demo-cached{font-size:11px;color:#6e737a;margin-left:auto}
+  .demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px 24px}
+  .demo-metric .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8a8f96;margin-bottom:3px}
+  .demo-metric .val{font-family:"Times New Roman",Times,serif;font-size:19px;font-weight:700;color:#fff}
+  .demo-metric .val.pos{color:#7fd9a6}
+  .demo-metric .val.neg{color:#f2a8a8}
+  .demo-warn{margin-top:16px;font-size:12px;color:#8a8f96;border-top:1px solid #2a2c30;padding-top:12px;line-height:1.5}
 
   /* Accordions (Equity Research + Models) */
   .acc-sector{border:1px solid var(--line);background:#fff;margin-bottom:10px}
@@ -289,13 +314,14 @@
   </div>
 
   <div class="demo-card">
-    <span class="badge soon">Coming Soon</span>
     <h3>Live Valuation Demo</h3>
-    <p>Enter a ticker and get a live-generated valuation summary straight from the automated DCF engine above. The output side of this is still being built, everything on the site today is real work, this is the one thing that isn't live yet.</p>
+    <p>Enter a ticker and get a live-generated valuation summary straight from the automated DCF engine above. Runs on a free-tier server, so the first request after a few idle minutes can take up to a minute to wake up.</p>
     <div class="demo-row">
-      <input class="demo-input" type="text" placeholder="e.g. AAPL" disabled>
-      <button class="demo-btn" disabled>Run Valuation</button>
+      <input class="demo-input" id="demo-ticker" type="text" placeholder="e.g. AAPL" maxlength="5" autocomplete="off" spellcheck="false">
+      <button class="demo-btn" id="demo-run">Run Valuation</button>
     </div>
+    <div class="demo-hint">Try AAPL, TSLA, KO, or PG — supported tickers only, see the API for the full list.</div>
+    <div class="demo-result" id="demo-result" aria-live="polite"></div>
   </div>
 
   <div class="note">
@@ -844,6 +870,120 @@
   </div>
   <div class="fine">© 2026 Akul Veauli · Projects and models are added as they become shareable.</div>
 </div></footer>
+
+<script>
+(function () {
+  var API_BASE = "https://akul-dcf-api.onrender.com";
+
+  var input = document.getElementById("demo-ticker");
+  var btn = document.getElementById("demo-run");
+  var out = document.getElementById("demo-result");
+  if (!input || !btn || !out) return;
+
+  function fmtMoney(n) {
+    if (n === null || n === undefined) return "—";
+    return "$" + Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function fmtPct(n, withSign) {
+    if (n === null || n === undefined) return "—";
+    var pct = (n * 100).toFixed(1);
+    return (withSign && n > 0 ? "+" : "") + pct + "%";
+  }
+
+  function ratingClass(rating) {
+    if (rating === "BUY") return "buy";
+    if (rating === "SELL") return "sell";
+    return "hold";
+  }
+
+  function renderLoading() {
+    out.innerHTML =
+      '<div class="demo-status"><span class="demo-spinner"></span><span id="demo-status-text">Running the DCF engine…</span></div>';
+  }
+
+  function renderError(msg) {
+    out.innerHTML = '<div class="demo-error">' + msg + "</div>";
+  }
+
+  function renderResult(d) {
+    var upsideClass = d.upside_pct > 0 ? "pos" : d.upside_pct < 0 ? "neg" : "";
+    var warnHtml = "";
+    if (d.warnings && d.warnings.length) {
+      warnHtml =
+        '<div class="demo-warn">' +
+        d.warnings.map(function (w) { return escapeHtml(w); }).join("<br><br>") +
+        "</div>";
+    }
+    out.innerHTML =
+      '<div class="demo-out">' +
+        '<div class="demo-out-head">' +
+          '<span class="demo-out-ticker">' + escapeHtml(d.ticker) + "</span>" +
+          '<span class="demo-out-sector">' + escapeHtml(d.sector || "") + "</span>" +
+          '<span class="demo-rating ' + ratingClass(d.rating) + '">' + escapeHtml(d.rating || "—") + "</span>" +
+          '<span class="demo-cached">' + (d.cached ? "cached result" : "freshly generated") + "</span>" +
+        "</div>" +
+        '<div class="demo-grid">' +
+          '<div class="demo-metric"><div class="lbl">Current Price</div><div class="val">' + fmtMoney(d.current_price) + "</div></div>" +
+          '<div class="demo-metric"><div class="lbl">Implied Price</div><div class="val">' + fmtMoney(d.implied_price) + "</div></div>" +
+          '<div class="demo-metric"><div class="lbl">Upside / Downside</div><div class="val ' + upsideClass + '">' + fmtPct(d.upside_pct, true) + "</div></div>" +
+          '<div class="demo-metric"><div class="lbl">WACC</div><div class="val">' + fmtPct(d.wacc) + "</div></div>" +
+          '<div class="demo-metric"><div class="lbl">Terminal Growth</div><div class="val">' + fmtPct(d.terminal_growth) + "</div></div>" +
+        "</div>" +
+        warnHtml +
+      "</div>";
+  }
+
+  function escapeHtml(s) {
+    var div = document.createElement("div");
+    div.textContent = s;
+    return div.innerHTML;
+  }
+
+  function runValuation() {
+    var ticker = (input.value || "").trim().toUpperCase();
+    if (!ticker) {
+      renderError("Enter a ticker first.");
+      return;
+    }
+
+    btn.disabled = true;
+    input.disabled = true;
+    renderLoading();
+
+    var slowTimer = setTimeout(function () {
+      var t = document.getElementById("demo-status-text");
+      if (t) t.textContent = "Still working — the free server can take up to a minute to wake up on its first request in a while.";
+    }, 4000);
+
+    fetch(API_BASE + "/api/valuation?ticker=" + encodeURIComponent(ticker))
+      .then(function (res) {
+        return res.json().then(function (body) { return { ok: res.ok, body: body }; });
+      })
+      .then(function (r) {
+        clearTimeout(slowTimer);
+        if (!r.ok) {
+          renderError(r.body && r.body.detail ? escapeHtml(r.body.detail) : "Something went wrong. Try again.");
+          return;
+        }
+        renderResult(r.body);
+      })
+      .catch(function () {
+        clearTimeout(slowTimer);
+        renderError("Couldn't reach the valuation API. It may be waking up — try again in a moment.");
+      })
+      .finally(function () {
+        btn.disabled = false;
+        input.disabled = false;
+      });
+  }
+
+  btn.addEventListener("click", runValuation);
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") runValuation();
+  });
+})();
+</script>
 
 </body>
 </html>
