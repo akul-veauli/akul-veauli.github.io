@@ -1,5 +1,18 @@
 # Changelog
 
+## v6 — Aug 23, 2026
+
+**Status:** complete (Equity Research redesign + Experience section removed)
+
+- "Professional Experience" section (Education / Work Experience / Leadership, `id="experience"`) removed entirely, along with its "Experience" nav link and the now-unused `.xp` / `.subhead` CSS
+- Equity Research restructured from per-sector `<details class="acc-sector">` accordions into a clickable sector-tile grid (`.sector-grid` / `.sector-tile`, new `--gold` token): one tile per sector showing a report-count badge, click opens that sector's `.sector-panel` (only one open at a time), driven by a new small inline-script click handler
+- PGAS (PT Perusahaan Gas Negara) moved from a bare download link in the Model Library's "DCF / Valuation" group into a full Utilities equity-research entry alongside NEE, with its own thesis/summary and base/bull/bear metrics — bringing Equity Research to 16 reports (count copy updated 15 → 16 accordingly)
+- Hero stats: "15 Equity Research Reports" swapped for "$130B+ Transaction Value Analyzed"
+- About-block closing line swapped from a subjective claim ("best automation-and-valuation analyst...") to a pointer at the evidence ("downloadable models, published research, and a live valuation engine you can run yourself")
+- Live Valuation Demo: cold-start copy now sets expectations at up to 2 minutes (was "up to a minute"); added a live elapsed-time counter (`.demo-elapsed`) next to the status text while a request is in flight; status message now escalates through three stages (waking up → still waking up → almost there) instead of one fixed "still working" message at 4s
+- Live Valuation Demo error handling now distinguishes quota/rate-limit errors (402/403/429 or detail text mentioning quota/budget/credit/rate limit/insufficient) from generic 5xx/unparseable responses, each with a tailored message, instead of a single generic error string
+- `deals`, `models`, `achievements`, and `skills` sections toggled between plain/`alt` background to keep the alternating rhythm now that `experience` is gone
+
 ## v5 — Aug 23, 2026
 
 **Status:** complete (Live Valuation Demo wired up to the real DCF API)
