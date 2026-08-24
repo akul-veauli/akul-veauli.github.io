@@ -90,6 +90,7 @@
   .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
   .tag{font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--gray);background:var(--bg-alt);border:1px solid var(--line);padding:3px 10px;border-radius:2px}
   .card.deal{border-top-color:var(--blue)}
+  .btn-sm{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.03em;color:var(--blue)}
   .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:10px}
   .badge.early{background:#fdf3e3;color:#8a5a12;border:1px solid #f0dcb4}
   .badge.conf{background:#eef1f4;color:#5c6670;border:1px solid var(--line)}
@@ -144,6 +145,14 @@
   .panel-head{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--black);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
   @media(max-width:520px){.sector-grid{grid-template-columns:repeat(2,1fr)}.sector-tile{font-size:14px;aspect-ratio:auto;min-height:110px}}
 
+  .top-pick-label,.coverage-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6e737a;margin:18px 0 8px}
+  .acc-coverage>summary.coverage-label{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;user-select:none}
+  .acc-coverage>summary.coverage-label::-webkit-details-marker{display:none}
+  .acc-coverage>summary.coverage-label::after{content:"+";font-size:13px;font-weight:700;color:#6e737a}
+  .acc-coverage[open]>summary.coverage-label::after{content:"\2212"}
+  .top-pick-label{color:var(--black)}
+  .acc-company.top-pick{border-left:4px solid var(--black)}
+  .pill.beta{background:#8a5a00;color:#fff}
   .acc-company{border:1px solid var(--line);margin-bottom:10px;background:var(--bg-alt)}
   .acc-company:last-child{margin-bottom:0}
   .acc-company > summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -240,8 +249,8 @@
   <div class="hero-text">
     <div class="kicker">Finance · Automation · Valuation</div>
     <h1>Akul Veauli</h1>
-    <p class="headline">The analyst who builds the model by hand, then builds the engine that builds it for everyone else.</p>
-    <p class="sub">Specialist in Finance Co-op · University of Toronto · Internship experience at Timbercreek Capital and CI Financial.</p>
+    <p class="headline">An analyst's judgment with an engineer's toolkit.</p>
+    <p class="sub">Specialist in Finance Co-op with a Minor in Economics · University of Toronto · Experience at Timbercreek Capital and CI Financial.</p>
     <div class="hero-cta">
       <a class="btn solid" href="downloads/Akul_Veauli_Resume.pdf" download>Download Resume</a>
       <a class="btn" href="#projects">Projects</a>
@@ -295,6 +304,20 @@
       <div class="tags"><span class="tag">Python</span><span class="tag">Credit Ratios</span><span class="tag">Stress Testing</span></div>
     </div>
     <div class="card">
+      <h3>Liability Trading Engine</h3>
+      <div class="tagline">PYTHON · TENDER PRICING &amp; EXECUTION</div>
+      <p>Desk-specific liability trading engine built against the Rotman Interactive Trader (RIT) REST API: it prices incoming institutional tender offers against real-time order-book depth, accepts only trades with positive expected edge, and works the resulting positions out with VWAP execution under strict inventory and risk limits. Runs fully autonomously, with no human in the loop, and took first place in a live trading competition against a field of 30+ teams.</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">RIT API</span><span class="tag">Tender Pricing</span><span class="tag">VWAP Execution</span></div>
+      <div style="margin-top:12px"><a class="btn-sm" href="https://github.com/akul-veauli/RIT-Tender-VWAP-Trader" target="_blank" rel="noopener">GitHub →</a></div>
+    </div>
+    <div class="card">
+      <h3>Cross-Exchange Arbitrage Algorithm</h3>
+      <div class="tagline">PYTHON · MULTI-VENUE TRADING</div>
+      <p>Arbitrage algorithm on the Rotman Interactive Trader (RIT) platform that trades the same security across two exchanges at once: it quotes two-sided markets, detects price dislocations between venues, and captures the spread while managing net inventory in real time. Pricing, sizing, and unwinds are all automated end to end, and it took first place in a live trading competition against a field of 30+ teams.</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Arbitrage</span><span class="tag">Market Making</span><span class="tag">RIT API</span></div>
+      <div style="margin-top:12px"><a class="btn-sm" href="https://github.com/akul-veauli/Algo-Trader" target="_blank" rel="noopener">GitHub →</a></div>
+    </div>
+    <div class="card">
       <h3>Investment Memo Creator</h3>
       <div class="tagline">PYTHON · DEAL WRITE-UPS</div>
       <p>Tool for generating structured investment memos, built out across real transactions including NPC International, Alcatel-Lucent, Arion Banki, ACEP, and Consolidated Utility Services.</p>
@@ -303,13 +326,13 @@
   </div>
 
   <div class="demo-card">
-    <h3>Live Valuation Demo</h3>
-    <p>Enter a ticker and get a live-generated valuation summary straight from the automated DCF engine above. Heads up: this runs on a free-tier backend, so if the engine has been asleep for a while, the first request can take up to 2 minutes to wake it up. Requests after that are fast.</p>
+    <h3>Live Valuation Demo <span class="pill beta">Beta</span></h3>
+    <p>Enter a ticker and get a live-generated valuation summary straight from the automated DCF engine above. Heads up: this runs on a free-tier backend, so if the engine has been asleep for a while, the first request can take up to 2 minutes to wake it up. Requests after that are fast. This demo is still in beta, so occasional rough edges are expected.</p>
     <div class="demo-row">
       <input class="demo-input" id="demo-ticker" type="text" placeholder="e.g. AAPL" maxlength="5" autocomplete="off" spellcheck="false">
       <button class="demo-btn" id="demo-run">Run Valuation</button>
     </div>
-    <div class="demo-hint">Try AAPL, TSLA, KO, or PG — supported tickers only, see the API for the full list.</div>
+    <div class="demo-hint">Try AAPL, TSLA, KO, or PG. Supported tickers only; see the API for the full list.</div>
     <div class="demo-result" id="demo-result" aria-live="polite"></div>
   </div>
 
@@ -321,43 +344,45 @@
 <section id="research"><div class="wrap">
   <div class="sec-kicker">Independent Work</div>
   <h2>Equity Research</h2>
-  <p class="sec-lede">16 sell-side style initiation and update notes written to an institutional research format: full investment thesis, company overview, and forward estimates behind every call. Organized by sector, newest first. All names below are covered under my own coverage universe; this is a style exercise, not investment advice.</p>
+  <p class="sec-lede">27 sell-side style initiation and update notes written to an institutional research format, plus an early stock pitch: full investment thesis, company overview, and forward estimates behind every call. Each sector opens with the note I'd show first, followed by full coverage in chronological order. Notes from 2024 and earlier are flagged as early work, and they stay up deliberately so the progression is visible. This is a style exercise, not investment advice.</p>
 
   <div class="sector-grid" aria-label="Research sectors">
     <button type="button" class="sector-tile" data-panel="panel-comm" aria-expanded="false" aria-controls="panel-comm"><span class="tile-name">Communication Services</span><span class="tile-count">1</span></button>
     <button type="button" class="sector-tile" data-panel="panel-disc" aria-expanded="false" aria-controls="panel-disc"><span class="tile-name">Consumer Discretionary</span><span class="tile-count">1</span></button>
     <button type="button" class="sector-tile" data-panel="panel-staples" aria-expanded="false" aria-controls="panel-staples"><span class="tile-name">Consumer Staples</span><span class="tile-count">2</span></button>
-    <button type="button" class="sector-tile" data-panel="panel-energy" aria-expanded="false" aria-controls="panel-energy"><span class="tile-name">Energy</span><span class="tile-count">1</span></button>
-    <button type="button" class="sector-tile" data-panel="panel-fin" aria-expanded="false" aria-controls="panel-fin"><span class="tile-name">Financials</span><span class="tile-count">3</span></button>
-    <button type="button" class="sector-tile" data-panel="panel-health" aria-expanded="false" aria-controls="panel-health"><span class="tile-name">Healthcare</span><span class="tile-count">2</span></button>
-    <button type="button" class="sector-tile" data-panel="panel-indus" aria-expanded="false" aria-controls="panel-indus"><span class="tile-name">Industrials</span><span class="tile-count">1</span></button>
+    <button type="button" class="sector-tile" data-panel="panel-energy" aria-expanded="false" aria-controls="panel-energy"><span class="tile-name">Energy</span><span class="tile-count">3</span></button>
+    <button type="button" class="sector-tile" data-panel="panel-fin" aria-expanded="false" aria-controls="panel-fin"><span class="tile-name">Financials</span><span class="tile-count">7</span></button>
+    <button type="button" class="sector-tile" data-panel="panel-health" aria-expanded="false" aria-controls="panel-health"><span class="tile-name">Healthcare</span><span class="tile-count">3</span></button>
+    <button type="button" class="sector-tile" data-panel="panel-indus" aria-expanded="false" aria-controls="panel-indus"><span class="tile-name">Industrials</span><span class="tile-count">3</span></button>
     <button type="button" class="sector-tile" data-panel="panel-mat" aria-expanded="false" aria-controls="panel-mat"><span class="tile-name">Materials</span><span class="tile-count">1</span></button>
     <button type="button" class="sector-tile" data-panel="panel-re" aria-expanded="false" aria-controls="panel-re"><span class="tile-name">Real Estate</span><span class="tile-count">1</span></button>
-    <button type="button" class="sector-tile" data-panel="panel-tech" aria-expanded="false" aria-controls="panel-tech"><span class="tile-name">Technology</span><span class="tile-count">1</span></button>
+    <button type="button" class="sector-tile" data-panel="panel-tech" aria-expanded="false" aria-controls="panel-tech"><span class="tile-name">Technology</span><span class="tile-count">4</span></button>
     <button type="button" class="sector-tile" data-panel="panel-util" aria-expanded="false" aria-controls="panel-util"><span class="tile-name">Utilities</span><span class="tile-count">2</span></button>
   </div>
 
   <div class="sector-panels">
     <div class="sector-panel" id="panel-comm" hidden>
       <div class="panel-head">Communication Services · 1 report</div>
-      <details class="acc-company">
-        <summary><span class="acc-co-left"><span class="acc-co-ticker">WBD · NasdaqGS</span><span class="acc-co-name">Warner Bros. Discovery, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">14 Nov 2023</span></summary>
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">WBD · NasdaqGS</span><span class="acc-co-name">Warner Bros. Discovery, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">13 May 2025</span></summary>
         <div class="acc-company-body">
-          <div class="rc-tagline">The Strike Cash Is Real, the Ad Decline Is Not Cyclical</div>
-          <p class="rc-summary">Post-strike free cash flow is flattered by one-off content-spend savings; deleveraging to the stated target still needs three to four more years while linear advertising keeps shrinking at a low-teens rate.</p>
+          <div class="rc-tagline">Streaming Finally Pays Its Way; the Balance Sheet Still Owns the Story</div>
+          <p class="rc-summary">Streaming is now genuinely profitable ($339m Q1 EBITDA, 122.3m subscribers, a guided $1.3bn+ for 2025), but Global Linear Networks still supplies 75% of segment EBITDA and is eroding faster than streaming replaces it; 4.2x gross leverage keeps the equity second in line for two to three more years.</p>
           <div class="rc-metrics">
-            <div>Price<strong>$9.89</strong></div>
-            <div>PT (Dec-24)<strong>$11.00</strong></div>
-            <div>Return<strong>+11.2%</strong></div>
+            <div>Price<strong>$9.23</strong></div>
+            <div>PT (Dec-25)<strong>$10.00</strong></div>
+            <div>Return<strong>+8.3%</strong></div>
           </div>
-          <div class="rc-foot"><span class="dl-meta">PDF · 14 Nov 2023</span><a class="dl-btn" href="downloads/WBD_Equity_Research.pdf" download>Download</a></div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 13 May 2025</span><a class="dl-btn" href="downloads/WBD_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
     </div>
 
     <div class="sector-panel" id="panel-disc" hidden>
       <div class="panel-head">Consumer Discretionary · 1 report</div>
-      <details class="acc-company">
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">AMZN · NasdaqGS</span><span class="acc-co-name">Amazon.com, Inc.</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">12 Mar 2026</span></summary>
         <div class="acc-company-body">
           <div class="rc-tagline">AWS's Fastest Growth in Three Years Outruns the $200bn Sticker Shock</div>
@@ -374,7 +399,8 @@
 
     <div class="sector-panel" id="panel-staples" hidden>
       <div class="panel-head">Consumer Staples · 2 reports</div>
-      <details class="acc-company">
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">PG · NYSE</span><span class="acc-co-name">The Procter &amp; Gamble Company</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">21 Apr 2026</span></summary>
         <div class="acc-company-body">
           <div class="rc-tagline">Pricing Did Four Years of Work and Volume Still Hasn't Shown Up</div>
@@ -387,6 +413,7 @@
           <div class="rc-foot"><span class="dl-meta">PDF · 21 Apr 2026</span><a class="dl-btn" href="downloads/PG_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
+      <details class="acc-coverage"><summary class="coverage-label">All Coverage · newest first · 1 more</summary><div class="acc-coverage-body">
       <details class="acc-company">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">COST · NasdaqGS</span><span class="acc-co-name">Costco Wholesale Corporation</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">5 Feb 2026</span></summary>
         <div class="acc-company-body">
@@ -400,11 +427,13 @@
           <div class="rc-foot"><span class="dl-meta">PDF · 5 Feb 2026</span><a class="dl-btn" href="downloads/COST_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
+      </div></details>
     </div>
 
     <div class="sector-panel" id="panel-energy" hidden>
-      <div class="panel-head">Energy · 1 report</div>
-      <details class="acc-company">
+      <div class="panel-head">Energy · 3 reports</div>
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">2222 · Tadawul</span><span class="acc-co-name">Saudi Arabian Oil Company (Aramco)</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">26 May 2026</span></summary>
         <div class="acc-company-body">
           <div class="rc-tagline">An 80% Royalty on the Marginal Barrel</div>
@@ -417,23 +446,53 @@
           <div class="rc-foot"><span class="dl-meta">PDF · 26 May 2026</span><a class="dl-btn" href="downloads/ARAMCO_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
+      <details class="acc-coverage"><summary class="coverage-label">All Coverage · newest first · 2 more</summary><div class="acc-coverage-body">
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">CNQ · TSX</span><span class="acc-co-name">Canadian Natural Resources Limited</span><span class="badge ow" style="margin-bottom:0">Overweight</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">Long-Life Assets and Capital Returns Offset Commodity Normalization</div>
+          <p class="rc-summary">Production rose 8% to 1.286mmboe/d with adjusted funds flow of C$3.61bn in Q2; long-life, low-decline assets and capital discipline support a 16.5% total return despite normalized commodity assumptions.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>C$48.74</strong></div>
+            <div>PT (Dec-25)<strong>C$54.00</strong></div>
+            <div>Upside<strong>+16.5%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/CNQ_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">ENB · TSX</span><span class="acc-co-name">Enbridge Inc.</span><span class="badge ow" style="margin-bottom:0">Overweight</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">Utility Acquisitions Add Scale; Per-Share Growth Must Catch Up</div>
+          <p class="rc-summary">Adjusted EBITDA rose 8% to C$4.3bn in Q2 with two U.S. utility acquisitions closed; a near-7% dividend yield provides much of the expected return while leverage and financing costs temper near-term per-share growth.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>C$53.15</strong></div>
+            <div>PT (Dec-25)<strong>C$58.00</strong></div>
+            <div>Upside<strong>+18.3%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/ENB_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      </div></details>
     </div>
 
     <div class="sector-panel" id="panel-fin" hidden>
-      <div class="panel-head">Financials · 3 reports</div>
-      <details class="acc-company">
-        <summary><span class="acc-co-left"><span class="acc-co-ticker">EEFT · NASDAQ</span><span class="acc-co-name">Euronet Worldwide, Inc.</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
+      <div class="panel-head">Financials · 7 reports</div>
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">SOFI · NASDAQ</span><span class="acc-co-name">SoFi Technologies, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
         <div class="acc-company-body">
-          <div class="rc-tagline">Priced for Terminal Decline</div>
-          <p class="rc-summary">Two of three segments are growing; Cross-Border Payments alone explains the consolidated operating income decline the market is extrapolating into the whole business.</p>
+          <div class="rc-tagline">Revenue Raised, Profit Guide Held</div>
+          <p class="rc-summary">Growth isn't the debate anymore, translation to earnings is: management raised revenue guidance while holding the EPS anchor flat for a second straight cycle.</p>
           <div class="rc-metrics">
-            <div>Price<strong>$69.38</strong></div>
-            <div>PT (Dec-27)<strong>$92.00</strong></div>
-            <div>Upside<strong>+32.6%</strong></div>
+            <div>Price<strong>$17.92</strong></div>
+            <div>PT (Dec-27)<strong>$19.50</strong></div>
+            <div>Upside<strong>+8.8%</strong></div>
           </div>
-          <div class="rc-foot"><span class="dl-meta">PDF · 21 Aug 2026</span><a class="dl-btn" href="downloads/EEFT_Equity_Research.pdf" download>Download</a></div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 21 Aug 2026</span><a class="dl-btn" href="downloads/SOFI_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
+      <details class="acc-coverage"><summary class="coverage-label">All Coverage · newest first · 6 more</summary><div class="acc-coverage-body">
       <details class="acc-company">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">NU · NYSE</span><span class="acc-co-name">Nu Holdings Ltd.</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
         <div class="acc-company-body">
@@ -448,22 +507,90 @@
         </div>
       </details>
       <details class="acc-company">
-        <summary><span class="acc-co-left"><span class="acc-co-ticker">SOFI · NASDAQ</span><span class="acc-co-name">SoFi Technologies, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">EEFT · NASDAQ</span><span class="acc-co-name">Euronet Worldwide, Inc.</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
         <div class="acc-company-body">
-          <div class="rc-tagline">Revenue Raised, Profit Guide Held</div>
-          <p class="rc-summary">Growth isn't the debate anymore, translation to earnings is: management raised revenue guidance while holding the EPS anchor flat for a second straight cycle.</p>
+          <div class="rc-tagline">Priced for Terminal Decline</div>
+          <p class="rc-summary">Two of three segments are growing; Cross-Border Payments alone explains the consolidated operating income decline the market is extrapolating into the whole business.</p>
           <div class="rc-metrics">
-            <div>Price<strong>$17.92</strong></div>
-            <div>PT (Dec-27)<strong>$19.50</strong></div>
-            <div>Upside<strong>+8.8%</strong></div>
+            <div>Price<strong>$69.38</strong></div>
+            <div>PT (Dec-27)<strong>$92.00</strong></div>
+            <div>Upside<strong>+32.6%</strong></div>
           </div>
-          <div class="rc-foot"><span class="dl-meta">PDF · 21 Aug 2026</span><a class="dl-btn" href="downloads/SOFI_Equity_Research.pdf" download>Download</a></div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 21 Aug 2026</span><a class="dl-btn" href="downloads/EEFT_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">RY · TSX</span><span class="acc-co-name">Royal Bank of Canada</span><span class="badge ow" style="margin-bottom:0">Overweight</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">HSBC Canada Adds Scale; Credit and Integration Set the Near-Term Bar</div>
+          <p class="rc-summary">Q2 adjusted EPS of C$2.92, up 9%, with record Capital Markets earnings and HSBC Canada adding domestic scale; a diversified earnings mix justifies the premium while integration and Canadian credit set the near-term bar.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>C$154.30</strong></div>
+            <div>PT (Dec-25)<strong>C$175.00</strong></div>
+            <div>Upside<strong>+18.3%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/RY_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">JPM · NYSE</span><span class="acc-co-name">JPMorgan Chase &amp; Co.</span><span class="badge ow" style="margin-bottom:0">Overweight</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">The Best Bank in the Cycle Still Requires Normalized Earnings</div>
+          <p class="rc-summary">Q2 normalized EPS of US$4.40 and ~20% ROTCE excluding significant items demonstrate scale advantages in deposits, payments and technology; First Republic adds attractive clients while credit normalization frames a 16.0% total return.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>US$216.63</strong></div>
+            <div>PT (Dec-25)<strong>US$245.00</strong></div>
+            <div>Upside<strong>+16.0%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/JPM_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">BN · TSX</span><span class="acc-co-name">Brookfield Corporation</span><span class="badge ow" style="margin-bottom:0">Overweight</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">Cash Earnings Are Compounding as Private Markets Reopen</div>
+          <p class="rc-summary">Distributable earnings before realizations rose 11% per share to US$0.71 in Q2 as fee-bearing capital increased 17% to US$514bn; monetization activity and private-market recovery support a 22.5% total return through December 2025.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>C$64.16</strong></div>
+            <div>PT (Dec-25)<strong>C$78.00</strong></div>
+            <div>Upside<strong>+22.5%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/BN_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">EQB · TSX</span><span class="acc-co-name">EQB Inc.</span><span class="badge ow" style="margin-bottom:0">Overweight</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">Digital Deposit Growth and Margin Expansion Support the Challenger Model</div>
+          <p class="rc-summary">Record Q2 revenue of C$316.7mm with adjusted EPS up 7% to C$2.81 and adjusted ROE of 15.9%; digital deposit growth and net interest margin expansion to 2.11% support a 23.4% total return.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>C$95.28</strong></div>
+            <div>PT (Dec-25)<strong>C$115.00</strong></div>
+            <div>Upside<strong>+23.4%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/EQB_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      </div></details>
     </div>
 
     <div class="sector-panel" id="panel-health" hidden>
-      <div class="panel-head">Healthcare · 2 reports</div>
+      <div class="panel-head">Healthcare · 3 reports</div>
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">UNH · NYSE</span><span class="acc-co-name">UnitedHealth Group Incorporated</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">22 Jul 2025</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">Trough Earnings, Trough Multiple and a 2026 Rate Card Already Written</div>
+          <p class="rc-summary">2025 was a genuine cost shock and the outlook was withdrawn, but 2026 Medicare Advantage reimbursement is already legislated at the widest increase in years, against a trough multiple on trough earnings.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>$282.14</strong></div>
+            <div>PT (Dec-26)<strong>$320.00</strong></div>
+            <div>Return<strong>+16.6%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 22 Jul 2025</span><a class="dl-btn" href="downloads/UNH_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      <details class="acc-coverage"><summary class="coverage-label">All Coverage · newest first · 2 more</summary><div class="acc-coverage-body">
       <details class="acc-company">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">OSCR · NYSE</span><span class="acc-co-name">Oscar Health, Inc.</span><span class="badge uw" style="margin-bottom:0">Underweight</span></span><span class="acc-co-date">28 Aug 2025</span></summary>
         <div class="acc-company-body">
@@ -478,23 +605,25 @@
         </div>
       </details>
       <details class="acc-company">
-        <summary><span class="acc-co-left"><span class="acc-co-ticker">UNH · NYSE</span><span class="acc-co-name">UnitedHealth Group Incorporated</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">22 Jul 2025</span></summary>
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">LLY · NYSE</span><span class="acc-co-name">Eli Lilly and Company</span><span class="badge ow" style="margin-bottom:0">Overweight</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
         <div class="acc-company-body">
-          <div class="rc-tagline">Trough Earnings, Trough Multiple and a 2026 Rate Card Already Written</div>
-          <p class="rc-summary">2025 was a genuine cost shock and the outlook was withdrawn, but 2026 Medicare Advantage reimbursement is already legislated at the widest increase in years, against a trough multiple on trough earnings.</p>
+          <div class="rc-tagline">Incretin Leadership Supports the Premium; Supply and Price Set the Pace</div>
+          <p class="rc-summary">Q2 revenue approached US$11.3bn with Mounjaro at US$3.09bn and Zepbound at US$1.24bn; improving supply and 86% non-GAAP EPS growth support incretin leadership, with manufacturing capacity and payer access setting the pace.</p>
           <div class="rc-metrics">
-            <div>Price<strong>$282.14</strong></div>
-            <div>PT (Dec-26)<strong>$320.00</strong></div>
-            <div>Return<strong>+16.6%</strong></div>
+            <div>Price<strong>US$954.17</strong></div>
+            <div>PT (Dec-25)<strong>US$1,100.00</strong></div>
+            <div>Upside<strong>+16.0%</strong></div>
           </div>
-          <div class="rc-foot"><span class="dl-meta">PDF · 22 Jul 2025</span><a class="dl-btn" href="downloads/UNH_Equity_Research.pdf" download>Download</a></div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/LLY_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
+      </div></details>
     </div>
 
     <div class="sector-panel" id="panel-indus" hidden>
-      <div class="panel-head">Industrials · 1 report</div>
-      <details class="acc-company">
+      <div class="panel-head">Industrials · 3 reports</div>
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">AXON · NASDAQ</span><span class="acc-co-name">Axon Enterprise, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
         <div class="acc-company-body">
           <div class="rc-tagline">Ten Straight Quarters Above 30% Growth</div>
@@ -507,11 +636,40 @@
           <div class="rc-foot"><span class="dl-meta">PDF · 21 Aug 2026</span><a class="dl-btn" href="downloads/AXON_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
+      <details class="acc-coverage"><summary class="coverage-label">All Coverage · newest first · 2 more</summary><div class="acc-coverage-body">
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">CP · TSX</span><span class="acc-co-name">Canadian Pacific Kansas City Limited</span><span class="badge neutral" style="margin-bottom:0">Neutral</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">The Three-Nation Network Is Beginning to Deliver</div>
+          <p class="rc-summary">The three-nation network across Canada, the U.S. and Mexico generated Q2 revenue of C$3.6bn with core combined EPS up 27% to C$1.05; early synergy evidence is encouraging, but much of the upside is already in the price.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>C$109.43</strong></div>
+            <div>PT (Dec-25)<strong>C$123.00</strong></div>
+            <div>Upside<strong>+13.6%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/CP_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">HPS · TSX</span><span class="acc-co-name">Hammond Power Solutions Inc.</span><span class="badge ow" style="margin-bottom:0">Overweight</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">Record Shipments and Firm Margins Support the Electrification Thesis</div>
+          <p class="rc-summary">Record Q2 sales of C$197.2mm, up 14%, with adjusted EBITDA margin reaching 16.5% and backlog still growing despite record shipments; electrification demand from data centres and utilities supports a 19.4% total return.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>C$110.10</strong></div>
+            <div>PT (Dec-25)<strong>C$130.00</strong></div>
+            <div>Upside<strong>+19.4%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/HPS_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      </div></details>
     </div>
 
     <div class="sector-panel" id="panel-mat" hidden>
       <div class="panel-head">Materials · 1 report</div>
-      <details class="acc-company">
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">CADY · TSX / Cboe Canada</span><span class="acc-co-name">Cadillac Mines Corporation</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">21 Aug 2026</span></summary>
         <div class="acc-company-body">
           <div class="rc-tagline">Lassonde-Backed, Priced for Perfection</div>
@@ -528,7 +686,8 @@
 
     <div class="sector-panel" id="panel-re" hidden>
       <div class="panel-head">Real Estate · 1 report</div>
-      <details class="acc-company">
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">ENBDREIT · Nasdaq Dubai</span><span class="acc-co-name">ENBD REIT (CEIC) PLC</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">30 Jul 2026</span></summary>
         <div class="acc-company-body">
           <div class="rc-tagline">Priced at Half of NAV and Likely to Stay There</div>
@@ -544,8 +703,9 @@
     </div>
 
     <div class="sector-panel" id="panel-tech" hidden>
-      <div class="panel-head">Technology · 1 report</div>
-      <details class="acc-company">
+      <div class="panel-head">Technology · 4 reports</div>
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">QBTS · NYSE</span><span class="acc-co-name">D-Wave Quantum Inc.</span><span class="badge uw" style="margin-bottom:0">Underweight</span></span><span class="acc-co-date">9 Jun 2025</span></summary>
         <div class="acc-company-body">
           <div class="rc-tagline">One System Sale Is Not a Franchise</div>
@@ -558,11 +718,53 @@
           <div class="rc-foot"><span class="dl-meta">PDF · 9 Jun 2025</span><a class="dl-btn" href="downloads/QBTS_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
+      <details class="acc-coverage"><summary class="coverage-label">All Coverage · newest first · 3 more</summary><div class="acc-coverage-body">
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">MSFT · NASDAQ</span><span class="acc-co-name">Microsoft Corporation</span><span class="badge ow" style="margin-bottom:0">Overweight</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">AI Leadership Is Visible, and So Is the Cost of Building It</div>
+          <p class="rc-summary">FY24 revenue grew 16% to US$245.1bn with Azure up 29% in Q4 and Microsoft Cloud revenue reaching US$36.8bn; the AI build-out is fundable from a broad earnings base, though capital intensity and Copilot monetization remain the debate.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>US$415.55</strong></div>
+            <div>PT (Dec-25)<strong>US$500.00</strong></div>
+            <div>Upside<strong>+21.3%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/MSFT_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">CSU · TSX</span><span class="acc-co-name">Constellation Software Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">Acquisition Discipline and Cash Conversion Sustain the Premium</div>
+          <p class="rc-summary">Q2 revenue grew 21% to US$2.47bn on 2% organic growth as free cash flow available for reinvestment rose to US$182mm; disciplined acquisitions and cash conversion sustain value creation at an already-premium multiple.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>C$4,261.49</strong></div>
+            <div>PT (Dec-25)<strong>C$4,900.00</strong></div>
+            <div>Upside<strong>+15.1%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/CSU_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      <details class="acc-company">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">KXS · TSX</span><span class="acc-co-name">Kinaxis Inc.</span><span class="badge ow" style="margin-bottom:0">Overweight</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">23 Aug 2024</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">Recurring Growth and Better Margins Offset Enterprise Deal Scrutiny</div>
+          <p class="rc-summary">Q2 SaaS revenue grew 18% to US$75.4mm with ARR up 15% to US$339mm and adjusted EBITDA margin expanding to 19%; a 30% increase in committed SaaS backlog provides visibility despite lengthening enterprise deal cycles.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>C$150.58</strong></div>
+            <div>PT (Dec-25)<strong>C$175.00</strong></div>
+            <div>Upside<strong>+16.2%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 23 Aug 2024</span><a class="dl-btn" href="downloads/KXS_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      </div></details>
     </div>
 
     <div class="sector-panel" id="panel-util" hidden>
       <div class="panel-head">Utilities · 2 reports</div>
-      <details class="acc-company">
+      <div class="top-pick-label">Top Pick</div>
+      <details class="acc-company top-pick">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">NEE · NYSE</span><span class="acc-co-name">NextEra Energy, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">17 Jun 2026</span></summary>
         <div class="acc-company-body">
           <div class="rc-tagline">FPL's Rate Case Is Won and the Backlog Is Real</div>
@@ -575,8 +777,9 @@
           <div class="rc-foot"><span class="dl-meta">PDF · 17 Jun 2026</span><a class="dl-btn" href="downloads/NEE_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
+      <details class="acc-coverage"><summary class="coverage-label">All Coverage · newest first · 1 more</summary><div class="acc-coverage-body">
       <details class="acc-company">
-        <summary><span class="acc-co-left"><span class="acc-co-ticker">PGAS · IDX</span><span class="acc-co-name">PT Perusahaan Gas Negara Tbk</span><span class="badge ow" style="margin-bottom:0">Long</span><span class="pill early" style="margin-left:0;vertical-align:0">Stock Pitch</span></span><span class="acc-co-date">Spring 2025</span></summary>
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">PGAS · IDX</span><span class="acc-co-name">PT Perusahaan Gas Negara Tbk</span><span class="badge ow" style="margin-bottom:0">Long</span><span class="pill early" style="margin-left:0;vertical-align:0">Stock Pitch</span><span class="pill early" style="margin-left:0;vertical-align:0">Early Work</span></span><span class="acc-co-date">Spring 2025</span></summary>
         <div class="acc-company-body">
           <div class="rc-tagline">A State-Owned Gas Monopoly Paying You to Wait</div>
           <p class="rc-summary">Indonesia's near-monopoly gas transmission and distribution utility: regulated, defensive cash flows at ~8x earnings with a high dividend yield, positioned for &gt;15% one-year total return as domestic energy demand compounds with ~5% GDP growth.</p>
@@ -588,6 +791,7 @@
           <div class="rc-foot"><span class="dl-meta">PDF · Spring 2025</span><a class="dl-btn" href="downloads/PGAS_Stock_Pitch.pdf" download>Download</a></div>
         </div>
       </details>
+      </div></details>
     </div>
   </div>
 
@@ -605,7 +809,7 @@
       <span class="badge conf">Described Only · Employer Confidential</span>
       <h3>Litigation Finance Strategy Build-Out</h3>
       <div class="tagline">NEW STRATEGY LAUNCH · TIMBERCREEK</div>
-      <p>Co-led the build-out of a litigation finance strategy, translating academic and industry research into a working underwriting framework that is now used to evaluate live cases; the strategy has since launched. Built a Monte Carlo simulation on law-firm loss rates, benchmarked tail outcomes, and modelled a multi-tiered GP carry structure that scales with returns.</p>
+      <p>Co-led the build-out of a litigation finance strategy, translating academic and industry research into a working underwriting framework that is now used to evaluate live cases; the strategy is on track to launch in late 2026. Built a Monte Carlo simulation on law-firm loss rates, benchmarked tail outcomes, and modelled a multi-tiered GP carry structure that scales with returns.</p>
       <div class="tags"><span class="tag">Monte Carlo</span><span class="tag">Underwriting</span><span class="tag">Carry Waterfalls</span><span class="tag">Strategy Design</span></div>
     </div>
   </div>
@@ -616,7 +820,7 @@
   <h2>Model Library</h2>
   <p class="sec-lede">Real, openable files: pitch decks, Excel models, and research, organized hand-made vs. code-generated, then old work vs. new work, then by model type. Employer materials from Timbercreek and CI Financial are confidential; the Timbercreek transaction work is described in the Deals section rather than posted.</p>
 
-  <details class="acc-top" open>
+  <details class="acc-top">
     <summary>Built by Hand</summary>
     <div class="acc-top-body">
 
@@ -810,6 +1014,7 @@
 <script>
 (function () {
   var API_BASE = "https://akul-dcf-api.onrender.com";
+  var EXCEL_ENDPOINT = "/api/excel?ticker="; // wired up 23 Aug 2026 — see /api/excel in dcf-live-api
   var QUOTA_STATUS = [402, 403, 429];
   var QUOTA_DETAIL_HINTS = ["quota", "budget", "credit", "rate limit", "limit reached", "insufficient"];
 
@@ -846,12 +1051,10 @@
 
   function renderResult(d) {
     var upsideClass = d.upside_pct > 0 ? "pos" : d.upside_pct < 0 ? "neg" : "";
-    var warnHtml = "";
-    if (d.warnings && d.warnings.length) {
-      warnHtml =
-        '<div class="demo-warn">' +
-        d.warnings.map(function (w) { return escapeHtml(w); }).join("<br><br>") +
-        "</div>";
+    var excelHtml = "";
+    if (EXCEL_ENDPOINT) {
+      excelHtml =
+        '<div style="margin-top:18px"><a class="dl-btn" href="' + API_BASE + EXCEL_ENDPOINT + encodeURIComponent(d.ticker) + '" download>Download the Excel model</a></div>';
     }
     out.innerHTML =
       '<div class="demo-out">' +
@@ -868,7 +1071,7 @@
           '<div class="demo-metric"><div class="lbl">WACC</div><div class="val">' + fmtPct(d.wacc) + "</div></div>" +
           '<div class="demo-metric"><div class="lbl">Terminal Growth</div><div class="val">' + fmtPct(d.terminal_growth) + "</div></div>" +
         "</div>" +
-        warnHtml +
+        excelHtml +
       "</div>";
   }
 
@@ -896,8 +1099,8 @@
       if (el) el.textContent = Math.floor(secs / 60) + ":" + ("0" + (secs % 60)).slice(-2);
       var t = document.getElementById("demo-status-text");
       if (!t) return;
-      if (secs >= 90) t.textContent = "Almost there — free-tier cold starts occasionally run the full 2 minutes.";
-      else if (secs >= 25) t.textContent = "Still waking up — the first request after the engine has been asleep can take up to 2 minutes. Hang tight.";
+      if (secs >= 90) t.textContent = "Almost there. Free-tier cold starts occasionally run the full 2 minutes.";
+      else if (secs >= 25) t.textContent = "Still waking up. The first request after the engine has been asleep can take up to 2 minutes. Hang tight.";
       else if (secs >= 5) t.textContent = "Waking the free-tier engine…";
     }, 1000);
     function stopTicker() { clearInterval(statusTimer); }
@@ -916,9 +1119,9 @@
             QUOTA_STATUS.indexOf(r.status) !== -1 ||
             QUOTA_DETAIL_HINTS.some(function (h) { return detail.toLowerCase().indexOf(h) !== -1; });
           if (isQuota) {
-            renderError("The engine's data-API budget is used up for now, so the live demo is paused until the quota resets. The code-generated workbooks in the Model Library show exactly what it produces — or email me and I'll run a valuation for you directly.");
+            renderError("The engine's data-API budget is used up for now, so the live demo is paused until the quota resets. The code-generated workbooks in the Model Library show exactly what it produces, or email me and I'll run a valuation for you directly.");
           } else if (r.status >= 500 || r.unparseable) {
-            renderError("The engine hit a server error — it may still be waking up. Give it 30 seconds and try again.");
+            renderError("The engine hit a server error. It may still be waking up. Give it 30 seconds and try again.");
           } else {
             renderError(detail ? escapeHtml(detail) : "Something went wrong. Try again.");
           }
@@ -928,7 +1131,7 @@
       })
       .catch(function () {
         stopTicker();
-        renderError("Couldn't reach the valuation API. It may be waking up — try again in a moment.");
+        renderError("Couldn't reach the valuation API. It may be waking up, so try again in a moment.");
       })
       .finally(function () {
         stopTicker();

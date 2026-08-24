@@ -1,5 +1,18 @@
 # Changelog
 
+## v7 — Aug 23, 2026
+
+**Status:** complete (Equity Research expansion, GitHub repos published, Excel download wired up)
+
+- Equity Research rebuilt: every sector panel now shows a "Top Pick" card followed by an "All Coverage · newest first" list of collapsed cards (sectors with only one report just show the Top Pick, no coverage list). Total is now 28 items (27 formal notes + the PGAS early stock pitch), up from 16.
+- 12 new "early work" cards added (BN, CNQ, CP, CSU, ENB, EQB, HPS, JPM, KXS, LLY, MSFT, RY), all dated 23 Aug 2024, with an "Early Work" pill next to the rating badge
+- WBD card fully replaced (was a placeholder/older draft) with the real 13 May 2025 note content
+- The two RIT trading-algorithm projects ("Liability Trading Engine" and "Cross-Exchange Arbitrage Algorithm") are now published as separate public repos and linked from their project cards, replacing the `data-github-pending` placeholder buttons: `tender_vwap_trader.py` → [RIT-Tender-VWAP-Trader](https://github.com/akul-veauli/RIT-Tender-VWAP-Trader), `market_maker.py` → [Algo-Trader](https://github.com/akul-veauli/Algo-Trader)
+- Live Valuation Demo now carries a "Beta" pill and disclaimer sentence, and the raw XBRL-tag-conflict `warnings[]` array is no longer rendered (internal debug noise, not user-facing)
+- Live Valuation Demo: "Download the Excel model" button is wired up (`EXCEL_ENDPOINT` now points at `/api/excel?ticker=` on the `dcf-live-api` backend). Building that endpoint surfaced two backend bugs, both fixed: an `input()` prompt for unrecognised industries was crashing with `EOFError` on the server (no stdin) — this had been silently breaking `/api/valuation` too, not just the new endpoint — and the Excel writer assumed the AI-narrative dict was never `None`, which it always is on the web path (`run_ai=False`)
+- Model Library's "Built by Hand" accordion no longer defaults to open on page load
+- Style rule adopted: avoid em dashes in all site copy and documents
+
 ## v6 — Aug 23, 2026
 
 **Status:** complete (Equity Research redesign + Experience section removed)
@@ -80,8 +93,8 @@ GitHub Pages, repo `akul-veauli.github.io`, site contents at repo root → https
 
 ## Next steps
 
-- Push project repos to github.com/akul-veauli (strip `.env` / venv before pushing)
 - Update SFR model to replace v1 when ready
 - Add more code-generated workbooks after validation
-- Add more equity research reports over time — keep adding to `.card.research`, no cap yet
+- Add more equity research reports over time. Keep adding to `.card.research`, no cap yet
+- More models to be added to the Model Library (site now publicly says "through the end of August 2026")
 - When any category gets long, narrow to top 3 per category
