@@ -1,5 +1,15 @@
 # Changelog
 
+## v8 — Aug 29, 2026
+
+**Status:** complete (index rework, Model Library expansion, client name scrubbed)
+
+- `index.html` reworked: section order is now About / Deal & Strategy Experience / Model Library / Equity Research / Projects / Achievements / Skills / Connect (Deal Experience and Model Library moved above Equity Research and Projects); ~450 lines added, ~236 removed
+- **Git history rewritten** on this date to strip the former issuer name from every historical revision of `index.html`, then force-pushed. All commit hashes prior to this entry changed. Old unreachable commits may linger on GitHub by direct SHA for up to ~90 days; external caches (Wayback, Google) are outside our control
+- Resume pulled from the site: hero "Download Resume" button and the Model Library "Resume" card both removed; `downloads/Akul_Veauli_Resume.pdf` deleted from the repo
+- Model Library expanded with 17 hand-built workbooks: `3_Statement_Model_Microsoft`, `DCF_Model_Apple` / `_Microsoft` / `_Nvidia` / `_Alphabet`, `LBO_Model_Hilton_Blackstone_2007`, `LBO_Model_Twitter_X_2022`, `Merger_Model_Broadcom_VMware_2023` / `_Disney_Fox_2019` / `_Exxon_Pioneer_2023`, `Distribution_Waterfall_Model`, `Portfolio_Optimization_Model_NU_SPY_AGG`, `Precedent_Transactions`, `Trading_Comps_Football_Field`, `VC_Fund_Monte_Carlo_Portfolio_Construction`, `Toronto_Multifamily_Acquisition_Model`, `Texas_SFR_Investment_Model`
+- `downloads/SFR_Model_v1.xlsx` removed, superseded by `downloads/Texas_SFR_Investment_Model.xlsx`
+
 ## v7 — Aug 23, 2026
 
 **Status:** complete (Equity Research expansion, GitHub repos published, Excel download wired up)
@@ -93,7 +103,6 @@ GitHub Pages, repo `akul-veauli.github.io`, site contents at repo root → https
 
 ## Next steps
 
-- Update SFR model to replace v1 when ready
 - Add more code-generated workbooks after validation
 - Add more equity research reports over time. Keep adding to `.card.research`, no cap yet
 - More models to be added to the Model Library (site now publicly says "through the end of August 2026")

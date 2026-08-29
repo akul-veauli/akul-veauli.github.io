@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akul Veauli | Finance Portfolio</title>
-<meta name="description" content="Akul Veauli, University of Toronto Finance Co-op. Automated valuation engines, equity research, and financial modelling portfolio.">
+<meta name="description" content="Akul Veauli, University of Toronto BBA Finance Co-op. Deal and transaction analysis, financial modelling, and equity research portfolio. Toronto.">
 <style>
   :root{
     --navy:#0e2a47;
@@ -18,7 +18,7 @@
     --line:#e2e6ea;
     --bg:#ffffff;
     --bg-alt:#f6f6f7;
-    --gold:#b08a2f;
+    --gold:#0e2a47;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -35,7 +35,7 @@
   .nav-links{display:flex;gap:20px;flex-wrap:wrap}
   .nav-links a{color:var(--gray);font-size:13px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
   .nav-links a:hover{color:var(--black);text-decoration:none}
-  @media(max-width:900px){.nav-links{display:none}}
+  @media(max-width:900px){.nav-links{display:flex;gap:16px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:4px;-ms-overflow-style:none;scrollbar-width:none}.nav-links::-webkit-scrollbar{display:none}}
 
   /* Hero */
   header{position:relative;color:#fff;padding:88px 0 78px;overflow:hidden;background:#050506}
@@ -78,6 +78,7 @@
   .about-block{max-width:760px}
   .about-block p{font-size:17.5px;color:#2a2f35;margin-bottom:16px}
   .about-block .punch{font-weight:700;color:var(--black)}
+  .about-block .contents{font-size:15.5px;color:var(--gray);border-left:3px solid var(--line);padding-left:16px;margin-top:22px}
 
   /* Cards */
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -87,6 +88,9 @@
   .card h3{font-size:18.5px;color:var(--black);margin-bottom:4px}
   .card .tagline{font-size:13px;color:var(--blue);font-weight:600;letter-spacing:.03em;margin-bottom:12px}
   .card p{font-size:14.5px;color:#3c444c;margin-bottom:12px}
+  .card ul{list-style:none;margin:0 0 12px;padding:0}
+  .card li{font-size:14px;color:#3c444c;padding:4px 0 4px 16px;position:relative}
+  .card li::before{content:"·";position:absolute;left:0;color:var(--blue);font-weight:700}
   .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
   .tag{font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--gray);background:var(--bg-alt);border:1px solid var(--line);padding:3px 10px;border-radius:2px}
   .card.deal{border-top-color:var(--blue)}
@@ -146,19 +150,20 @@
   @media(max-width:520px){.sector-grid{grid-template-columns:repeat(2,1fr)}.sector-tile{font-size:14px;aspect-ratio:auto;min-height:110px}}
 
   .top-pick-label,.coverage-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6e737a;margin:18px 0 8px}
-  .acc-coverage>summary.coverage-label{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;user-select:none}
+  .acc-coverage>summary.coverage-label{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;user-select:none;background:#0a0a0c;color:#fff;padding:10px 16px;border-radius:3px;font-weight:700;transition:background .15s}
+  .acc-coverage>summary.coverage-label:hover{background:var(--blue)}
   .acc-coverage>summary.coverage-label::-webkit-details-marker{display:none}
-  .acc-coverage>summary.coverage-label::after{content:"+";font-size:13px;font-weight:700;color:#6e737a}
+  .acc-coverage>summary.coverage-label::after{content:"+";font-size:15px;font-weight:700;color:#fff;margin-left:auto;text-decoration:none}
   .acc-coverage[open]>summary.coverage-label::after{content:"\2212"}
   .top-pick-label{color:var(--black)}
   .acc-company.top-pick{border-left:4px solid var(--black)}
-  .pill.beta{background:#8a5a00;color:#fff}
+  .pill.beta{background:#FFFF00;color:#0a0a0c}
   .acc-company{border:1px solid var(--line);margin-bottom:10px;background:var(--bg-alt)}
   .acc-company:last-child{margin-bottom:0}
   .acc-company > summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .acc-company > summary::-webkit-details-marker{display:none}
   .acc-company > summary::after{content:"+";font-size:17px;color:var(--gray-light);margin-left:auto}
-  .acc-company[open] > summary::after{content:"–"}
+  .acc-company[open] > summary::after{content:"−"}
   .acc-co-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .acc-co-ticker{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--gray-light)}
   .acc-co-name{font-size:15px;font-weight:600;color:var(--ink)}
@@ -178,14 +183,14 @@
   .acc-top > summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;font-size:18px;font-weight:700;color:var(--black);background:var(--black);color:#fff}
   .acc-top > summary::-webkit-details-marker{display:none}
   .acc-top > summary::after{content:"+";font-size:22px;font-weight:400;margin-left:14px}
-  .acc-top[open] > summary::after{content:"–"}
+  .acc-top[open] > summary::after{content:"−"}
   .acc-top-body{padding:22px 24px}
   .acc-mid{border:1px solid var(--line);margin-bottom:12px}
   .acc-mid:last-child{margin-bottom:0}
   .acc-mid > summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;font-size:14.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--black);background:var(--bg-alt)}
   .acc-mid > summary::-webkit-details-marker{display:none}
   .acc-mid > summary::after{content:"+";font-size:17px;font-weight:400;color:var(--gray-light)}
-  .acc-mid[open] > summary::after{content:"–"}
+  .acc-mid[open] > summary::after{content:"−"}
   .acc-mid-body{padding:18px 20px;background:#fff}
   .genre-block{margin-bottom:22px}
   .genre-block:last-child{margin-bottom:0}
@@ -205,6 +210,31 @@
   /* Pipeline note */
   .note{background:var(--blue-light);border:1px solid #cdddf0;border-left:4px solid var(--black);padding:22px 26px;margin-top:36px;font-size:14.5px;color:#2b3a4a}
   .note strong{color:var(--black)}
+
+  /* Model-type visual */
+  .mtype-box{border:1px solid var(--line);border-top:3px solid var(--black);background:#fff;padding:24px 26px;margin-bottom:30px}
+  .mtype-head{display:flex;align-items:flex-start;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  .mtype-count .big{font-family:"Times New Roman",Times,serif;font-size:40px;font-weight:700;color:var(--black);line-height:1}
+  .mtype-count .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-light);margin-top:4px}
+  .mtype-sub{font-size:12.5px;color:var(--gray);max-width:380px;align-self:flex-end}
+  .mbar{display:flex;width:100%;height:40px;border:1px solid var(--line);overflow:hidden}
+  .mbar-seg{border:0;padding:0;margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:filter .15s;min-width:6px}
+  .mbar-seg:hover{filter:brightness(1.14)}
+  .mbar-seg.active{outline:2px solid var(--black);outline-offset:-2px;position:relative;z-index:1}
+  .mkey-row{display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:14px}
+  .mkey{border:0;background:none;padding:0;font-family:"Times New Roman",Times,serif;font-size:13.5px;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .mkey .sw{width:11px;height:11px;flex:none;display:inline-block}
+  .mkey .kn{color:var(--gray-light);font-size:12.5px}
+  .mkey:hover{text-decoration:underline}
+  .mkey.active{font-weight:700}
+  .mkey.active .sw{outline:2px solid var(--black);outline-offset:1px}
+  .mtype-foot{font-size:12.5px;color:var(--gray);margin-top:14px}
+  .mbar-all{margin-top:16px;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--black);background:var(--bg-alt);border:1px solid var(--line);padding:9px 16px;cursor:pointer;font-family:"Times New Roman",Times,serif}
+  .mbar-all:hover{background:var(--black);color:#fff;border-color:var(--black)}
+  .mbar-status{display:block;margin-top:10px;font-size:12.5px;color:var(--gray);min-height:1em}
+  .is-filtered-out{display:none}
+  #model-library.lib-collapsed{display:none}
+  @media(max-width:620px){.mtype-head{flex-direction:column;gap:8px}.mtype-sub{align-self:flex-start}}
 
   /* Achievements */
   .ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -236,25 +266,25 @@
   <div class="nav-name">AKUL VEAULI</div>
   <div class="nav-links">
     <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#research">Research</a>
     <a href="#deals">Deals</a>
     <a href="#models">Models</a>
-    <a href="#achievements">Achievements</a>
+    <a href="#research">Research</a>
+    <a href="#projects">Projects</a>
+    <a href="#achievements">Awards</a>
     <a href="#contact">Contact</a>
   </div>
 </div></nav>
 
 <header><div class="wrap hero-flex">
   <div class="hero-text">
-    <div class="kicker">Finance · Automation · Valuation</div>
+    <div class="kicker">Private Equity · Valuation · Automation</div>
     <h1>Akul Veauli</h1>
     <p class="headline">An analyst's judgment with an engineer's toolkit.</p>
     <p class="sub">Specialist in Finance Co-op with a Minor in Economics · University of Toronto · Experience at Timbercreek Capital and CI Financial.</p>
     <div class="hero-cta">
-      <a class="btn solid" href="downloads/Akul_Veauli_Resume.pdf" download>Download Resume</a>
-      <a class="btn" href="#projects">Projects</a>
-      <a class="btn" href="#models">Model Library</a>
+      <a class="btn solid" href="#models">Model Library</a>
+      <a class="btn" href="#deals">Deal Experience</a>
+      <a class="btn" href="#research">Research</a>
       <a class="btn" href="https://www.linkedin.com/in/akul-veauli-6b7370219/" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a class="btn" href="https://github.com/akul-veauli" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
@@ -263,88 +293,241 @@
 </div></header>
 
 <div class="stats"><div class="wrap stats-inner">
-  <div class="stat"><div class="num">$3B+</div><div class="lbl">AUM Monitored</div></div>
-  <div class="stat"><div class="num">8×</div><div class="lbl">1st-Place Competition Finishes</div></div>
-  <div class="stat"><div class="num">$130B+</div><div class="lbl">Transaction Value Analyzed</div></div>
-  <div class="stat"><div class="num">4</div><div class="lbl">Modelling Tools Built in Python</div></div>
+  <div class="stat"><div class="num">$550M</div><div class="lbl">Acquisition Modelled</div></div>
+  <div class="stat"><div class="num">$3B+</div><div class="lbl">AUM Supported</div></div>
+  <div class="stat"><div class="num">27</div><div class="lbl">Equity Research Notes</div></div>
+  <div class="stat"><div class="num">8×</div><div class="lbl">First-Place Finance Competitions</div></div>
 </div></div>
 
 <section id="about"><div class="wrap">
-  <div class="sec-kicker">Introduction</div>
+  <div class="sec-kicker">Positioning</div>
   <h2>About Me</h2>
   <div class="rule"></div>
   <div class="about-block">
-    <p>I sit at the intersection of automation and valuation: I write Python engines that pull raw SEC filings and turn them into fully live-formula Excel models, and I build those same models by hand when the judgment calls need a human doing them. <span class="punch">That combination, someone who can underwrite a deal rigorously and also build the tool that does it faster, is what your team would be hiring.</span></p>
-    <p>Everything below is evidence, not claims: downloadable models, published research, and a live valuation engine you can run yourself.</p>
+    <p>I'm a University of Toronto finance graduate focused on private equity and investment banking, with most of my experience in valuation and underwriting. <span class="punch">At Timbercreek Capital I led the diligence and analysis on a potential mining acquisition and on a new investment strategy the firm was building, and put together the models and investment committee materials behind both.</span></p>
+    <p class="contents">Below: the two mandates in more detail, a library of Excel models and pitch decks, 27 equity research notes, and a few Python tools, one of which runs a live valuation.</p>
   </div>
 </div></section>
 
-<section id="projects" class="alt"><div class="wrap">
-  <div class="sec-kicker">Independent Work</div>
-  <h2>Projects</h2>
-  <p class="sec-lede">A family of Python-based valuation tools that pull live filings data and generate institutional-style, fully live-formula Excel workbooks. This is the work I'd point to first.</p>
-
+<section id="deals" class="alt"><div class="wrap">
+  <div class="sec-kicker">Transaction Work</div>
+  <h2>Deal &amp; Strategy Experience</h2>
+  <p class="sec-lede">Live mandates from my time at Timbercreek Capital. Deliverables are employer-confidential, so the work is described rather than posted; happy to walk through either in detail.</p>
   <div class="grid">
-    <div class="card">
-      <h3>Automated DCF Valuation Engine</h3>
-      <div class="tagline">PYTHON · SEC EDGAR · EXCEL AUTOMATION</div>
-      <p>End-to-end DCF pipeline pulling SEC EDGAR companyfacts, Damodaran datasets, Yahoo Finance, and FRED into 10-year forecasts with WACC builds, sensitivity grids, and scenario analysis, all delivered as live-formula Excel workbooks. Includes a 44-check validation suite with SHA-256 provenance fingerprinting so no workbook built on superseded code can validate clean.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">XBRL</span><span class="tag">Validation Suite</span><span class="tag">DCF</span></div>
+    <div class="card deal">
+      <span class="badge conf">Described Only · Employer Confidential</span>
+      <h3>Gold Producer Acquisition Analysis</h3>
+      <div class="tagline">M&amp;A / ACQUISITION ANALYSIS · TIMBERCREEK</div>
+      <p>Supported diligence and the analytical workstream on a potential acquisition of a North American gold producer alongside a deal analyst. Built a full acquisition/LBO model and comparables analysis against listed junior producers to test transaction economics across entry pricing, financing structure, and exit assumptions. Contributed to investment committee materials covering rationale, valuation, and key risks.</p>
+      <div class="rc-metrics"><div>Modelled Entry<strong>~$500M+</strong></div><div>Illustrative Exit<strong>~$1B+</strong></div><div>Base Case<strong>~2.0x MOIC</strong></div></div>
+      <div class="tags"><span class="tag">LBO Modelling</span><span class="tag">Due Diligence</span><span class="tag">Comps</span><span class="tag">IC Materials</span></div>
     </div>
-    <div class="card">
-      <h3>LBO / Take-Private Modeller</h3>
-      <div class="tagline">PYTHON · LIVE-FORMULA WORKBOOKS</div>
-      <p>Give it a ticker and it builds an eight-tab LBO workbook: Sources &amp; Uses, operating model, tranche-level debt schedule with senior-first cash sweep, IRR/MOIC returns with a value-creation bridge, and sensitivity heat maps. Every cell is a real Excel formula driven by an editable Inputs sheet, verified by recalculating the workbook against the Python engine.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">LBO</span><span class="tag">Debt Schedules</span><span class="tag">Tested</span></div>
+    <div class="card deal">
+      <span class="badge conf">Described Only · Employer Confidential</span>
+      <h3>Litigation Finance Strategy Build-Out</h3>
+      <div class="tagline">NEW STRATEGY BUILD-OUT · TIMBERCREEK</div>
+      <p>Co-led the build-out of a litigation finance strategy, translating academic and industry research into a working underwriting framework now used to evaluate live cases. Modelled a multi-tier GP carry structure that scales with returns, and stress-tested loss outcomes (including a Monte Carlo simulation on law-firm loss rates) before the team settled on its final approach.</p>
+      <div class="rc-metrics"><div>Structure<strong>Multi-tier GP carry</strong></div><div>Modelling<strong>Carry waterfall + loss stress-tests</strong></div><div>Status<strong>In use on live cases</strong></div></div>
+      <div class="tags"><span class="tag">Loss Modelling</span><span class="tag">Underwriting</span><span class="tag">Carry Waterfalls</span><span class="tag">Strategy Design</span></div>
     </div>
-    <div class="card">
-      <h3>Debt Capacity Analyzer</h3>
-      <div class="tagline">PYTHON · CREDIT ANALYSIS</div>
-      <p>Credit-side sibling of the DCF and LBO tools: a leverage and coverage ratio engine with credit scoring and downside stress testing to gauge how much debt a business can actually support.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">Credit Ratios</span><span class="tag">Stress Testing</span></div>
-    </div>
-    <div class="card">
-      <h3>Liability Trading Engine</h3>
-      <div class="tagline">PYTHON · TENDER PRICING &amp; EXECUTION</div>
-      <p>Desk-specific liability trading engine built against the Rotman Interactive Trader (RIT) REST API: it prices incoming institutional tender offers against real-time order-book depth, accepts only trades with positive expected edge, and works the resulting positions out with VWAP execution under strict inventory and risk limits. Runs fully autonomously, with no human in the loop, and took first place in a live trading competition against a field of 30+ teams.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">RIT API</span><span class="tag">Tender Pricing</span><span class="tag">VWAP Execution</span></div>
-      <div style="margin-top:12px"><a class="btn-sm" href="https://github.com/akul-veauli/RIT-Tender-VWAP-Trader" target="_blank" rel="noopener">GitHub →</a></div>
-    </div>
-    <div class="card">
-      <h3>Cross-Exchange Arbitrage Algorithm</h3>
-      <div class="tagline">PYTHON · MULTI-VENUE TRADING</div>
-      <p>Arbitrage algorithm on the Rotman Interactive Trader (RIT) platform that trades the same security across two exchanges at once: it quotes two-sided markets, detects price dislocations between venues, and captures the spread while managing net inventory in real time. Pricing, sizing, and unwinds are all automated end to end, and it took first place in a live trading competition against a field of 30+ teams.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">Arbitrage</span><span class="tag">Market Making</span><span class="tag">RIT API</span></div>
-      <div style="margin-top:12px"><a class="btn-sm" href="https://github.com/akul-veauli/Algo-Trader" target="_blank" rel="noopener">GitHub →</a></div>
-    </div>
-    <div class="card">
-      <h3>Investment Memo Creator</h3>
-      <div class="tagline">PYTHON · DEAL WRITE-UPS</div>
-      <p>Tool for generating structured investment memos, built out across real transactions including NPC International, Alcatel-Lucent, Arion Banki, ACEP, and Consolidated Utility Services.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">Memo Automation</span><span class="tag">Deal Analysis</span></div>
-    </div>
-  </div>
-
-  <div class="demo-card">
-    <h3>Live Valuation Demo <span class="pill beta">Beta</span></h3>
-    <p>Enter a ticker and get a live-generated valuation summary straight from the automated DCF engine above. Heads up: this runs on a free-tier backend, so if the engine has been asleep for a while, the first request can take up to 2 minutes to wake it up. Requests after that are fast. This demo is still in beta, so occasional rough edges are expected.</p>
-    <div class="demo-row">
-      <input class="demo-input" id="demo-ticker" type="text" placeholder="e.g. AAPL" maxlength="5" autocomplete="off" spellcheck="false">
-      <button class="demo-btn" id="demo-run">Run Valuation</button>
-    </div>
-    <div class="demo-hint">Try AAPL, TSLA, KO, or PG. Supported tickers only; see the API for the full list.</div>
-    <div class="demo-result" id="demo-result" aria-live="polite"></div>
-  </div>
-
-  <div class="note">
-    <strong>More on the way.</strong> Additional models, deal write-ups, and project files are being uploaded to this site and to <a href="https://github.com/akul-veauli" target="_blank" rel="noopener">GitHub</a> as I'm able to share them. If something referenced here isn't posted yet, I'm happy to walk through it directly. Just reach out.
   </div>
 </div></section>
 
-<section id="research"><div class="wrap">
+<section id="models"><div class="wrap">
+  <div class="sec-kicker">Downloads</div>
+  <h2>Model Library</h2>
+  <p class="sec-lede">Openable files: Excel models, pitch decks, and written analysis, sorted by what I built by hand versus what my Python engine produced. Employer materials from Timbercreek and CI are confidential and described in Deals &amp; Strategy instead.</p>
+
+  <div class="mtype-box">
+    <div class="mtype-head">
+      <div class="mtype-count"><div class="big">23</div><div class="lbl">Models &amp; Analyses Posted</div></div>
+      <div class="mtype-sub">Built by hand unless tagged code-generated. Click a type to filter the library below.</div>
+    </div>
+    <div class="mbar">
+      <button type="button" class="mbar-seg" data-type="lbo" style="flex:9;background:#0e2a47" title="LBO / M&amp;A: 9 files" aria-label="LBO / M&amp;A, 9 files">9</button>
+      <button type="button" class="mbar-seg" data-type="dcf" style="flex:6;background:#1d4e89" title="DCF / Valuation: 6 files" aria-label="DCF / Valuation, 6 files">6</button>
+      <button type="button" class="mbar-seg" data-type="re" style="flex:2;background:#2f6fb0" title="Real Estate: 2 files" aria-label="Real Estate, 2 files">2</button>
+      <button type="button" class="mbar-seg" data-type="relval" style="flex:2;background:#5a8fc0" title="Relative Valuation: 2 files" aria-label="Relative Valuation, 2 files">2</button>
+      <button type="button" class="mbar-seg" data-type="waterfall" style="flex:2;background:#89a9c8" title="Waterfalls &amp; Carry: 2 files" aria-label="Waterfalls &amp; Carry, 2 files">2</button>
+      <button type="button" class="mbar-seg" data-type="3stmt" style="flex:1;background:#aebfd0" title="Three-Statement: 1 file" aria-label="Three-Statement, 1 file"></button>
+      <button type="button" class="mbar-seg" data-type="quant" style="flex:1;background:#cad3de" title="Portfolio / Quant: 1 file" aria-label="Portfolio / Quant, 1 file"></button>
+    </div>
+    <div class="mkey-row">
+      <button type="button" class="mkey" data-type="lbo"><span class="sw" style="background:#0e2a47"></span>LBO / M&amp;A <span class="kn">9</span></button>
+      <button type="button" class="mkey" data-type="dcf"><span class="sw" style="background:#1d4e89"></span>DCF / Valuation <span class="kn">6</span></button>
+      <button type="button" class="mkey" data-type="re"><span class="sw" style="background:#2f6fb0"></span>Real Estate <span class="kn">2</span></button>
+      <button type="button" class="mkey" data-type="relval"><span class="sw" style="background:#5a8fc0"></span>Relative Valuation <span class="kn">2</span></button>
+      <button type="button" class="mkey" data-type="waterfall"><span class="sw" style="background:#89a9c8"></span>Waterfalls &amp; Carry <span class="kn">2</span></button>
+      <button type="button" class="mkey" data-type="3stmt"><span class="sw" style="background:#aebfd0"></span>Three-Statement <span class="kn">1</span></button>
+      <button type="button" class="mkey" data-type="quant"><span class="sw" style="background:#cad3de"></span>Portfolio / Quant <span class="kn">1</span></button>
+    </div>
+    <div class="mtype-foot">Counts include hand-built and code-generated files, new and early work. Early-work files stay up on purpose and keep their tag.</div>
+    <button type="button" class="mbar-all" id="mbar-all">Show all models</button>
+    <span class="mbar-status" id="mbar-status" aria-live="polite"></span>
+  </div>
+
+  <div id="model-library" class="lib-collapsed">
+
+      <details class="acc-mid" open>
+        <summary>New Work</summary>
+        <div class="acc-mid-body">
+
+          <div class="genre-block" data-mtype="dcf">
+            <h4>DCF / Valuation</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Microsoft DCF Model</h5><p>10-year Microsoft DCF: full WACC build, Gordon-growth and exit-multiple terminal values, and live sensitivity grids. Every output is a live Excel formula.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/DCF_Model_Microsoft.xlsx" download="Akul Veauli - DCF Model (Microsoft).xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Apple DCF Model</h5><p>10-year Apple DCF where both terminal-value methods converge; live WACC build, scenario toggles, and formula-driven sensitivity tables.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/DCF_Model_Apple.xlsx" download="Akul Veauli - DCF Model (Apple).xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Nvidia DCF Model</h5><p>Nvidia DCF with a 7-year growth and margin fade and a rebuilt working-capital schedule. Fully live formulas.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/DCF_Model_Nvidia.xlsx" download="Akul Veauli - DCF Model (Nvidia).xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Alphabet DCF Model</h5><p>Alphabet DCF with an explicit capex-fade path and estimate-flagged inputs; live WACC, terminal-value, and sensitivity build.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/DCF_Model_Alphabet.xlsx" download="Akul Veauli - DCF Model (Alphabet).xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Celsius Holdings (CELH) DCF Workbook <span class="pill code">Code-Generated</span></h5><p>Complete DCF valuation built end-to-end by my valuation engine: filings pulled from SEC EDGAR, a 10-year forecast, WACC build, and sensitivity grids, with no manual formatting.</p><div class="dl-meta">XLSX · Engine Output</div></div>
+              <a class="dl-btn" href="downloads/CELH_DCF_Code_Generated.xlsx" download>Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block" data-mtype="3stmt">
+            <h4>Three-Statement</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Microsoft 3-Statement Model</h5><p>Integrated income statement, balance sheet, and cash flow for Microsoft, FY23A to FY30E, with a debt schedule and revolver. Balance sheet ties to zero every year in base and stress cases.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/3_Statement_Model_Microsoft.xlsx" download="Akul Veauli - 3-Statement Model (Microsoft).xlsx">Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block" data-mtype="relval">
+            <h4>Relative Valuation</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Trading Comps &amp; Football Field</h5><p>Trading comparables for 10 large-cap tech names with a football-field valuation summary. Peer statistics and implied ranges are all live formulas.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Trading_Comps_Football_Field.xlsx" download="Akul Veauli - Trading Comps & Football Field.xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Precedent Transactions</h5><p>12 tech and media M&amp;A precedents with EV/revenue and EV/EBITDA multiples, n.m. handling, and blended medians feeding an implied valuation.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Precedent_Transactions.xlsx" download="Akul Veauli - Precedent Transactions.xlsx">Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block" data-mtype="lbo">
+            <h4>LBO / M&amp;A</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Verizon / Vodafone Merger Report</h5><p>Full written M&amp;A analysis of Verizon's $130B buyout of Vodafone's stake in Verizon Wireless.</p><div class="dl-meta">PDF · Report</div></div>
+              <a class="dl-btn" href="downloads/Verizon_Vodafone_Merger_Report.pdf" download>Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Verizon / Vodafone M&amp;A Analysis Model</h5><p>The full Excel model behind the report: valuation build, ROIC vs. WACC value-creation framework, and counterfactual scenarios.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Verizon_Vodafone_MA_Analysis.xlsx" download>Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Hilton / Blackstone LBO Model (2007)</h5><p>LBO of the 2007 Hilton take-private: ~$25.5B TEV, six debt tranches, ~11.7x net leverage, a modeled GFC-era restructuring, and IRR/MOIC returns through the 2013 IPO.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/LBO_Model_Hilton_Blackstone_2007.xlsx" download="Akul Veauli - LBO Model (Hilton-Blackstone, 2007).xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Twitter / X LBO Model (2022)</h5><p>LBO of the $44B Twitter buyout: full four-tranche debt waterfall, two-scenario toggle, and returns benchmarked to the 2025 xAI merger.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/LBO_Model_Twitter_X_2022.xlsx" download="Akul Veauli - LBO Model (Twitter-X, 2022).xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Disney / Fox Merger Model (2019)</h5><p>Accretion/dilution model of Disney's acquisition of 21st Century Fox assets, FY2019E to FY2023E, with a breakeven-synergies solve.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Merger_Model_Disney_Fox_2019.xlsx" download="Akul Veauli - Merger Model (Disney-Fox, 2019).xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Broadcom / VMware Merger Model (2023)</h5><p>Broadcom and VMware merger model with a live cash-or-stock election and proration block, GAAP accretion/dilution, and purchase-price allocation.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Merger_Model_Broadcom_VMware_2023.xlsx" download="Akul Veauli - Merger Model (Broadcom-VMware, 2023).xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Exxon / Pioneer Merger Model (2023)</h5><p>All-stock Exxon and Pioneer merger model, FY2024E to FY2028E accretion/dilution, with a realized-synergies breakeven.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Merger_Model_Exxon_Pioneer_2023.xlsx" download="Akul Veauli - Merger Model (Exxon-Pioneer, 2023).xlsx">Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block" data-mtype="re">
+            <h4>Real Estate Models</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Texas SFR Investment Model</h5><p>Underwriting model for a Texas single-family rental: financing, operating cash flows, and levered return metrics.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Texas_SFR_Investment_Model.xlsx" download="Akul Veauli - Texas SFR Investment Model.xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Toronto Multifamily Acquisition Model</h5><p>Acquisition model for a Toronto multifamily asset: rent roll, financing, and value-add return analysis.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Toronto_Multifamily_Acquisition_Model.xlsx" download="Akul Veauli - Toronto Multifamily Acquisition Model.xlsx">Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block" data-mtype="waterfall">
+            <h4>Waterfalls &amp; Carry Structures</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Distribution Waterfall Model</h5><p>Private-fund distribution waterfall: return of capital, preferred return, GP catch-up, and carried-interest tiers.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Distribution_Waterfall_Model.xlsx" download="Akul Veauli - Distribution Waterfall Model.xlsx">Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>VC Fund Monte Carlo &amp; Portfolio Construction</h5><p>Monte Carlo simulation of a venture fund's portfolio: power-law outcome distribution, fund-level return metrics, and construction sensitivity.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/VC_Fund_Monte_Carlo_Portfolio_Construction.xlsx" download="Akul Veauli - VC Fund Monte Carlo & Portfolio Construction.xlsx">Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block" data-mtype="quant">
+            <h4>Portfolio / Quant</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>Portfolio Optimization Model (NU / SPY / AGG)</h5><p>Mean-variance portfolio optimization across NU, SPY, and AGG: efficient frontier, Sharpe-maximizing weights, and correlation inputs.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/Portfolio_Optimization_Model_NU_SPY_AGG.xlsx" download="Akul Veauli - Portfolio Optimization Model (NU-SPY-AGG).xlsx">Download</a>
+            </div>
+          </div>
+
+        </div>
+      </details>
+
+      <details class="acc-mid">
+        <summary>Early Work</summary>
+        <div class="acc-mid-body">
+
+          <div class="genre-block" data-mtype="lbo">
+            <h4>LBO / M&amp;A</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>dESCO Acquisition Deck <span class="pill early">Early Work</span></h5><p>Buy-side case competition deck: industry research, valuation, deal structure, and letter of intent.</p><div class="dl-meta">PDF · Pitch Deck</div></div>
+              <a class="dl-btn" href="downloads/dESCO_Acquisition_Deck.pdf" download>Download</a>
+            </div>
+            <div class="dl-row">
+              <div class="dl-info"><h5>dESCO Acquisition Model <span class="pill early">Early Work</span></h5><p>The supporting Excel model for the dESCO case: key financial figures and DCF valuation.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/dESCO_Acquisition_Model.xlsx" download>Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block" data-mtype="dcf">
+            <h4>DCF / Valuation</h4>
+            <div class="dl-row">
+              <div class="dl-info"><h5>nVent Thermal DCF <span class="pill early">Early Work</span></h5><p>Hand-built DCF valuation of nVent's thermal management business.</p><div class="dl-meta">XLSX · Model</div></div>
+              <a class="dl-btn" href="downloads/nVent_Thermal_DCF.xlsx" download>Download</a>
+            </div>
+          </div>
+
+          <div class="genre-block" data-mtype="re">
+            <h4>Real Estate Models</h4>
+            <div class="placeholder-row">Superseded by the Texas SFR Investment Model in New Work.</div>
+          </div>
+
+          <div class="genre-block" data-mtype="waterfall">
+            <h4>Waterfalls &amp; Carry Structures</h4>
+            <div class="placeholder-row">No early-work files in this category yet.</div>
+          </div>
+
+        </div>
+      </details>
+
+
+  </div>
+</div></section>
+
+<section id="research" class="alt"><div class="wrap">
   <div class="sec-kicker">Independent Work</div>
   <h2>Equity Research</h2>
-  <p class="sec-lede">27 sell-side style initiation and update notes written to an institutional research format, plus an early stock pitch: full investment thesis, company overview, and forward estimates behind every call. Each sector opens with the note I'd show first, followed by full coverage in chronological order. Notes from 2024 and earlier are flagged as early work, and they stay up deliberately so the progression is visible. This is a style exercise, not investment advice.</p>
+  <p class="sec-lede">27 initiation and update notes in an institutional sell-side format: full thesis, company overview, forward estimates, and a price target behind every call. Each sector opens with the note I'd show first, then the rest in chronological order. Notes from 2024 and earlier are tagged early work and left up on purpose so the progression is visible. My own coverage universe, my own estimates. Nothing here is investment advice.</p>
 
   <div class="sector-grid" aria-label="Research sectors">
     <button type="button" class="sector-tile" data-panel="panel-comm" aria-expanded="false" aria-controls="panel-comm"><span class="tile-name">Communication Services</span><span class="tile-count">1</span></button>
@@ -796,162 +979,96 @@
   </div>
 
   <div class="note">
-    <strong>Disclosure.</strong> These notes are a style exercise produced independently by me to demonstrate research and modelling ability. They are not affiliated with, produced by, or endorsed by J.P. Morgan or any other institution, and nothing here is investment advice.
+    <strong>Disclosure.</strong> These notes are independent work produced by me to demonstrate research and modelling ability. They are not affiliated with, produced by, or endorsed by any financial institution, and nothing here is investment advice.
   </div>
 </div></section>
 
-<section id="deals" class="alt"><div class="wrap">
-  <div class="sec-kicker">Transaction Work</div>
-  <h2>Deal &amp; Strategy Experience</h2>
-  <div class="rule"></div>
+<section id="projects"><div class="wrap">
+  <div class="sec-kicker">Side Projects</div>
+  <h2>Projects</h2>
+  <p class="sec-lede">Personal projects I built to sharpen the modelling above. Run one live in the demo below, or reach out if any of them are worth a conversation.</p>
+
   <div class="grid">
-    <div class="card deal">
-      <span class="badge conf">Described Only · Employer Confidential</span>
-      <h3>Litigation Finance Strategy Build-Out</h3>
-      <div class="tagline">NEW STRATEGY LAUNCH · TIMBERCREEK</div>
-      <p>Co-led the build-out of a litigation finance strategy, translating academic and industry research into a working underwriting framework that is now used to evaluate live cases; the strategy is on track to launch in late 2026. Built a Monte Carlo simulation on law-firm loss rates, benchmarked tail outcomes, and modelled a multi-tiered GP carry structure that scales with returns.</p>
-      <div class="tags"><span class="tag">Monte Carlo</span><span class="tag">Underwriting</span><span class="tag">Carry Waterfalls</span><span class="tag">Strategy Design</span></div>
+    <div class="card">
+      <h3>Automated DCF Valuation Engine</h3>
+      <div class="tagline">PYTHON · SEC EDGAR · EXCEL AUTOMATION</div>
+      <ul>
+        <li>Pulls SEC EDGAR, Damodaran, Yahoo Finance, and FRED into 10-year forecasts</li>
+        <li>WACC builds, sensitivity grids, and scenario analysis</li>
+        <li>Output is a live-formula Excel workbook</li>
+        <li>412 built-in audit checks (balance ties, sign conventions, circularity) with a version stamp on every output</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">XBRL</span><span class="tag">Validation Suite</span><span class="tag">DCF</span></div>
+    </div>
+    <div class="card">
+      <h3>LBO / Take-Private Modeller <span class="pill beta">Beta</span></h3>
+      <div class="tagline">PYTHON · LIVE-FORMULA WORKBOOKS</div>
+      <ul>
+        <li>Ticker in, eight-tab LBO workbook out</li>
+        <li>Sources &amp; Uses, operating model, tranche-level debt with senior-first cash sweep</li>
+        <li>IRR/MOIC returns with a value-creation bridge and sensitivity heat maps</li>
+        <li>Every cell a live formula off an editable Inputs sheet, verified against the Python engine</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">LBO</span><span class="tag">Debt Schedules</span><span class="tag">Tested</span></div>
+    </div>
+    <div class="card">
+      <h3>Debt Capacity Analyzer</h3>
+      <div class="tagline">PYTHON · CREDIT ANALYSIS</div>
+      <ul>
+        <li>Leverage and coverage ratio engine with credit scoring</li>
+        <li>Downside stress testing to size how much debt a business can support</li>
+        <li>Credit-side sibling of the DCF and LBO tools</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Credit Ratios</span><span class="tag">Stress Testing</span></div>
+    </div>
+    <div class="card">
+      <h3>Liability Trading Engine</h3>
+      <div class="tagline">PYTHON · TENDER PRICING &amp; EXECUTION</div>
+      <ul>
+        <li>Prices institutional tender offers against real-time order-book depth (RIT REST API)</li>
+        <li>Takes only positive-edge trades; works positions out with VWAP execution</li>
+        <li>Strict inventory and risk limits; fully autonomous, no human in the loop</li>
+        <li>1st place in a live trading competition against 30+ teams</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">RIT API</span><span class="tag">Tender Pricing</span><span class="tag">VWAP Execution</span></div>
+      <div style="margin-top:12px"><a class="btn-sm" href="https://github.com/akul-veauli/RIT-Tender-VWAP-Trader" target="_blank" rel="noopener">GitHub →</a></div>
+    </div>
+    <div class="card">
+      <h3>Cross-Exchange Arbitrage Algorithm</h3>
+      <div class="tagline">PYTHON · MULTI-VENUE TRADING</div>
+      <ul>
+        <li>Trades one security across two exchanges at once, quoting two-sided markets</li>
+        <li>Detects cross-venue dislocations and captures the spread</li>
+        <li>Net inventory managed in real time; pricing, sizing, and unwinds fully automated</li>
+        <li>1st place in a live trading competition against 30+ teams</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Arbitrage</span><span class="tag">Market Making</span><span class="tag">RIT API</span></div>
+      <div style="margin-top:12px"><a class="btn-sm" href="https://github.com/akul-veauli/Algo-Trader" target="_blank" rel="noopener">GitHub →</a></div>
+    </div>
+    <div class="card">
+      <h3>Investment Memo Creator</h3>
+      <div class="tagline">PYTHON · DEAL WRITE-UPS</div>
+      <ul>
+        <li>Generates structured investment memos from deal inputs</li>
+        <li>Built out across NPC International, Alcatel-Lucent, Arion Banki, ACEP, and Consolidated Utility Services</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Memo Automation</span><span class="tag">Deal Analysis</span></div>
     </div>
   </div>
-</div></section>
 
-<section id="models"><div class="wrap">
-  <div class="sec-kicker">Downloads</div>
-  <h2>Model Library</h2>
-  <p class="sec-lede">Real, openable files: pitch decks, Excel models, and research, organized hand-made vs. code-generated, then old work vs. new work, then by model type. Employer materials from Timbercreek and CI Financial are confidential; the Timbercreek transaction work is described in the Deals section rather than posted.</p>
-
-  <details class="acc-top">
-    <summary>Built by Hand</summary>
-    <div class="acc-top-body">
-
-      <details class="acc-mid">
-        <summary>New Work</summary>
-        <div class="acc-mid-body">
-
-          <div class="genre-block">
-            <h4>LBO / M&amp;A</h4>
-            <div class="dl-row">
-              <div class="dl-info"><h5>Verizon–Vodafone Merger Report</h5><p>Full written M&amp;A analysis of Verizon's $130B buyout of Vodafone's stake in Verizon Wireless.</p><div class="dl-meta">PDF · Report</div></div>
-              <a class="dl-btn" href="downloads/Verizon_Vodafone_Merger_Report.pdf" download>Download</a>
-            </div>
-            <div class="dl-row">
-              <div class="dl-info"><h5>Verizon–Vodafone M&amp;A Analysis Model</h5><p>The full Excel model behind the report: valuation build, ROIC vs. WACC value-creation framework, and counterfactual scenarios.</p><div class="dl-meta">XLSX · Model</div></div>
-              <a class="dl-btn" href="downloads/Verizon_Vodafone_MA_Analysis.xlsx" download>Download</a>
-            </div>
-          </div>
-
-          <div class="genre-block">
-            <h4>DCF / Valuation</h4>
-            <div class="placeholder-row">More hand-built DCF work is being added here. Check back soon.</div>
-          </div>
-
-          <div class="genre-block">
-            <h4>Real Estate Models</h4>
-            <div class="placeholder-row">An updated single-family rental (SFR) build is coming soon.</div>
-          </div>
-
-          <div class="genre-block">
-            <h4>Waterfalls &amp; Carry Structures</h4>
-            <div class="placeholder-row">Coming soon.</div>
-          </div>
-
-        </div>
-      </details>
-
-      <details class="acc-mid">
-        <summary>Early Work</summary>
-        <div class="acc-mid-body">
-
-          <div class="genre-block">
-            <h4>LBO / M&amp;A</h4>
-            <div class="dl-row">
-              <div class="dl-info"><h5>dESCO Acquisition Deck <span class="pill early">Early Work</span></h5><p>Buy-side case competition deck: industry research, valuation, deal structure, and letter of intent.</p><div class="dl-meta">PDF · Pitch Deck</div></div>
-              <a class="dl-btn" href="downloads/dESCO_Acquisition_Deck.pdf" download>Download</a>
-            </div>
-            <div class="dl-row">
-              <div class="dl-info"><h5>dESCO Acquisition Model <span class="pill early">Early Work</span></h5><p>The supporting Excel model for the dESCO case: key financial figures and DCF valuation.</p><div class="dl-meta">XLSX · Model</div></div>
-              <a class="dl-btn" href="downloads/dESCO_Acquisition_Model.xlsx" download>Download</a>
-            </div>
-          </div>
-
-          <div class="genre-block">
-            <h4>DCF / Valuation</h4>
-            <div class="dl-row">
-              <div class="dl-info"><h5>nVent Thermal DCF <span class="pill early">Early Work</span></h5><p>Hand-built DCF valuation of nVent's thermal management business.</p><div class="dl-meta">XLSX · Model</div></div>
-              <a class="dl-btn" href="downloads/nVent_Thermal_DCF.xlsx" download>Download</a>
-            </div>
-          </div>
-
-          <div class="genre-block">
-            <h4>Real Estate Models</h4>
-            <div class="dl-row">
-              <div class="dl-info"><h5>Single-Family Rental (SFR) Model <span class="pill early">Early Version</span></h5><p>Underwriting model for single-family rental investment. This is an early version; an updated build is coming soon.</p><div class="dl-meta">XLSX · Model</div></div>
-              <a class="dl-btn" href="downloads/SFR_Model_v1.xlsx" download>Download</a>
-            </div>
-          </div>
-
-          <div class="genre-block">
-            <h4>Waterfalls &amp; Carry Structures</h4>
-            <div class="placeholder-row">No early-work files in this category yet.</div>
-          </div>
-
-        </div>
-      </details>
-
+  <div class="demo-card">
+    <h3>Live DCF Demo <span class="pill beta">Beta</span></h3>
+    <p>Enter a ticker; the automated DCF engine returns a live valuation summary.</p>
+    <div class="demo-row">
+      <input class="demo-input" id="demo-ticker" type="text" placeholder="e.g. AAPL" maxlength="5" autocomplete="off" spellcheck="false">
+      <button class="demo-btn" id="demo-run">Run Valuation</button>
     </div>
-  </details>
+    <div class="demo-hint">Supported tickers: NYSE- and NASDAQ-listed stocks. Use an established, profitable company (e.g. AAPL, MSFT, KO, PG). An unprofitable or deeply negative name can return broken-looking or error output, which is expected, not a bug. The first request can take up to 2 minutes while the free-tier engine wakes up; after that it's fast.</div>
+    <div class="demo-result" id="demo-result" aria-live="polite"></div>
+  </div>
 
-  <details class="acc-top">
-    <summary>Generated Entirely by Code</summary>
-    <div class="acc-top-body">
-
-      <details class="acc-mid">
-        <summary>New Work</summary>
-        <div class="acc-mid-body">
-
-          <div class="genre-block">
-            <h4>DCF / Valuation</h4>
-            <div class="dl-row">
-              <div class="dl-info"><h5>Celsius Holdings (CELH) DCF Workbook <span class="pill code">100% Code-Generated</span></h5><p>Complete DCF valuation produced end-to-end by my automated engine: SEC EDGAR data pull, 10-year forecast, WACC build, sensitivities, and formatting, all untouched by hand.</p><div class="dl-meta">XLSX · Engine Output</div></div>
-              <a class="dl-btn" href="downloads/CELH_DCF_Code_Generated.xlsx" download>Download</a>
-            </div>
-          </div>
-
-          <div class="genre-block">
-            <h4>LBO / M&amp;A</h4>
-            <div class="placeholder-row">More engine outputs coming soon, as they clear my validation suite.</div>
-          </div>
-
-          <div class="genre-block">
-            <h4>Real Estate Models</h4>
-            <div class="placeholder-row">Coming soon.</div>
-          </div>
-
-          <div class="genre-block">
-            <h4>Waterfalls &amp; Carry Structures</h4>
-            <div class="placeholder-row">Coming soon.</div>
-          </div>
-
-        </div>
-      </details>
-
-      <details class="acc-mid">
-        <summary>Early Work</summary>
-        <div class="acc-mid-body">
-          <div class="placeholder-row">The code-generation engine is newer than the hand-built work on this site, so there's no early-period code-generated output yet. Everything here will be "new work" until the engine has been running long enough to have its own back catalogue.</div>
-        </div>
-      </details>
-
-    </div>
-  </details>
-
-  <div class="dl-row" style="border-left:4px solid var(--black);margin-top:24px">
-    <div class="dl-info">
-      <h5>Resume</h5>
-      <p>Current resume, one page.</p>
-      <div class="dl-meta">PDF</div>
-    </div>
-    <a class="dl-btn" href="downloads/Akul_Veauli_Resume.pdf" download>Download</a>
+  <div class="note">
+    <strong>More on the way.</strong> Additional models, deal write-ups, and project files are being uploaded to this site and to <a href="https://github.com/akul-veauli" target="_blank" rel="noopener">GitHub</a> as I'm able to share them. If something referenced here isn't posted yet, I'm happy to walk through it directly. Just reach out.
   </div>
 </div></section>
 
@@ -964,7 +1081,7 @@
     <div class="ach"><div class="medal">1st</div><div><h3>Investment Society Trading Competition, 2× Champion</h3><p>Repeat first-place finishes in live trading competition.</p></div></div>
     <div class="ach"><div class="medal">1st</div><div><h3>Investment Society Portfolio Management</h3><p>First place in portfolio management competition.</p></div></div>
     <div class="ach"><div class="medal">1st</div><div><h3>Derivatives Trading Competition</h3><p>First place in derivatives trading competition.</p></div></div>
-    <div class="ach"><div class="medal">1st</div><div><h3>Data Analytics Business Case Competition</h3><p>First place applying data analytics to a live business case.</p></div></div>
+    <div class="ach"><div class="medal">1st</div><div><h3>Business Case Competition (Data Analytics Track)</h3><p>First place applying data analytics to a live business case.</p></div></div>
     <div class="ach"><div class="medal">1st</div><div><h3>Business Hackathon, Entrepreneurship Society</h3><p>First place in a business-track hackathon.</p></div></div>
   </div>
 </div></section>
@@ -976,6 +1093,7 @@
   <div class="skill-cols">
     <div class="skill-col"><h3>Modelling &amp; Valuation</h3><ul>
       <li>LBO, DCF, NAV &amp; M&amp;A modelling</li>
+      <li>Three-statement operating models</li>
       <li>Comparables &amp; precedent transactions</li>
       <li>Waterfall / carry structure analysis</li>
       <li>Monte Carlo &amp; sensitivity analysis</li>
@@ -983,17 +1101,19 @@
     </ul></div>
     <div class="skill-col"><h3>Technical</h3><ul>
       <li>Excel (advanced modelling)</li>
-      <li>Python (data pipelines, automation)</li>
       <li>Bloomberg Terminal</li>
-      <li>Power BI &amp; PowerPoint</li>
+      <li>FactSet</li>
+      <li>PowerPoint &amp; Power BI</li>
       <li>SEC EDGAR / XBRL data</li>
+      <li>Python (valuation tooling &amp; automation)</li>
     </ul></div>
     <div class="skill-col"><h3>Interests</h3><ul>
       <li>Private equity</li>
       <li>Value-add real estate</li>
       <li>Derivatives</li>
       <li>Chess puzzles &amp; poker</li>
-      <li>Negotiations &amp; bodybuilding</li>
+      <li>Negotiations</li>
+      <li>Bodybuilding</li>
     </ul></div>
   </div>
 </div></section>
@@ -1014,7 +1134,7 @@
 <script>
 (function () {
   var API_BASE = "https://akul-dcf-api.onrender.com";
-  var EXCEL_ENDPOINT = "/api/excel?ticker="; // wired up 23 Aug 2026 — see /api/excel in dcf-live-api
+  var EXCEL_ENDPOINT = "/api/excel?ticker="; // wired up 23 Aug 2026, see /api/excel in dcf-live-api
   var QUOTA_STATUS = [402, 403, 429];
   var QUOTA_DETAIL_HINTS = ["quota", "budget", "credit", "rate limit", "limit reached", "insufficient"];
 
@@ -1024,12 +1144,12 @@
   if (!input || !btn || !out) return;
 
   function fmtMoney(n) {
-    if (n === null || n === undefined) return "—";
+    if (n === null || n === undefined) return "n/a";
     return "$" + Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
   function fmtPct(n, withSign) {
-    if (n === null || n === undefined) return "—";
+    if (n === null || n === undefined) return "n/a";
     var pct = (n * 100).toFixed(1);
     return (withSign && n > 0 ? "+" : "") + pct + "%";
   }
@@ -1061,7 +1181,7 @@
         '<div class="demo-out-head">' +
           '<span class="demo-out-ticker">' + escapeHtml(d.ticker) + "</span>" +
           '<span class="demo-out-sector">' + escapeHtml(d.sector || "") + "</span>" +
-          '<span class="demo-rating ' + ratingClass(d.rating) + '">' + escapeHtml(d.rating || "—") + "</span>" +
+          '<span class="demo-rating ' + ratingClass(d.rating) + '">' + escapeHtml(d.rating || "N/R") + "</span>" +
           '<span class="demo-cached">' + (d.cached ? "cached result" : "freshly generated") + "</span>" +
         "</div>" +
         '<div class="demo-grid">' +
@@ -1164,6 +1284,107 @@
       }
     });
   });
+})();
+
+(function () {
+  var lib = document.getElementById("model-library");
+  if (!lib) return;
+  var segs = Array.prototype.slice.call(document.querySelectorAll(".mbar-seg"));
+  var keys = Array.prototype.slice.call(document.querySelectorAll(".mkey"));
+  var allBtn = document.getElementById("mbar-all");
+  var statusEl = document.getElementById("mbar-status");
+  var blocks = Array.prototype.slice.call(lib.querySelectorAll(".genre-block"));
+  var mids = Array.prototype.slice.call(lib.querySelectorAll(".acc-mid"));
+  var LABELS = {
+    lbo: "LBO / M&A", dcf: "DCF / Valuation", re: "Real Estate",
+    relval: "Relative Valuation", waterfall: "Waterfalls & Carry",
+    "3stmt": "Three-Statement", quant: "Portfolio / Quant"
+  };
+  var activeType = null;
+
+  function isNewWork(m) {
+    var sum = m.querySelector("summary");
+    return !!(sum && /new work/i.test(sum.textContent));
+  }
+  function setPressed(list, type) {
+    list.forEach(function (b) {
+      var on = b.getAttribute("data-type") === type;
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+  function syncBtn() {
+    if (!allBtn) return;
+    allBtn.textContent = lib.classList.contains("lib-collapsed") ? "Show all models" : "Hide models";
+  }
+  function setOpenStates() {
+    mids.forEach(function (m) {
+      m.classList.remove("is-filtered-out");
+      if (isNewWork(m)) m.setAttribute("open", "");
+      else m.removeAttribute("open");
+    });
+  }
+
+  function collapse() {
+    activeType = null;
+    lib.classList.add("lib-collapsed");
+    setPressed(segs, null);
+    setPressed(keys, null);
+    if (statusEl) statusEl.textContent = "";
+    syncBtn();
+  }
+
+  function showAll() {
+    activeType = null;
+    blocks.forEach(function (b) { b.classList.remove("is-filtered-out"); });
+    setOpenStates();
+    lib.classList.remove("lib-collapsed");
+    setPressed(segs, null);
+    setPressed(keys, null);
+    if (statusEl) statusEl.textContent = "Showing all models. New work is open; earlier work is collapsed below.";
+    syncBtn();
+    lib.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function filterTo(type) {
+    activeType = type;
+    lib.classList.remove("lib-collapsed");
+    blocks.forEach(function (b) {
+      b.classList.toggle("is-filtered-out", b.dataset.mtype !== type);
+    });
+    mids.forEach(function (m) {
+      if (m.querySelector(".genre-block:not(.is-filtered-out)")) {
+        m.classList.remove("is-filtered-out");
+        if (isNewWork(m)) m.setAttribute("open", "");
+        else m.removeAttribute("open");
+      } else {
+        m.classList.add("is-filtered-out");
+        m.removeAttribute("open");
+      }
+    });
+    setPressed(segs, type);
+    setPressed(keys, type);
+    var label = LABELS[type] || type;
+    if (statusEl) statusEl.textContent = "Showing " + label + ". New work is open; earlier work is collapsed below.";
+    syncBtn();
+    lib.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function onClick(el) {
+    var type = el.getAttribute("data-type");
+    if (!type) return;
+    if (activeType === type) collapse();
+    else filterTo(type);
+  }
+  segs.forEach(function (el) { el.addEventListener("click", function () { onClick(el); }); });
+  keys.forEach(function (el) { el.addEventListener("click", function () { onClick(el); }); });
+  if (allBtn) {
+    allBtn.addEventListener("click", function () {
+      if (lib.classList.contains("lib-collapsed")) showAll();
+      else collapse();
+    });
+  }
+  syncBtn();
 })();
 </script>
 
