@@ -1,5 +1,13 @@
 # Changelog
 
+## v9 — Sep 10, 2026
+
+**Status:** complete (stat fix, Verizon/Vodafone model correction, equity research refresh)
+
+- Hero stat band: "Acquisition Modelled" `$550M` → `$500M+`, matching the Gold Producer Acquisition Analysis deal card's "~$500M+" entry figure
+- `downloads/Verizon_Vodafone_MA_Analysis.xlsx` replaced with the corrected model: the "Deal Structure & Capital Impact" consideration bridge on the live site had a hard-coded total consideration of $131,274mm (~$1.3 Bn too high, and no longer a live formula) that didn't match its own "~$130.3 Bn" header. Restored to the version where TOTAL CONSIDERATION is a live `=SUM()` formula totalling $130,000mm, consistent with the header and the actual deal
+- Equity research PDFs refreshed (`AMZN`, `ARAMCO`, `AXON`, `CADY`, `COST`, `EEFT`, `ENBDREIT`, `NEE`, `NU`, `OSCR`, `PG`, `QBTS`, `SOFI`, `UNH`, `WBD`) and new note added: `downloads/CGO_Equity_Research.pdf` (Cogeco Inc., Overweight, 10 Sep 2026)
+
 ## v8 — Aug 29, 2026
 
 **Status:** complete (index rework, Model Library expansion, client name scrubbed)

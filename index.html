@@ -118,6 +118,17 @@
   .demo-hint{font-size:12px;color:#6e737a;margin-top:10px}
   .demo-result{margin-top:24px}
   .demo-status{font-size:13.5px;color:#b7bdc4;display:flex;align-items:center;gap:10px}
+  .demo-prog-bar{height:3px;background:#2a2c30;overflow:hidden;margin:12px 0 14px}
+  .demo-prog-fill{height:100%;background:#fff;width:0;transition:width .45s ease}
+  .demo-prog-list{list-style:none;padding:0;margin:0;font-size:12.5px;line-height:1.95;color:#6e737a}
+  .demo-prog-list li.done{color:#b7bdc4}
+  .demo-prog-list li.done::before{content:"\2713 ";color:#7fd9a6}
+  .demo-prog-list li.active{color:#fff}
+  .demo-prog-list li.active::before{content:"\25B8 ";color:#fff}
+  .demo-validation{margin-top:16px;border-top:1px solid #2a2c30;padding-top:14px;font-size:12px;color:#8a8f96;line-height:1.6}
+  .demo-validation .vscore{font-family:"Times New Roman",Times,serif;font-size:16px;font-weight:700;color:#fff}
+  .demo-validation .vverdict{display:inline-block;padding:2px 8px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:#5a3a1a;color:#f0d9b8;margin-left:8px;vertical-align:2px}
+  .demo-validation a{color:#b7bdc4}
   .demo-spinner{width:14px;height:14px;border-radius:50%;border:2px solid #3a3d42;border-top-color:#fff;animation:demo-spin .8s linear infinite;flex:none}
   @keyframes demo-spin{to{transform:rotate(360deg)}}
   .demo-error{font-size:13.5px;color:#f2a8a8}
@@ -293,9 +304,9 @@
 </div></header>
 
 <div class="stats"><div class="wrap stats-inner">
-  <div class="stat"><div class="num">$550M</div><div class="lbl">Acquisition Modelled</div></div>
+  <div class="stat"><div class="num">$500M+</div><div class="lbl">Acquisition Modelled</div></div>
   <div class="stat"><div class="num">$3B+</div><div class="lbl">AUM Supported</div></div>
-  <div class="stat"><div class="num">27</div><div class="lbl">Equity Research Notes</div></div>
+  <div class="stat"><div class="num">28</div><div class="lbl">Equity Research Notes</div></div>
   <div class="stat"><div class="num">8×</div><div class="lbl">First-Place Finance Competitions</div></div>
 </div></div>
 
@@ -305,7 +316,7 @@
   <div class="rule"></div>
   <div class="about-block">
     <p>I'm a University of Toronto finance graduate focused on private equity and investment banking, with most of my experience in valuation and underwriting. <span class="punch">At Timbercreek Capital I led the diligence and analysis on a potential mining acquisition and on a new investment strategy the firm was building, and put together the models and investment committee materials behind both.</span></p>
-    <p class="contents">Below: the two mandates in more detail, a library of Excel models and pitch decks, 27 equity research notes, and a few Python tools, one of which runs a live valuation.</p>
+    <p class="contents">Below: the two mandates in more detail, a library of Excel models and pitch decks, 28 equity research notes, and a few Python tools, one of which runs a live valuation.</p>
   </div>
 </div></section>
 
@@ -527,10 +538,10 @@
 <section id="research" class="alt"><div class="wrap">
   <div class="sec-kicker">Independent Work</div>
   <h2>Equity Research</h2>
-  <p class="sec-lede">27 initiation and update notes in an institutional sell-side format: full thesis, company overview, forward estimates, and a price target behind every call. Each sector opens with the note I'd show first, then the rest in chronological order. Notes from 2024 and earlier are tagged early work and left up on purpose so the progression is visible. My own coverage universe, my own estimates. Nothing here is investment advice.</p>
+  <p class="sec-lede">28 initiation and update notes in an institutional sell-side format: full thesis, company overview, forward estimates, and a price target behind every call. Each sector opens with the note I'd show first, then the rest in chronological order. Notes from 2024 and earlier are tagged early work and left up on purpose so the progression is visible. My own coverage universe, my own estimates. Nothing here is investment advice.</p>
 
   <div class="sector-grid" aria-label="Research sectors">
-    <button type="button" class="sector-tile" data-panel="panel-comm" aria-expanded="false" aria-controls="panel-comm"><span class="tile-name">Communication Services</span><span class="tile-count">1</span></button>
+    <button type="button" class="sector-tile" data-panel="panel-comm" aria-expanded="false" aria-controls="panel-comm"><span class="tile-name">Communication Services</span><span class="tile-count">2</span></button>
     <button type="button" class="sector-tile" data-panel="panel-disc" aria-expanded="false" aria-controls="panel-disc"><span class="tile-name">Consumer Discretionary</span><span class="tile-count">1</span></button>
     <button type="button" class="sector-tile" data-panel="panel-staples" aria-expanded="false" aria-controls="panel-staples"><span class="tile-name">Consumer Staples</span><span class="tile-count">2</span></button>
     <button type="button" class="sector-tile" data-panel="panel-energy" aria-expanded="false" aria-controls="panel-energy"><span class="tile-name">Energy</span><span class="tile-count">3</span></button>
@@ -545,9 +556,23 @@
 
   <div class="sector-panels">
     <div class="sector-panel" id="panel-comm" hidden>
-      <div class="panel-head">Communication Services · 1 report</div>
+      <div class="panel-head">Communication Services · 2 reports</div>
       <div class="top-pick-label">Top Pick</div>
       <details class="acc-company top-pick">
+        <summary><span class="acc-co-left"><span class="acc-co-ticker">CGO · TSX</span><span class="acc-co-name">Cogeco Inc.</span><span class="badge ow" style="margin-bottom:0">Overweight</span></span><span class="acc-co-date">10 Sep 2026</span></summary>
+        <div class="acc-company-body">
+          <div class="rc-tagline">A Controlled Telecom Holdco Trading at a 25% Discount to Its Own Stake</div>
+          <p class="rc-summary">Cogeco Inc. trades at C$54.71, on its 52-week low, while its 28.4% stake in Cogeco Communications alone is worth C$73.22 per share. The Audet family's 80.3% voting control means no activist can force the discount closed, but Rogers and Altice valued the shares at C$123.00 in 2020 and the dividend yields 7.2%.</p>
+          <div class="rc-metrics">
+            <div>Price<strong>C$54.71</strong></div>
+            <div>PT (Dec-27)<strong>C$83.00</strong></div>
+            <div>Return<strong>+59%</strong></div>
+          </div>
+          <div class="rc-foot"><span class="dl-meta">PDF · 10 Sep 2026</span><a class="dl-btn" href="downloads/CGO_Equity_Research.pdf" download>Download</a></div>
+        </div>
+      </details>
+      <details class="acc-coverage"><summary class="coverage-label">All Coverage · newest first · 1 more</summary><div class="acc-coverage-body">
+      <details class="acc-company">
         <summary><span class="acc-co-left"><span class="acc-co-ticker">WBD · NasdaqGS</span><span class="acc-co-name">Warner Bros. Discovery, Inc.</span><span class="badge neutral" style="margin-bottom:0">Neutral</span></span><span class="acc-co-date">13 May 2025</span></summary>
         <div class="acc-company-body">
           <div class="rc-tagline">Streaming Finally Pays Its Way; the Balance Sheet Still Owns the Story</div>
@@ -560,6 +585,7 @@
           <div class="rc-foot"><span class="dl-meta">PDF · 13 May 2025</span><a class="dl-btn" href="downloads/WBD_Equity_Research.pdf" download>Download</a></div>
         </div>
       </details>
+      </div></details>
     </div>
 
     <div class="sector-panel" id="panel-disc" hidden>
@@ -1134,6 +1160,7 @@
 <script>
 (function () {
   var API_BASE = "https://akul-dcf-api.onrender.com";
+  var REF = "main";  // tags which front-end called the API (see ntfy pings); "ci" in the CI copy
   var EXCEL_ENDPOINT = "/api/excel?ticker="; // wired up 23 Aug 2026, see /api/excel in dcf-live-api
   var QUOTA_STATUS = [402, 403, 429];
   var QUOTA_DETAIL_HINTS = ["quota", "budget", "credit", "rate limit", "limit reached", "insufficient"];
@@ -1162,7 +1189,33 @@
 
   function renderLoading() {
     out.innerHTML =
-      '<div class="demo-status"><span class="demo-spinner"></span><span id="demo-status-text">Running the DCF engine…</span><span class="demo-elapsed" id="demo-elapsed"></span></div>';
+      '<div class="demo-status"><span class="demo-spinner"></span>' +
+      '<span id="demo-status-text">Waking the free-tier engine…</span>' +
+      '<span class="demo-elapsed" id="demo-elapsed"></span></div>' +
+      '<div class="demo-prog-bar"><div class="demo-prog-fill" id="demo-prog-fill"></div></div>' +
+      '<ul class="demo-prog-list" id="demo-prog-list"></ul>';
+  }
+
+  var _stageEls = {};
+  var _lastStageEl = null;
+  function resetStages() { _stageEls = {}; _lastStageEl = null; }
+
+  function renderStage(stage, pct) {
+    var fill = document.getElementById("demo-prog-fill");
+    if (fill && typeof pct === "number") fill.style.width = Math.round(pct * 100) + "%";
+    var t = document.getElementById("demo-status-text");
+    if (t && stage) t.textContent = stage;
+    var list = document.getElementById("demo-prog-list");
+    if (!list || !stage) return;
+    if (_lastStageEl && _lastStageEl !== _stageEls[stage]) _lastStageEl.className = "done";
+    if (!_stageEls[stage]) {
+      var li = document.createElement("li");
+      li.textContent = stage;
+      list.appendChild(li);
+      _stageEls[stage] = li;
+    }
+    _stageEls[stage].className = "active";
+    _lastStageEl = _stageEls[stage];
   }
 
   function renderError(msg) {
@@ -1171,6 +1224,18 @@
 
   function renderResult(d) {
     var upsideClass = d.upside_pct > 0 ? "pos" : d.upside_pct < 0 ? "neg" : "";
+    var validationHtml = "";
+    if (d.validation && d.validation.score != null) {
+      var v = d.validation;
+      validationHtml =
+        '<div class="demo-validation">' +
+          '<span class="vscore">' + v.score + " / 100</span>" +
+          '<span class="vverdict">' + escapeHtml(v.verdict || "") + "</span>" +
+          '<div style="margin-top:6px">Engine self-audit: ' + (v.checks || "?") +
+          " checks under independent recalculation, run " + escapeHtml(v.as_of || "") + ". " +
+          '<a href="' + API_BASE + (v.detail_url || "/api/validation") + '" target="_blank" rel="noopener">Full scorecard</a>.</div>' +
+        "</div>";
+    }
     var excelHtml = "";
     if (EXCEL_ENDPOINT) {
       excelHtml =
@@ -1191,6 +1256,7 @@
           '<div class="demo-metric"><div class="lbl">WACC</div><div class="val">' + fmtPct(d.wacc) + "</div></div>" +
           '<div class="demo-metric"><div class="lbl">Terminal Growth</div><div class="val">' + fmtPct(d.terminal_growth) + "</div></div>" +
         "</div>" +
+        validationHtml +
         excelHtml +
       "</div>";
   }
@@ -1201,31 +1267,8 @@
     return div.innerHTML;
   }
 
-  function runValuation() {
-    var ticker = (input.value || "").trim().toUpperCase();
-    if (!ticker) {
-      renderError("Enter a ticker first.");
-      return;
-    }
-
-    btn.disabled = true;
-    input.disabled = true;
-    renderLoading();
-
-    var startedAt = new Date().getTime();
-    var statusTimer = setInterval(function () {
-      var secs = Math.floor((new Date().getTime() - startedAt) / 1000);
-      var el = document.getElementById("demo-elapsed");
-      if (el) el.textContent = Math.floor(secs / 60) + ":" + ("0" + (secs % 60)).slice(-2);
-      var t = document.getElementById("demo-status-text");
-      if (!t) return;
-      if (secs >= 90) t.textContent = "Almost there. Free-tier cold starts occasionally run the full 2 minutes.";
-      else if (secs >= 25) t.textContent = "Still waking up. The first request after the engine has been asleep can take up to 2 minutes. Hang tight.";
-      else if (secs >= 5) t.textContent = "Waking the free-tier engine…";
-    }, 1000);
-    function stopTicker() { clearInterval(statusTimer); }
-
-    fetch(API_BASE + "/api/valuation?ticker=" + encodeURIComponent(ticker))
+  function fallbackRun(ticker, stopTicker, release) {
+    fetch(API_BASE + "/api/valuation?ticker=" + encodeURIComponent(ticker) + "&ref=" + REF)
       .then(function (res) {
         return res.json()
           .then(function (body) { return { ok: res.ok, status: res.status, body: body }; })
@@ -1253,11 +1296,82 @@
         stopTicker();
         renderError("Couldn't reach the valuation API. It may be waking up, so try again in a moment.");
       })
-      .finally(function () {
-        stopTicker();
-        btn.disabled = false;
-        input.disabled = false;
-      });
+      .finally(release);
+  }
+
+  function runValuation() {
+    var ticker = (input.value || "").trim().toUpperCase();
+    if (!ticker) {
+      renderError("Enter a ticker first.");
+      return;
+    }
+
+    btn.disabled = true;
+    input.disabled = true;
+    resetStages();
+    renderLoading();
+
+    var startedAt = new Date().getTime();
+    var gotStage = false, done = false, usedFallback = false;
+
+    var statusTimer = setInterval(function () {
+      var secs = Math.floor((new Date().getTime() - startedAt) / 1000);
+      var el = document.getElementById("demo-elapsed");
+      if (el) el.textContent = Math.floor(secs / 60) + ":" + ("0" + (secs % 60)).slice(-2);
+      if (gotStage) return;  // real progress events are driving the text now
+      var t = document.getElementById("demo-status-text");
+      if (!t) return;
+      if (secs >= 90) t.textContent = "Almost there. Free-tier cold starts occasionally run the full 2 minutes.";
+      else if (secs >= 25) t.textContent = "Still waking up. The first request after a sleep can take up to 2 minutes. Hang tight.";
+      else if (secs >= 5) t.textContent = "Waking the free-tier engine…";
+    }, 1000);
+    function stopTicker() { clearInterval(statusTimer); }
+    function release() { done = true; stopTicker(); btn.disabled = false; input.disabled = false; }
+
+    if (typeof window.EventSource === "undefined") {
+      usedFallback = true;
+      fallbackRun(ticker, stopTicker, release);
+      return;
+    }
+
+    var es;
+    try {
+      es = new EventSource(API_BASE + "/api/valuation/stream?ticker=" + encodeURIComponent(ticker) + "&ref=" + REF);
+    } catch (e) {
+      usedFallback = true;
+      fallbackRun(ticker, stopTicker, release);
+      return;
+    }
+
+    es.onmessage = function (ev) {
+      if (done) return;
+      var m;
+      try { m = JSON.parse(ev.data); } catch (e) { return; }
+      if (m.type === "progress") {
+        gotStage = true;
+        renderStage(m.stage, m.pct);
+      } else if (m.type === "result") {
+        es.close();
+        release();
+        renderResult(m.data);
+      } else if (m.type === "error") {
+        es.close();
+        release();
+        renderError(m.message || "The engine hit a problem. Try again.");
+      }
+    };
+
+    es.onerror = function () {
+      if (done) return;            // normal end-of-stream after a result — ignore
+      es.close();
+      if (gotStage) {              // stream had started, then dropped mid-run
+        release();
+        renderError("The connection dropped mid-valuation. Give it a moment and try again.");
+      } else if (!usedFallback) {  // never connected — fall back to the plain endpoint
+        usedFallback = true;
+        fallbackRun(ticker, stopTicker, release);
+      }
+    };
   }
 
   btn.addEventListener("click", runValuation);
