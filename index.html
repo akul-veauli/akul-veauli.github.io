@@ -132,6 +132,12 @@
   .demo-spinner{width:14px;height:14px;border-radius:50%;border:2px solid #3a3d42;border-top-color:#fff;animation:demo-spin .8s linear infinite;flex:none}
   @keyframes demo-spin{to{transform:rotate(360deg)}}
   .demo-error{font-size:13.5px;color:#f2a8a8}
+  .demo-alert{margin-bottom:18px;padding:16px 18px;border:2px solid #e5484d;background:rgba(229,72,77,.14);border-radius:2px}
+  .demo-alert .hd{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#ff6b6f;margin-bottom:6px}
+  .demo-alert .bd{font-size:13.5px;color:#f2c4c4;line-height:1.55}
+  .demo-alert-error{padding:20px 22px;border:2px solid #e5484d;background:rgba(229,72,77,.14);border-radius:2px}
+  .demo-alert-error .hd{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#ff6b6f;margin-bottom:8px}
+  .demo-alert-error .bd{font-size:14px;color:#f2c4c4;line-height:1.55}
   .demo-out{border-top:1px solid #2a2c30;padding-top:20px}
   .demo-out-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
   .demo-out-ticker{font-family:"Times New Roman",Times,serif;font-size:22px;font-weight:700;color:#fff}
@@ -1218,12 +1224,23 @@
     _lastStageEl = _stageEls[stage];
   }
 
-  function renderError(msg) {
-    out.innerHTML = '<div class="demo-error">' + msg + "</div>";
+  function renderError(msg, isDataQuality) {
+    if (isDataQuality) {
+      out.innerHTML =
+        '<div class="demo-alert-error"><div class="hd">⚠ Error — DCF Data Issue</div><div class="bd">' + msg + "</div></div>";
+    } else {
+      out.innerHTML = '<div class="demo-error">' + msg + "</div>";
+    }
   }
 
   function renderResult(d) {
     var upsideClass = d.upside_pct > 0 ? "pos" : d.upside_pct < 0 ? "neg" : "";
+    var alertsHtml = "";
+    if (d.data_quality_alerts && d.data_quality_alerts.length) {
+      alertsHtml = d.data_quality_alerts.map(function (a) {
+        return '<div class="demo-alert"><div class="hd">⚠ Data Quality Warning</div><div class="bd">' + escapeHtml(a) + "</div></div>";
+      }).join("");
+    }
     var validationHtml = "";
     if (d.validation && d.validation.score != null) {
       var v = d.validation;
@@ -1248,6 +1265,7 @@
       "</div>";
     out.innerHTML =
       '<div class="demo-out">' +
+        alertsHtml +
         '<div class="demo-out-head">' +
           '<span class="demo-out-ticker">' + escapeHtml(d.ticker) + "</span>" +
           '<span class="demo-out-sector">' + escapeHtml(d.sector || "") + "</span>" +
@@ -1349,6 +1367,11 @@
             renderError("The engine's data-API budget is used up for now, so the live demo is paused until the quota resets. The code-generated workbooks in the Model Library show exactly what it produces, or email me and I'll run a valuation for you directly.");
           } else if (r.status >= 500 || r.unparseable) {
             renderError("The engine hit a server error. It may still be waking up. Give it 30 seconds and try again.");
+          } else if (r.status === 400) {
+            // A 400 here means the engine itself determined this ticker's
+            // data can't support a defensible DCF (e.g. not enough filed
+            // history) -- render it loud, not as a routine error.
+            renderError(detail ? escapeHtml(detail) : "This ticker's data can't support a defensible DCF.", true);
           } else {
             renderError(detail ? escapeHtml(detail) : "Something went wrong. Try again.");
           }
@@ -1421,7 +1444,7 @@
       } else if (m.type === "error") {
         es.close();
         release();
-        renderError(m.message || "The engine hit a problem. Try again.");
+        renderError(m.message || "The engine hit a problem. Try again.", !!m.data_quality);
       }
     };
 
