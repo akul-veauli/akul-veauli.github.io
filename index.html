@@ -1277,6 +1277,7 @@
 
   function runNarrative(ticker) {
     var box = document.getElementById("demo-ai-out");
+    var btn = document.getElementById("demo-ai-btn");
     if (!box) return;
     box.innerHTML =
       '<div class="demo-status" style="margin-top:12px"><span class="demo-spinner"></span>' +
@@ -1289,7 +1290,10 @@
           .catch(function () { return { ok: false, status: res.status, body: null, unparseable: true }; });
       })
       .then(function (r) {
-        var btn = document.getElementById("demo-ai-btn");
+        // If a different ticker was run while this was in flight, renderResult()
+        // already replaced out.innerHTML and this box/btn are detached — bail
+        // out instead of touching the new result card's own AI button.
+        if (!box.isConnected) return;
         if (btn) btn.style.display = "none";
         if (!r.ok) {
           var detail = r.body && r.body.detail ? String(r.body.detail) : "";
@@ -1315,8 +1319,8 @@
           "</div>";
       })
       .catch(function () {
-        var btn = document.getElementById("demo-ai-btn");
-        if (btn) { btn.disabled = false; }
+        if (!box.isConnected) return;
+        if (btn) { btn.disabled = false; btn.style.display = ""; }
         box.innerHTML = '<div class="demo-error" style="margin-top:12px">Couldn\'t reach the narrative API. Try again in a moment.</div>';
       });
   }
