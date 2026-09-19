@@ -1241,6 +1241,11 @@
       excelHtml =
         '<div style="margin-top:18px"><a class="dl-btn" href="' + API_BASE + EXCEL_ENDPOINT + encodeURIComponent(d.ticker) + '" download>Download the Excel model</a></div>';
     }
+    var aiHtml =
+      '<div style="margin-top:12px">' +
+        '<button class="dl-btn" id="demo-ai-btn" type="button" style="background:transparent;color:#fff;border-color:#3a3d42">Generate AI Insight</button>' +
+        '<div id="demo-ai-out"></div>' +
+      "</div>";
     out.innerHTML =
       '<div class="demo-out">' +
         '<div class="demo-out-head">' +
@@ -1258,7 +1263,62 @@
         "</div>" +
         validationHtml +
         excelHtml +
+        aiHtml +
       "</div>";
+
+    var aiBtn = document.getElementById("demo-ai-btn");
+    if (aiBtn) {
+      aiBtn.addEventListener("click", function () {
+        aiBtn.disabled = true;
+        runNarrative(d.ticker);
+      });
+    }
+  }
+
+  function runNarrative(ticker) {
+    var box = document.getElementById("demo-ai-out");
+    if (!box) return;
+    box.innerHTML =
+      '<div class="demo-status" style="margin-top:12px"><span class="demo-spinner"></span>' +
+      '<span>Generating AI narrative (Sonnet 5 + your DCF outputs)…</span></div>';
+
+    fetch(API_BASE + "/api/narrative?ticker=" + encodeURIComponent(ticker) + "&ref=" + REF)
+      .then(function (res) {
+        return res.json()
+          .then(function (body) { return { ok: res.ok, status: res.status, body: body }; })
+          .catch(function () { return { ok: false, status: res.status, body: null, unparseable: true }; });
+      })
+      .then(function (r) {
+        var btn = document.getElementById("demo-ai-btn");
+        if (btn) btn.style.display = "none";
+        if (!r.ok) {
+          var detail = r.body && r.body.detail ? String(r.body.detail) : "";
+          var isQuota =
+            QUOTA_STATUS.indexOf(r.status) !== -1 ||
+            QUOTA_DETAIL_HINTS.some(function (h) { return detail.toLowerCase().indexOf(h) !== -1; });
+          if (isQuota) {
+            box.innerHTML = '<div class="demo-error" style="margin-top:12px">The AI narrative is capped harder than the valuation itself and has hit its limit for now. The numbers above still stand on their own — try the narrative again later.</div>';
+          } else if (r.status >= 500 || r.unparseable) {
+            box.innerHTML = '<div class="demo-error" style="margin-top:12px">The narrative generator hit a server error. Try again in a moment.</div>';
+          } else {
+            box.innerHTML = '<div class="demo-error" style="margin-top:12px">' + (detail ? escapeHtml(detail) : "Something went wrong generating the narrative.") + "</div>";
+          }
+          if (btn) { btn.style.display = ""; btn.disabled = false; }
+          return;
+        }
+        var d = r.body;
+        var paras = [d.framing, d.wacc_narrative, d.conclusion].filter(Boolean);
+        box.innerHTML =
+          '<div class="demo-validation">' +
+            paras.map(function (p) { return "<p style=\"margin:0 0 10px\">" + escapeHtml(p) + "</p>"; }).join("") +
+            '<div>' + (r.body.cached ? "cached" : "freshly generated") + " · AI-generated commentary, not investment advice.</div>" +
+          "</div>";
+      })
+      .catch(function () {
+        var btn = document.getElementById("demo-ai-btn");
+        if (btn) { btn.disabled = false; }
+        box.innerHTML = '<div class="demo-error" style="margin-top:12px">Couldn\'t reach the narrative API. Try again in a moment.</div>';
+      });
   }
 
   function escapeHtml(s) {
