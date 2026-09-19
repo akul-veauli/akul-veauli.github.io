@@ -1329,7 +1329,7 @@
           return;
         }
         var d = r.body;
-        var paras = [d.framing, d.wacc_narrative, d.conclusion, d.street_comparison].filter(Boolean);
+        var paras = d.sections || [];  // generic list -- backend can add/remove sections with no frontend change
         box.innerHTML =
           '<div class="demo-validation">' +
             paras.map(function (p) { return "<p style=\"margin:0 0 10px\">" + escapeHtml(p) + "</p>"; }).join("") +
