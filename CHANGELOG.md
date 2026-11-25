@@ -13,6 +13,7 @@
 - Card text checked against the notes: the Cogeco summary now says the stock trades "near" its 52-week low (C$54.71 against a C$54.25 low), and the WBD summary gives the note's "two and a half to three and a half more years"
 - Model Library descriptions checked against the workbooks: the Microsoft and Apple DCFs are five-year models (described as 10-year), the Apple DCF has no scenario toggles, the Microsoft three-statement model has no stress case, and the Hilton LBO does not model the 2010 restructuring, so those phrases were corrected or removed
 - Equity Research: added a short Methodology note (price-target method, Return definition, rating scales, price dates, coverage) above the Disclosure, every statement taken from the notes themselves
+- Equity Research is now linkable as `#equity-research` (same landing position as `#research`, which still works)
 
 ## v9 — Sep 10, 2026
 
