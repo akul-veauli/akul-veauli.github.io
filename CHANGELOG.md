@@ -1,5 +1,19 @@
 # Changelog
 
+## v10: Nov 25, 2026
+
+**Status:** complete (credibility pass: note count, Return and Upside labels, Featured label, Early Work rule, unsupported claims, unfinished items, card and Model Library text checked against their files)
+
+- Equity Research count: the stat band, About line and lede said 28 notes while the sector tiles summed to 29. They now say 29 research notes (28 initiation and update notes plus the PGAS stock pitch). A small inline script recomputes those numbers, the tile badges, the panel headers and the "N more" labels from the cards on the page (`data-count`); the static numbers stay as the no-JS fallback
+- Card metrics now follow one rule, stated under the Equity Research lede: `Return` is price-target upside plus expected dividends, `Upside` is the price move alone. Relabelled `Upside` to `Return` on 11 cards whose figure includes dividends (CNQ, ENB, RY, JPM, BN, EQB, LLY, CP, HPS, MSFT, CSU) and `Return` to `Upside` on 3 cards that pay no dividend (WBD, OSCR, QBTS), each checked against its note PDF. No figures changed
+- "Top Pick" renamed "Featured" in all 11 sector panels, since 8 of the 11 lead notes are rated Neutral or Underweight; the lede now says the label is not a rating. CSS class names unchanged
+- Early Work rule in the lede reworded to match the tags: "Notes dated 2024 and the Spring 2025 stock pitch are tagged Early Work and left up on purpose so the progression is visible." The lede also says the rest of each sector is listed newest first, as the lists already were
+- Hero stats: "$3B+ AUM Supported" (nothing in the repo supports it) replaced with "23 Models & Analyses Posted", counted from the Model Library rows on the page, and "8× First-Place Finance Competitions" relabelled "First-Place Competition Finishes", since 2 of the 8 listed wins are not finance competitions. The DCF engine's "412 built-in audit checks" bullet lost its number, which nothing in this repo supports; the version-stamp claim stays (`Pipeline Fingerprint` in `downloads/CELH_DCF_Code_Generated.xlsx`)
+- Unfinished items: empty Real Estate and Waterfalls placeholders removed from the Model Library's Early Work list, Investment Memo Creator card removed (no sample output in the repo), and the Live DCF Demo caveat moved out of the input hint into a footnote under the result area
+- Card text checked against the notes: the Cogeco summary now says the stock trades "near" its 52-week low (C$54.71 against a C$54.25 low), and the WBD summary gives the note's "two and a half to three and a half more years"
+- Model Library descriptions checked against the workbooks: the Microsoft and Apple DCFs are five-year models (described as 10-year), the Apple DCF has no scenario toggles, the Microsoft three-statement model has no stress case, and the Hilton LBO does not model the 2010 restructuring, so those phrases were corrected or removed
+- Left for the owner to source or confirm, with no site change: the PG close its own note could not verify, the CSU rating against its own scale, two summary phrases the notes do not contain (UNH, CSU), the PGAS 28% and 31% scenario figures, PG's "four years", the two total-return methods across the notes, the dESCO descriptions, the "eight-tab LBO workbook" claim, and the 412 figure (held in the engine repo, not this one)
+
 ## v9 — Sep 10, 2026
 
 **Status:** complete (stat fix, Verizon/Vodafone model correction, equity research refresh)
