@@ -118,6 +118,7 @@
   .demo-btn:hover:not(:disabled){background:var(--blue);border-color:var(--blue);color:#fff}
   .demo-btn:disabled{background:#3a3d42;color:#8a8f96;border-color:#3a3d42;cursor:not-allowed}
   .demo-hint{font-size:12px;color:#6e737a;margin-top:10px}
+  .demo-foot{font-size:11.5px;color:#6e737a;line-height:1.5;margin-top:18px;padding-top:10px;border-top:1px solid #2a2c30}
   .demo-result{margin-top:24px}
   .demo-status{font-size:13.5px;color:#b7bdc4;display:flex;align-items:center;gap:10px}
   .demo-prog-bar{height:3px;background:#2a2c30;overflow:hidden;margin:12px 0 14px}
@@ -524,16 +525,6 @@
               <div class="dl-info"><h5>nVent Thermal DCF <span class="pill early">Early Work</span></h5><p>Hand-built DCF valuation of nVent's thermal management business.</p><div class="dl-meta">XLSX · Model</div></div>
               <a class="dl-btn" href="downloads/nVent_Thermal_DCF.xlsx" download>Download</a>
             </div>
-          </div>
-
-          <div class="genre-block" data-mtype="re">
-            <h4>Real Estate Models</h4>
-            <div class="placeholder-row">Superseded by the Texas SFR Investment Model in New Work.</div>
-          </div>
-
-          <div class="genre-block" data-mtype="waterfall">
-            <h4>Waterfalls &amp; Carry Structures</h4>
-            <div class="placeholder-row">No early-work files in this category yet.</div>
           </div>
 
         </div>
@@ -1080,15 +1071,6 @@
       <div class="tags"><span class="tag">Python</span><span class="tag">Arbitrage</span><span class="tag">Market Making</span><span class="tag">RIT API</span></div>
       <div style="margin-top:12px"><a class="btn-sm" href="https://github.com/akul-veauli/Algo-Trader" target="_blank" rel="noopener">GitHub →</a></div>
     </div>
-    <div class="card">
-      <h3>Investment Memo Creator</h3>
-      <div class="tagline">PYTHON · DEAL WRITE-UPS</div>
-      <ul>
-        <li>Generates structured investment memos from deal inputs</li>
-        <li>Built out across NPC International, Alcatel-Lucent, Arion Banki, ACEP, and Consolidated Utility Services</li>
-      </ul>
-      <div class="tags"><span class="tag">Python</span><span class="tag">Memo Automation</span><span class="tag">Deal Analysis</span></div>
-    </div>
   </div>
 
   <div class="demo-card">
@@ -1098,8 +1080,9 @@
       <input class="demo-input" id="demo-ticker" type="text" placeholder="e.g. AAPL" maxlength="5" autocomplete="off" spellcheck="false">
       <button class="demo-btn" id="demo-run">Run Valuation</button>
     </div>
-    <div class="demo-hint">Supported tickers: NYSE- and NASDAQ-listed stocks. Use an established, profitable company (e.g. AAPL, MSFT, KO, PG). An unprofitable or deeply negative name can return broken-looking or error output, which is expected, not a bug. The first request can take up to 2 minutes while the free-tier engine wakes up; after that it's fast.</div>
+    <div class="demo-hint">Supported tickers: NYSE- and NASDAQ-listed stocks. Use an established, profitable company (e.g. AAPL, MSFT, KO, PG). The first request can take up to 2 minutes while the free-tier engine wakes up; after that it's fast.</div>
     <div class="demo-result" id="demo-result" aria-live="polite"></div>
+    <div class="demo-foot">Note: an unprofitable or deeply loss-making company can return an error or an unusable valuation; that is expected, not a bug.</div>
   </div>
 
   <div class="note">
