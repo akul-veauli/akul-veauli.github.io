@@ -12,6 +12,7 @@
 - Unfinished items: empty Real Estate and Waterfalls placeholders removed from the Model Library's Early Work list, Investment Memo Creator card removed (no sample output in the repo), the Live DCF Demo caveat moved out of the input hint into a reworded footnote under the result area, and the Model Library filter status no longer says earlier work is collapsed below for model types that have none
 - Card text checked against the notes: the Cogeco summary now says the stock trades "near" its 52-week low (C$54.71 against a C$54.25 low), and the WBD summary gives the note's "two and a half to three and a half more years"
 - Model Library descriptions checked against the workbooks: the Microsoft and Apple DCFs are five-year models (described as 10-year), the Apple DCF has no scenario toggles, the Microsoft three-statement model has no stress case, and the Hilton LBO does not model the 2010 restructuring, so those phrases were corrected or removed
+- Equity Research: added a short Methodology note (price-target method, Return definition, rating scales, price dates, coverage) above the Disclosure, every statement taken from the notes themselves
 
 ## v9 — Sep 10, 2026
 
