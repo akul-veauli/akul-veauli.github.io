@@ -313,9 +313,9 @@
 
 <div class="stats"><div class="wrap stats-inner">
   <div class="stat"><div class="num">$500M+</div><div class="lbl">Acquisition Modelled</div></div>
-  <div class="stat"><div class="num">$3B+</div><div class="lbl">AUM Supported</div></div>
+  <div class="stat"><div class="num" data-count="models">23</div><div class="lbl">Models &amp; Analyses Posted</div></div>
   <div class="stat"><div class="num" data-count="notes-all">29</div><div class="lbl">Equity Research Notes</div></div>
-  <div class="stat"><div class="num">8×</div><div class="lbl">First-Place Finance Competitions</div></div>
+  <div class="stat"><div class="num">8×</div><div class="lbl">First-Place Competition Finishes</div></div>
 </div></div>
 
 <section id="about"><div class="wrap">
@@ -359,7 +359,7 @@
 
   <div class="mtype-box">
     <div class="mtype-head">
-      <div class="mtype-count"><div class="big">23</div><div class="lbl">Models &amp; Analyses Posted</div></div>
+      <div class="mtype-count"><div class="big" data-count="models">23</div><div class="lbl">Models &amp; Analyses Posted</div></div>
       <div class="mtype-sub">Built by hand unless tagged code-generated. Click a type to filter the library below.</div>
     </div>
     <div class="mbar">
@@ -1031,7 +1031,7 @@
         <li>Pulls SEC EDGAR, Damodaran, Yahoo Finance, and FRED into 10-year forecasts</li>
         <li>WACC builds, sensitivity grids, and scenario analysis</li>
         <li>Output is a live-formula Excel workbook</li>
-        <li>412 built-in audit checks (balance ties, sign conventions, circularity) with a version stamp on every output</li>
+        <li>Built-in audit checks (balance ties, sign conventions, circularity) with a version stamp on every output</li>
       </ul>
       <div class="tags"><span class="tag">Python</span><span class="tag">XBRL</span><span class="tag">Validation Suite</span><span class="tag">DCF</span></div>
     </div>
@@ -1604,7 +1604,8 @@
   }).length;
   var counts = {
     "notes-all": cards.length,
-    "notes-formal": cards.length - pitches
+    "notes-formal": cards.length - pitches,
+    "models": document.querySelectorAll("#model-library .dl-row").length
   };
   Array.prototype.forEach.call(document.querySelectorAll("[data-count]"), function (el) {
     var n = counts[el.getAttribute("data-count")];
