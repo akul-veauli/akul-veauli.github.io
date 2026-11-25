@@ -312,7 +312,7 @@
 <div class="stats"><div class="wrap stats-inner">
   <div class="stat"><div class="num">$500M+</div><div class="lbl">Acquisition Modelled</div></div>
   <div class="stat"><div class="num">$3B+</div><div class="lbl">AUM Supported</div></div>
-  <div class="stat"><div class="num">28</div><div class="lbl">Equity Research Notes</div></div>
+  <div class="stat"><div class="num" data-count="notes-all">29</div><div class="lbl">Equity Research Notes</div></div>
   <div class="stat"><div class="num">8×</div><div class="lbl">First-Place Finance Competitions</div></div>
 </div></div>
 
@@ -322,7 +322,7 @@
   <div class="rule"></div>
   <div class="about-block">
     <p>I'm a University of Toronto finance graduate focused on private equity and investment banking, with most of my experience in valuation and underwriting. <span class="punch">At Timbercreek Capital I led the diligence and analysis on a potential mining acquisition and on a new investment strategy the firm was building, and put together the models and investment committee materials behind both.</span></p>
-    <p class="contents">Below: the two mandates in more detail, a library of Excel models and pitch decks, 28 equity research notes, and a few Python tools, one of which runs a live valuation.</p>
+    <p class="contents">Below: the two mandates in more detail, a library of Excel models and pitch decks, <span data-count="notes-all">29</span> equity research notes, and a few Python tools, one of which runs a live valuation.</p>
   </div>
 </div></section>
 
@@ -544,7 +544,7 @@
 <section id="research" class="alt"><div class="wrap">
   <div class="sec-kicker">Independent Work</div>
   <h2>Equity Research</h2>
-  <p class="sec-lede">28 initiation and update notes in an institutional sell-side format: full thesis, company overview, forward estimates, and a price target behind every call. Each sector opens with the note I'd show first, then the rest in chronological order. Notes from 2024 and earlier are tagged early work and left up on purpose so the progression is visible. My own coverage universe, my own estimates. Nothing here is investment advice.</p>
+  <p class="sec-lede"><span data-count="notes-all">29</span> research notes: <span data-count="notes-formal">28</span> initiation and update notes in an institutional sell-side format (full thesis, company overview, forward estimates, and a price target behind every call) and one stock pitch. Each sector opens with the note I'd show first, then the rest in chronological order. Notes from 2024 and earlier are tagged early work and left up on purpose so the progression is visible. My own coverage universe, my own estimates. Nothing here is investment advice.</p>
 
   <div class="sector-grid" aria-label="Research sectors">
     <button type="button" class="sector-tile" data-panel="panel-comm" aria-expanded="false" aria-controls="panel-comm"><span class="tile-name">Communication Services</span><span class="tile-count">2</span></button>
@@ -1586,6 +1586,41 @@
     });
   }
   syncBtn();
+})();
+
+(function () {
+  // Counts in the copy are computed from the cards on the page. The numbers
+  // written in the HTML are the no-JS fallback and must be kept correct by hand.
+  var research = document.getElementById("research");
+  if (!research) return;
+  var cards = Array.prototype.slice.call(research.querySelectorAll(".sector-panel .acc-company"));
+  var pitches = cards.filter(function (c) {
+    return Array.prototype.some.call(c.querySelectorAll("summary .pill"), function (p) {
+      return p.textContent.trim() === "Stock Pitch";
+    });
+  }).length;
+  var counts = {
+    "notes-all": cards.length,
+    "notes-formal": cards.length - pitches
+  };
+  Array.prototype.forEach.call(document.querySelectorAll("[data-count]"), function (el) {
+    var n = counts[el.getAttribute("data-count")];
+    if (typeof n === "number") el.textContent = String(n);
+  });
+  Array.prototype.forEach.call(research.querySelectorAll(".sector-tile"), function (tile) {
+    var panel = document.getElementById(tile.getAttribute("data-panel"));
+    if (!panel) return;
+    var n = panel.querySelectorAll(".acc-company").length;
+    var badge = tile.querySelector(".tile-count");
+    var name = tile.querySelector(".tile-name");
+    var head = panel.querySelector(".panel-head");
+    if (badge) badge.textContent = String(n);
+    if (head && name) head.textContent = name.textContent + " · " + n + (n === 1 ? " report" : " reports");
+    Array.prototype.forEach.call(panel.querySelectorAll("details.acc-coverage"), function (cov) {
+      var label = cov.querySelector("summary.coverage-label");
+      if (label) label.textContent = "All Coverage · newest first · " + cov.querySelectorAll(".acc-company").length + " more";
+    });
+  });
 })();
 </script>
 
