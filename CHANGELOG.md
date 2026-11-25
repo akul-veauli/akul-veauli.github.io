@@ -1,5 +1,16 @@
 # Changelog
 
+## v11: Nov 25, 2026
+
+**Status:** complete (retrospective notes relabelled, their PDFs rebuilt, card and Model Library text checked against their files)
+
+- The twelve notes previously dated 23 Aug 2024 and tagged Early Work (BN, CNQ, CP, CSU, ENB, EQB, HPS, JPM, KXS, LLY, MSFT, RY) are retrospective notes, written in August 2026 as of 23 August 2024 using only information public on that date. The site now tags them Retrospective and dates them "As of 23 Aug 2024", and the lede and Methodology note say so. The Methodology note also says they apply a single forward multiple with no cross-checks and count dividends through the target date
+- The twelve PDFs were rebuilt with real creation dates (the metadata is no longer backdated), a header and cover date reading "As of 23 August 2024 · retrospective, written August 2026", and a disclosure saying the estimates were made in August 2026. The cash-flow and peer cross-check rows and every "cross-checked against" claim were removed, since each target rests on one multiple. Bull and bear scenario values are unchanged but labelled illustrative (set at +22% and -32% of the target), and the probability-weighted value was removed. Prices, targets, estimates, dividends and returns are unchanged
+- CSU moved from Neutral to Overweight: its 15.1% expected total return clears its own "Overweight above 15%" scale. The PDF now defines FCFA2S at first use, and the card glosses it as free cash flow available to shareholders
+- The UNH summary now gives the note's CMS figures (a 5.06% expected average Medicare Advantage revenue increase for 2026 against 3.70% for 2025) instead of "the widest increase in years". The ENBDREIT summary now says the 8.1% yield is more than half of the expected +14.1% return, not effectively all of it
+- Model Library: the dESCO model row now describes its exit-multiple valuation at 5.1x EBITDA (the workbook has no DCF), and the deck row no longer mentions a letter of intent, which none of its 25 slides contains. In the Hilton LBO, Returns!B68:B69 now say the revenue path uses the realized 2009 to 2010 decline as a hindsight scenario, while the crisis itself and the 2010 restructuring are not modeled; no other cell changed
+- Projects: the LBO / Take-Private Modeller card links a sample output workbook for a synthetic company (`downloads/LBO_Modeller_Sample_Output.xlsx`). It is not in the Model Library, whose count stays at 23
+
 ## v10: Nov 25, 2026
 
 **Status:** complete (credibility pass: note count, Return and Upside labels, Featured label, Early Work rule, unsupported claims, unfinished items, card and Model Library text checked against their files)
