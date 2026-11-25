@@ -1552,7 +1552,11 @@
     setPressed(segs, type);
     setPressed(keys, type);
     var label = LABELS[type] || type;
-    if (statusEl) statusEl.textContent = "Showing " + label + ". New work is open; earlier work is collapsed below.";
+    var hasEarly = Array.prototype.some.call(mids, function (m) {
+      return !isNewWork(m) && !m.classList.contains("is-filtered-out");
+    });
+    if (statusEl) statusEl.textContent = "Showing " + label + ". New work is open; " +
+      (hasEarly ? "earlier work is collapsed below." : "there is no earlier work in this category.");
     syncBtn();
     lib.scrollIntoView({ behavior: "smooth", block: "start" });
   }
